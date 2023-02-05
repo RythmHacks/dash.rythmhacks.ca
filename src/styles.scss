@@ -19,4 +19,8 @@ h1, h2, h3, h4 {
 }
 p {
   font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  &.desc {
+    font-size: 0.8rem;
+  }
 }
