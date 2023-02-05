@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./assets/fonts/Satoshi-Regular.woff');
+}
+
+/* div {
+  border: 1px solid red;
+} */
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Satoshi', sans-serif;
+}
+p {
+  font-family: 'Inter', sans-serif;
+}
