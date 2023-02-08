@@ -1,9 +1,10 @@
 import './Login.scss'
 import { useState } from 'react'
-import { supabase } from '../../supabaseClient'
+import { useAuth } from '../../contexts/Auth'
 import logo from '../../assets/logo.png'
 
 const Login = () => {
+  const { signInWithOtp } = useAuth()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
@@ -13,11 +14,12 @@ const Login = () => {
 
     try {
       setLoading(true)
-      const { error } = await supabase.auth.signInWithOtp({ email })
+      const { error } = await signInWithOtp({ email })
       if (error) throw error
       alert('Check your email for the login link!')
     } catch (error: any) {
       alert(error.error_description || error.message)
+      console.error(error)
     } finally {
       setLoading(false)
     }
