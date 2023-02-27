@@ -83,6 +83,7 @@ const Signup = () => {
               <button className="button block border-none rounded-md text-white text-lg font-sans bg-accent px-3 py-1" aria-live="polite">
                 Sign Up
               </button>
+              <p className="text-sm mt-4">Already have an account? <a className="text-accent no-underline hover:underline" href="/login">Log in instead</a></p>
             </form>
           )}
         </div>
