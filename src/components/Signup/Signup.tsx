@@ -29,7 +29,7 @@ const Signup = () => {
   }
 
   return (
-    <div id='login' className='mr-auto ml-auto mt-[5rem]'>
+    <div id='login' className='w-5/12 p-8 mr-auto ml-auto mt-[5rem] rounded-lg border-2 border-solid border-neutral-100'>
         <p className='uppercase text-[#888] desc m-0'>sign up</p>
         <div className='flex justify-between items-center'>
           <h1 className='leading-normal'>Create a RythmHacks account</h1>
