@@ -7,6 +7,8 @@ const Signup = () => {
 
 
   const [loading, setLoading] = useState(false)
+  const [firstname, setFirstname] = useState('')
+  const [lastname, setLastname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -37,9 +39,29 @@ const Signup = () => {
         <div className="row flex-center flex">
         <div className="col-6 form-widget" aria-live="polite">
           {loading ? (
-            'Sending magic link...'
+            'Signing Up...'
           ) : (
             <form onSubmit={handleLogin}>
+              <div className="flex w-100 gap-4">
+                <input 
+                  id="firstname"
+                  className="inputField border-style-none bg-gray-100 border-solid border-2 border-gray-100 rounded py-2 px-4 mb-4 text-gray-700 focus:outline-none focus:bg-white focus:border-accent border-box flex-1"
+                  type="text"
+                  placeholder="First name"
+                  value={firstname}
+                  onChange={(e:any) => setFirstname(e.target.value)}
+                  required
+                />
+                <input 
+                  id="lastname"
+                  className="inputField border-style-none bg-gray-100 border-solid border-2 border-gray-100 rounded py-2 px-4 mb-4 text-gray-700 focus:outline-none focus:bg-white focus:border-accent border-box flex-1"
+                  type="text"
+                  placeholder="Last name"
+                  value={lastname}
+                  onChange={(e:any) => setLastname(e.target.value)}
+                  required
+                />
+              </div>
               <input
                 id="email"
                 className="inputField border-style-none bg-gray-100 border-solid border-2 border-gray-100 rounded w-full py-2 px-4 mb-4 text-gray-700 focus:outline-none focus:bg-white focus:border-accent border-box"
@@ -58,7 +80,7 @@ const Signup = () => {
                 onChange={(e:any) => setPassword(e.target.value)}
                 required
               />
-              <button className="button block border-none rounded-md text-white text-lg font-sans bg-accent  px-3 py-1" aria-live="polite">
+              <button className="button block border-none rounded-md text-white text-lg font-sans bg-accent px-3 py-1" aria-live="polite">
                 Sign Up
               </button>
             </form>
