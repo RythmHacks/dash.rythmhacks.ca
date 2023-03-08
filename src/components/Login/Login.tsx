@@ -51,7 +51,6 @@ const Login = () => {
               <button className="button block border-none rounded-md text-white text-lg font-sans bg-accent  px-3 py-1" aria-live="polite">
                 Send magic link
               </button>
-              <p className="text-sm mt-4">Don&apos;t have an account? <a className="text-accent no-underline hover:underline" href="/signup">Sign up</a></p>
             </form>
           )}
         </div>
