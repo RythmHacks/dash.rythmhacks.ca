@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../../contexts/Auth'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/rythmhacks-circle.png'
 
 const Login = () => {
   const { signInWithOtp } = useAuth()
@@ -25,16 +25,16 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='w-5/12 p-8 mr-auto ml-auto mt-[5rem] rounded-lg border-2 border-solid border-neutral-100'>
+    <div id='login' className='w-5/12 p-8 mr-auto ml-auto mt-[5rem] rounded-lg border-2 border-solid border-[#121313] bg-[#121313]'>
         <p className='uppercase text-[#888] desc m-0'>log in</p>
         <div className='flex justify-between items-center'>
           <h1 className='leading-normal'>Log In to RythmHacks</h1>
-          <img src={logo} alt='loginlogo' className='rounded-full h-[4rem]'></img>
+          <img src={logo} alt='loginlogo' className='rounded-md h-[4rem]'></img>
         </div>
 
         <div className="row flex-center flex">
         <div className="col-6 form-widget" aria-live="polite">
-          <p className="description">Sign in via magic link with your email below:</p>
+          <p className="description text-center">Sign in via magic link with your email below:</p>
           {loading ? (
             'Sending magic link...'
           ) : (
@@ -48,7 +48,7 @@ const Login = () => {
                 onChange={(e:any) => setEmail(e.target.value)}
                 required
               />
-              <button className="button block border-none rounded-md text-white text-lg font-sans bg-accent  px-3 py-1" aria-live="polite">
+              <button className='w-full text-white'>
                 Send magic link
               </button>
             </form>
