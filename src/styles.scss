@@ -6,10 +6,11 @@
   src: url('./assets/fonts/Satoshi-Regular.woff');
 }
 
-/* div {
-  border: 1px solid red;
-} */
 
+
+*, *::before, *::after {
+  box-sizing: border-box;  
+}
 body {
   margin: 0;
 }

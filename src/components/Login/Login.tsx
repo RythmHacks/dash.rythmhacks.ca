@@ -1,12 +1,9 @@
-import './Login.scss'
 import { useState } from 'react'
 import { useAuth } from '../../contexts/Auth'
 import logo from '../../assets/logo.png'
 
 const Login = () => {
-  const { signInWithOtp, user } = useAuth()
-  console.log(user)
-
+  const { signInWithOtp } = useAuth()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
@@ -28,7 +25,7 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='mr-auto ml-auto mt-[5rem]'>
+    <div id='login' className='w-5/12 p-8 mr-auto ml-auto mt-[5rem] rounded-lg border-2 border-solid border-neutral-100'>
         <p className='uppercase text-[#888] desc m-0'>log in</p>
         <div className='flex justify-between items-center'>
           <h1 className='leading-normal'>Log In to RythmHacks</h1>
