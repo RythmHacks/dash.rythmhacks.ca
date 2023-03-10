@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useAuth } from '../../contexts/Auth'
 import logo from '../../assets/rythmhacks-circle.png'
+import { BsCheckCircle } from 'react-icons/bs'
 
 const Login = () => {
   const { signInWithOtp } = useAuth()
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
+  const [sent, setSent] = useState(false)
 
   const handleLogin = async (e: any) => {
     e.preventDefault()
@@ -15,7 +17,8 @@ const Login = () => {
       setLoading(true)
       const { error } = await signInWithOtp({ email })
       if (error) throw error
-      alert('Check your email for the login link!')
+      alert(`Check your email (${email}) for the login link!`)
+      setSent(true)
     } catch (error: any) {
       alert(error.error_description || error.message)
       console.error(error)
@@ -25,10 +28,10 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='w-5/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313]'>
+    <div id='login' className='w-5/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313] min-w-[330px]'>
         <p className='uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
-        <div className='flex justify-between items-center'>
-          <h1 className='leading-normal'>Log In to RythmHacks</h1>
+        <div className='flex justify-between items-center gap-4'>
+          <h1 className='mt-4'>Log In to RythmHacks</h1>
           <img src={logo} alt='loginlogo' className='rounded-md h-[4rem]'></img>
         </div>
 
@@ -51,6 +54,7 @@ const Login = () => {
               <button className='w-full text-white'>
                 Send magic link
               </button>
+              {(sent) ? <p className='items-center flex gap-2 text-[#bbb]'><BsCheckCircle/> Magic link sent successfully, you can now close this window</p> : <p></p>}
             </form>
           )}
         </div>
