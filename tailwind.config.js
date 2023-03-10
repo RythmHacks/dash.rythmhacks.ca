@@ -11,6 +11,9 @@ module.exports = {
         dark2: "#1B1F2A"
       }
     },
+    transitionDuration: {
+      DEFAULT: "300ms"
+    }
   },
   plugins: [],
 }

@@ -52,9 +52,10 @@ input {
   border-radius: 5px;
   color: #eee;
   outline: none;
+  transition: border-color .3s ease;
 
-  &:focus {
-    box-shadow: 0px 0px 2px #fff;
+  &:focus, &:hover {
+    border-color: #888;
   }
   &::placeholder {
     color: #555;
