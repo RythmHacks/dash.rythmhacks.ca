@@ -7,7 +7,7 @@ const Dashboard = () => {
     return (
         <div>
             <h1>Dashboard</h1>
-            <p>{JSON.stringify(user)}</p>
+            <p>Welcome, {user!.email}!</p>
         </div>
     )
 }

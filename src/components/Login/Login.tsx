@@ -25,25 +25,25 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='w-5/12 p-8 mr-auto ml-auto mt-[5rem] rounded-lg border-2 border-solid border-[#121313] bg-[#121313]'>
-        <p className='uppercase text-[#888] desc m-0'>log in</p>
+    <div id='login' className='w-5/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313]'>
+        <p className='uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
         <div className='flex justify-between items-center'>
           <h1 className='leading-normal'>Log In to RythmHacks</h1>
           <img src={logo} alt='loginlogo' className='rounded-md h-[4rem]'></img>
         </div>
 
-        <div className="row flex-center flex">
-        <div className="col-6 form-widget" aria-live="polite">
-          <p className="description text-center">Sign in via magic link with your email below:</p>
+        <div className="row flex-center flex w-full">
+        <div className="col-6 form-widget w-full" aria-live="polite">
+          <p className="text-[#bbb]">Enter your email to get a magic link</p>
           {loading ? (
             'Sending magic link...'
           ) : (
             <form onSubmit={handleLogin}>
               <input
                 id="email"
-                className="inputField border-style-none bg-gray-100 border-solid border-2 border-gray-100 rounded w-full py-2 px-4 mb-4 text-gray-700 focus:outline-none focus:bg-white focus:border-accent"
+                className="mb-4 px-4 py-2 w-full"
                 type="email"
-                placeholder="Your email"
+                placeholder="email@example.com"
                 value={email}
                 onChange={(e:any) => setEmail(e.target.value)}
                 required
