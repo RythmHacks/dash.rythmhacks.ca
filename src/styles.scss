@@ -1,27 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @tailwind utilities;
 
+$accent: #558CA9;
+$dark1: #121313;
+$dark2: #1B1F2A;
+
 @font-face {
   font-family: 'Satoshi';
   src: url('./assets/fonts/Satoshi-Regular.woff');
 }
-
-
 
 *, *::before, *::after {
   box-sizing: border-box;  
 }
 body {
   margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: $dark2;
+  color: #eee;
+  background-image: radial-gradient(#777 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px ;
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Satoshi', sans-serif;
 }
-p {
+p, button, input {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  &.desc {
-    font-size: 0.8rem;
+}
+
+button {
+  background-color: darken($accent, 10%);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  max-width: none;
+
+  &:hover {
+    background-color: $accent;
+  }
+}
+
+input {
+  background-color: $dark2;
+  border: 1px solid #555;
+  border-radius: 5px;
+  color: #eee;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0px 0px 2px #fff;
+  }
+  &::placeholder {
+    color: #555;
   }
 }
