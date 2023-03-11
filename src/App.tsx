@@ -5,9 +5,8 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from './contexts/Auth'
 
 import Login from './components/Login/Login'
-import Dashboard from './components/Dashboard/Dashboard'
-
-
+import Home from './components/Home/Home'
+import Sidebar from './components/Sidebar/Sidebar'
 
 const App = () => {
   const { user } = useAuth()
@@ -16,7 +15,8 @@ const App = () => {
     <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={user ? <Dashboard /> : <Navigate to="/login" />} />
+            <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+            <Route path="/dashboard" element={user ? <div className='flex h-full'><Sidebar/><Home /></div> : <Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>

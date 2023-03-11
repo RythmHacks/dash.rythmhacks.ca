@@ -28,7 +28,7 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='w-4/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313] min-w-[330px]'>
+    <div id='login' className='w-9/12 md:w-4/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313] min-w-[330px]'>
         <p className='uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
         <div className='flex justify-between items-center gap-4'>
           <h1 className='mt-4'>Log In to RythmHacks</h1>

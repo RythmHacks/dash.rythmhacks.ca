@@ -6,7 +6,7 @@ const Dashboard = () => {
    
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1>Home</h1>
             <p>Welcome, {user!.email}!</p>
         </div>
     )
