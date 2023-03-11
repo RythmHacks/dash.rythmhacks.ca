@@ -8,7 +8,9 @@ module.exports = {
       colors: {
         accent: "#558CA9",
         dark1: "#121313",
-        dark2: "#1B1F2A"
+        dark2: "#1B1F2A",
+        dark3: "#2a2e39",
+        blurred: "rgba(18, 19, 19, 0.5)"
       }
     },
     transitionDuration: {

@@ -61,3 +61,11 @@ input {
     color: #555;
   }
 }
+
+.container {
+  padding: 2.5rem;
+  border-radius: 5px;
+  background-color: rgba(18, 19, 19, 0.5);
+  backdrop-filter: blur(2px);
+  border: 1px solid $dark1;
+}
