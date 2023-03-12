@@ -1,9 +1,27 @@
-
+import './Sidebar.scss'
+import logo from '../../assets/rythmhacks-circle.png'
+import { Link, useLocation } from 'react-router-dom'
 
 const Sidebar = () => {
-  return (
-    <div className='bg-dark3 h-[100vh] p-4'>A thing that has max height</div>
-  )
+
+    let location = useLocation().pathname
+
+    if (location === '/login') {
+        return null;
+    }
+
+    return (
+        <div className="sidebar">
+            <div className='flex gap-4 items-center'>
+                <img src={logo} alt='sidebarlogo' className='rounded-md h-[3rem]'></img>
+                <h3>Hacker<br/>Dashboard</h3>
+            </div>
+            <div className='mt-[4rem]'>
+                <Link to='/dashboard' className={(location === '/dashboard') ? "active" : ""}>Home</Link>
+                <Link to='/dashboard/test' className={(location === '/dashboard/test') ? "active" : ""}>Login (temp)</Link>
+            </div>
+        </div>
+    )
 }
 
 export default Sidebar

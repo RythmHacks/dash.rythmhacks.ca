@@ -35,7 +35,7 @@ const Login = () => {
           <img src={logo} alt='loginlogo' className='rounded-md h-[4rem]'></img>
         </div>
 
-        <div className="row flex w-full mt-8">
+        <div className="row flex w-full mt-12">
         <div className="col-6 form-widget w-full" aria-live="polite">
           <p className="text-[#bbb]">Enter your email to get a magic link</p>
           {loading ? (
@@ -44,7 +44,7 @@ const Login = () => {
             <form onSubmit={handleLogin}>
               <input
                 id="email"
-                className="mb-4 px-4 py-2 w-full"
+                className="mb-4 px-4 py-2 w-full mt-4"
                 type="email"
                 placeholder="email@example.com"
                 value={email}

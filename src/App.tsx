@@ -10,16 +10,20 @@ import Sidebar from './components/Sidebar/Sidebar'
 
 const App = () => {
   const { user } = useAuth()
- 
+
   return (
-    <div>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-            <Route path="/dashboard" element={user ? <div className='flex h-full'><Sidebar/><Home /></div> : <Navigate to="/login" />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </BrowserRouter>
+    <div className='flex'>
+      <BrowserRouter>
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={user ? <Navigate to='/dashboard' /> : <Navigate to="/login" />} />
+          <Route path='/dashboard'>
+            <Route index element={<Home />} />
+            <Route path="test" element={<Login />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

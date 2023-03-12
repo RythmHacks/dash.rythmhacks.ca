@@ -1,0 +1,30 @@
+@import '../../styles.scss';
+
+.sidebar {
+    padding: 2rem;
+    background-color: lighten($dark2, 3%);
+    height: 100vh;
+    border-right: 2px solid $dark1;
+    width: 15%;
+
+    a {
+        width: 100%;
+        color: #ddd;
+        display: block;
+        padding: 0.5rem 1.25rem;
+        margin-bottom: 0.25rem;
+        text-decoration: none;
+        border-radius: 5px;
+        border: 2px solid $dark1;
+
+        &:hover {
+            background-color: darken($dark2, 3%);
+        }
+
+        &.active {
+            background-color: darken($dark2, 3%);
+            color: #eee;
+            text-decoration: underline;
+        }
+    }
+}
