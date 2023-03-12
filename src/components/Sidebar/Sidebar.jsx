@@ -18,7 +18,7 @@ const Sidebar = () => {
             </div>
             <div className='mt-[4rem]'>
                 <Link to='/dashboard' className={(location === '/dashboard') ? "active" : ""}>Home</Link>
-                <Link to='/dashboard/test' className={(location === '/dashboard/test') ? "active" : ""}>Login (temp)</Link>
+                <Link to='/dashboard/apply' className={(location === '/dashboard/apply') ? "active" : ""}>Apply</Link>
             </div>
         </div>
     )
