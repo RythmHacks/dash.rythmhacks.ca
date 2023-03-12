@@ -28,14 +28,14 @@ const Login = () => {
   }
 
   return (
-    <div id='login' className='w-5/12 p-10 mr-auto ml-auto mt-[5rem] rounded-lg bg-[#121313] min-w-[330px]'>
+    <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
         <p className='uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
         <div className='flex justify-between items-center gap-4'>
           <h1 className='mt-4'>Log In to RythmHacks</h1>
           <img src={logo} alt='loginlogo' className='rounded-md h-[4rem]'></img>
         </div>
 
-        <div className="row flex-center flex w-full">
+        <div className="row flex w-full mt-12">
         <div className="col-6 form-widget w-full" aria-live="polite">
           <p className="text-[#bbb]">Enter your email to get a magic link</p>
           {loading ? (
@@ -44,7 +44,7 @@ const Login = () => {
             <form onSubmit={handleLogin}>
               <input
                 id="email"
-                className="mb-4 px-4 py-2 w-full"
+                className="mb-4 px-4 py-2 w-full mt-4"
                 type="email"
                 placeholder="email@example.com"
                 value={email}

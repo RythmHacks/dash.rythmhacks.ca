@@ -26,23 +26,26 @@ body {
 
 h1, h2, h3, h4 {
   font-family: 'Satoshi', sans-serif;
+  margin: 0;
 }
 p, button, input {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
+  margin: 0;
 }
 
 button {
-  background-color: darken($accent, 10%);
+  background-color: $accent;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
   border: none;
   max-width: none;
+  color: #eee;
 
   &:hover {
-    background-color: $accent;
+    background-color: darken($accent, 10%);
   }
 }
 
@@ -52,11 +55,20 @@ input {
   border-radius: 5px;
   color: #eee;
   outline: none;
+  transition: border-color .3s ease;
 
-  &:focus {
-    box-shadow: 0px 0px 2px #fff;
+  &:focus, &:hover {
+    border-color: #888;
   }
   &::placeholder {
     color: #555;
   }
+}
+
+.container {
+  padding: 2.5rem;
+  border-radius: 5px;
+  background-color: rgba(18, 19, 19, 0.5);
+  backdrop-filter: blur(2px);
+  border: 2px solid $dark1;
 }
