@@ -34,7 +34,6 @@ const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
 
         updateAuthData();
 
-        
     }, []);
     
     const value: AuthProviderValue = {
