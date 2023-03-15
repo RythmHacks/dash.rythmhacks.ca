@@ -54,6 +54,9 @@ const Login = () => {
               <button className='w-full text-white'>
                 Send magic link
               </button>
+              <button className="style-link p-0 mt-2">
+                Need help?
+              </button>
               {(sent) ? <p className='items-center flex gap-2 text-[#bbb]'><BsCheckCircle/> Magic link sent successfully, you can now close this window</p> : <p></p>}
             </form>
           )}
