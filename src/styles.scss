@@ -34,7 +34,7 @@ p, button, input {
   margin: 0;
 }
 
-button {
+button:not(.style-link) {
   background-color: $accent;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -46,6 +46,27 @@ button {
 
   &:hover {
     background-color: darken($accent, 10%);
+  }
+}
+
+button.style-link {
+  background-color: transparent;
+  border: none;
+}
+
+a, button.style-link {
+  transition: all 0.3s;
+  color: $accent;
+  cursor: pointer;
+  background-image: linear-gradient(90deg, rgba(84,140,168,1) 0%, rgba(84,140,168,1) 100%);;
+  background-size: 0% 2.5px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  text-decoration: none;
+  transition: color 0.3s, background-size 0.5s ease;
+
+  &:hover {
+    background-size: 100% 2.5px;
   }
 }
 
