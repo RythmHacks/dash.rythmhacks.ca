@@ -4,14 +4,14 @@
     background-color: lighten($dark2, 3%);
     height: 100vh;
     border-right: 2px solid $dark1;
-    width: 15%;
+    width: 17%;
     flex-direction: column;
     display: flex;
     justify-content: space-between;
 
     a {
         width: 90%;
-        color: #ddd;
+        color: rgba(255, 255, 255, 0.7);
         display: block;
         padding: 0.75rem 1.25rem;
         margin-left: 5%;
@@ -26,11 +26,12 @@
 
         &:hover {
             background-color: darken($dark2, 3%);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         &.active {
             background-color: darken($dark2, 3%);
-            color: $accent;
+            color: lighten($accent, 10%);
         }
     }
 }

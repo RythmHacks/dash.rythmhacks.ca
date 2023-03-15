@@ -1,15 +1,15 @@
-import React from 'react';
-import { useAuth } from '../../contexts/Auth';
+import './Home.scss'
 
-const Dashboard = () => {
-    const { user } = useAuth();
+const Home = () => {
 
     return (
-        <div>
-            <h1>Home</h1>
-            <p>Welcome, {user!.email}!</p>
+        <div className='p-12' id='home'>
+            <div className='container'>
+                <h1 className='pb-4'>Home</h1>
+                <div>Hey there! Welcome to your hacker dashboard, where you'll find important info throughout the event. </div>
+            </div>
         </div>
     )
 }
 
-export default Dashboard;
+export default Home;

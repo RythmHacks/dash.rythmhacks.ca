@@ -17,7 +17,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div>
-                <div className='flex gap-4 items-center px-4 pt-8'>
+                <div className='flex gap-4 items-center p-8 pb-0'>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[3rem]'></img>
                     <h3>Hacker<br/>Dashboard</h3>
                 </div>
