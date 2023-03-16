@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { RiCloseFill } from "react-icons/ri"
 import './Modal.scss'
 
@@ -28,8 +28,8 @@ const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, c
                     }
                 </div>
                 {children}
-                </div>
             </div>
+        </div>
     </>
 }
 
