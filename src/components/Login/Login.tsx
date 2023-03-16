@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../../contexts/Auth'
 import logo from '../../assets/rythmhacks-circle.png'
 import { BsCheckCircle } from 'react-icons/bs'
+import Modal from '../../components/Modal/Modal'
 
 const Login = () => {
   const { signInWithOtp } = useAuth()
@@ -9,6 +10,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
+
+  const [helpModalOpened, setHelpModalOpened] = useState(false)
 
   const handleLogin = async (e: any) => {
     e.preventDefault()
@@ -27,7 +30,7 @@ const Login = () => {
     }
   }
 
-  return (
+  return <>      
     <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
         <p className='uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
         <div className='flex justify-between items-center gap-4'>
@@ -51,10 +54,14 @@ const Login = () => {
                 onChange={(e:any) => setEmail(e.target.value)}
                 required
               />
-              <button className='w-full text-white'>
+              <button className='w-full text-white' type="submit">
                 Send magic link
               </button>
-              <button className="style-link p-0 mt-2">
+              <button 
+                className="style-link p-0 mt-2"
+                type="button"
+                onClick={() => setHelpModalOpened(true)}
+              >
                 Need help?
               </button>
               {(sent) ? <p className='items-center flex gap-2 text-[#bbb]'><BsCheckCircle/> Magic link sent successfully, you can now close this window</p> : <p></p>}
@@ -63,7 +70,14 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
+    <Modal
+      isOpened={helpModalOpened}
+      setIsOpened={setHelpModalOpened}
+      closeButtonPresent
+    >
+      <h2>Help</h2>
+    </Modal>
+    </>
 }
 
 export default Login

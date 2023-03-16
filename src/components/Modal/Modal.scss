@@ -1,0 +1,12 @@
+.modal-overlay {
+   backdrop-filter: blur(2px);
+}
+
+.close-button {
+    color: #9999AA;
+    transition: color 0.25s ease;
+    &:hover {
+        color: #fff;
+    }
+    
+}

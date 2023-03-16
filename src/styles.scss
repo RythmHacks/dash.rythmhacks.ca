@@ -34,7 +34,7 @@ p, button, input {
   margin: 0;
 }
 
-button:not(.style-link) {
+button:not(.style-link):not(.style-none) {
   background-color: $accent;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -49,7 +49,7 @@ button:not(.style-link) {
   }
 }
 
-button.style-link {
+button.style-link, button.style-none {
   background-color: transparent;
   border: none;
 }
