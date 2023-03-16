@@ -74,7 +74,6 @@ const Login = () => {
       isOpened={helpModalOpened}
       setIsOpened={setHelpModalOpened}
       title="Help"
-      closeButtonPresent
     >
     </Modal>
     </>

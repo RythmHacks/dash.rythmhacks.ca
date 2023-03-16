@@ -7,7 +7,7 @@ type ModalProps = {
     setIsOpened: React.Dispatch<React.SetStateAction<boolean>>,
     children: React.ReactNode,
     title: string,
-    closeButtonPresent: boolean
+    closeButtonPresent?: boolean
 }
 const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, closeButtonPresent }) => {
     return <>
@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, c
                         <button className="close-button style-none bg-transparent" onClick={() => setIsOpened(false)}>
                             <RiCloseFill size={24} />
                         </button>
-                    } 
+                    }
                 </div>
                 {children}
                 </div>
