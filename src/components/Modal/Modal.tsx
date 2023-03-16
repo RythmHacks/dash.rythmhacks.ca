@@ -18,8 +18,8 @@ const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, c
             }}
         >
             
-            <div className="modal w-8/12 h-5/6 min-w-96 m-auto p-4 rounded-lg z-index-50 bg-[#202430] shadow-xl shadow-black/25">
-                <div className="flex justify-between">
+            <div className="modal w-8/12 h-5/6 min-w-96 m-auto p-8 rounded-lg z-index-50 bg-[#202430] shadow-xl shadow-black/25">
+                <div className="flex justify-between mb-4">
                     <h2>{title}</h2>
                     { closeButtonPresent && 
                         <button className="close-button style-none bg-transparent" onClick={() => setIsOpened(false)}>
