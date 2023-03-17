@@ -3,6 +3,7 @@ import logo from '../../assets/rythmhacks-circle.png'
 import { Link, useLocation } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
 import { BsClipboard2Check } from 'react-icons/bs'
+import { RxPerson } from 'react-icons/rx'
 import { useAuth } from '../../contexts/Auth'
 
 const Sidebar = () => {
@@ -23,13 +24,19 @@ const Sidebar = () => {
                 </div>
                 <div className='mt-[4rem]'>
                     <Link to='/dashboard' className={(location === '/dashboard') ? "active" : ""}><BiHome/> Home</Link>
-                    <Link to='/dashboard/apply' className={(location === '/dashboard/apply') ? "active" : ""}><BsClipboard2Check/> Apply</Link>
+                    <Link to='/dashboard/apply' className={(location === '/dashboard/apply') ? "active" : ""}><BsClipboard2Check/>Apply</Link>
+
                 </div>
             </div>
 
-            <div className='flex items-center bg-dark1 p-4'>
+            <div className="account-popup">
+                <Link to="/dashboard/settings" className={(location === '/dashboard/apply') ? "active" : ""}>Settings</Link>
+            </div>
+
+            <div className='flex items-center bg-dark1 p-4 gap-2'>
+                <RxPerson size={18}/>
                 {/* {(user?.name) ? user?.email : user?.name} */}
-                {user?.email}
+                <span>{user?.email}</span>
             </div>
         </div>
     )
