@@ -23,6 +23,7 @@
         border-radius: 5px;
         gap: 1rem;
         transition: background-color .3s ease, color .3s ease;
+        background-size: 0px 0px;
 
         &:hover {
             background-color: darken($dark2, 3%);

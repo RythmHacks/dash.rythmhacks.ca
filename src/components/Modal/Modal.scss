@@ -2,9 +2,15 @@
    backdrop-filter: blur(2px);
 }
 
+.modal {
+    border: 2px solid theme('colors.dark1');
+    overflow-y: auto;
+    max-height: 700px;
+}
+
 .close-button {
     color: #9999AA;
-    transition: color 0.25s ease;
+    transition: color 0.3s ease;
     &:hover {
         color: #fff;
     }
