@@ -46,21 +46,21 @@ const Sidebar = () => {
             </div>
 
             <div>
-                <div className="account-popup flex-col" style={{ display: accountPopupOpened ? "flex" : "none" }}>
-                    <div className="w-full h-12 p-4 flex items-center gap-2 hover:bg-dark2">
-                        <IoMdSettings size={24}/>
-                        <Link to="/dashboard/settings" className={(location === '/dashboard/apply') ? "active" : ""}>Settings</Link>
+                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`} onClick={() => setAccountPopupOpened(false)}>
+                    <div className="link" onClick={() => navigate('/dashboard/settings')}>
+                        <IoMdSettings size={16}/>
+                        Settings
                     </div>
-                    <div className="w-full h-12 p-4 flex items-center gap-2 hover:bg-dark2">
-                        <IoMdLogOut size={24}/>
-                        <button className="style-none" onClick={() => logout()}>Logout</button>
+                    <div className="link" onClick={() => logout()}>
+                        <IoMdLogOut size={16}/>
+                        Logout
                     </div>
                 </div>
 
-                <div className='flex items-center bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
-                    <RxPerson size={18}/>
+                <div className='cursor-pointer flex items-center justify-between bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
                     {/* {(user?.name) ? user?.email : user?.name} */}
                     <span>{user?.email}</span>
+                    <RxPerson size={16}/>
                 </div>
             </div>
         </div>
