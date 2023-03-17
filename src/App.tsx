@@ -9,6 +9,7 @@ import Login from './components/Login/Login'
 import Apply from './components/Apply/Apply'
 import Home from './components/Home/Home'
 import Sidebar from './components/Sidebar/Sidebar'
+import Settings from './components/Settings/Settings'
 
 const App = () => {
   const { user } = useAuth()
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/dashboard'>
           <Route index element={<Home />} />
           <Route path="apply" element={<Apply />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="*" element={<div>404</div>} />
       </Routes>
