@@ -4,6 +4,29 @@ import logo from '../../assets/rythmhacks-circle.png'
 import { BsCheckCircle } from 'react-icons/bs'
 import Modal from '../../components/Modal/Modal'
 
+const helpModalFAQ = [
+  { 
+    question: "What's a magic link?",
+    answer: "A magic link is a simple way for you to sign up or log in without having to use a password. All you have to do is enter your email, then go to your email inbox and click on the link we sent you, and you'll be logged in! It's very similar to the process of resetting a password." 
+  },
+  { 
+    question: "Why not use passwords?",
+    answer: "Using passwords can be problematic because they are typically not as secure as other methods. Passwords can be easily forgotten or stolen, especially if they are weak or reused. Moreover, having to create and remember can be quite inconvenient."
+  },
+  {
+    question: "Is there a sign up page?",
+    answer: "No, the log in and sign up page are the same! On the log in page, just input your email and click the button. After you go to your email inbox and click the magic link, we'll create an account for you and you'll then go through the sign up process."
+  },
+  {
+    question: "Why haven't I received the link in my inbox?",
+    answer: "The link usually arrives after a few seconds, but it can take some time for the email to be sent. Check your spam folder as well. Sometimes extensions like Adblockers or a strong firewall can also block emails - in that case, try using another device."
+  },
+  {
+    question: "Where can I receive further assistance?",
+    answer: <>You can always shoot an email to <a href="mailto:rythmhacks@gmail.com">rythmhacks@gmail.com</a> if you have any questions or problems.</>
+  }
+]
+
 const Login = () => {
   const { signInWithOtp } = useAuth()
 
@@ -74,8 +97,16 @@ const Login = () => {
       isOpened={helpModalOpened}
       setIsOpened={setHelpModalOpened}
       title="Help"
-      closeButtonPresent
     >
+
+      { helpModalFAQ.map(({ question, answer }, index) => (
+        <div key={index} className="mb-4">
+          <h3 className="mb-2 font-bold">{question}</h3>
+          <p className="text-sm">{answer}</p>
+        </div>
+      ))}
+
+      <button className="mt-2" onClick={() => setHelpModalOpened(false)}>Ok!</button>
     </Modal>
     </>
 }
