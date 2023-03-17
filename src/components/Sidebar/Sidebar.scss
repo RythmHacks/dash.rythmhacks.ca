@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
 
-    .links a {
+    a {
         width: 90%;
         color: rgba(255, 255, 255, 0.7);
         display: block;
@@ -33,14 +33,5 @@
             background-color: darken($dark2, 3%);
             color: lighten($accent, 10%);
         }
-    }
-
-    .account-popup a, .account-popup button {
-        color: #EEEEEE;
-        cursor: pointer;
-        background: none;
-        font-size: 1rem;
-        display: block;
-        padding: 0;
     }
 }
