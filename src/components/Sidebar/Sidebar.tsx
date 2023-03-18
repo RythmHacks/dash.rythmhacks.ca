@@ -34,7 +34,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div>
-                <div className='flex gap-4 items-center p-8 pb-0'>
+                <div className='flex gap-4 items-center p-8 pb-0 cursor-pointer' onClick={() => navigate('/dashboard')}>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[3rem]'></img>
                     <h3>Hacker<br/>Dashboard</h3>
                 </div>
