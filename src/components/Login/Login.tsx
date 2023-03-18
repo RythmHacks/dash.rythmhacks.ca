@@ -9,13 +9,13 @@ const helpModalFAQ = [
     question: "What's a magic link?",
     answer: "A magic link is a simple way for you to sign up or log in without having to use a password. All you have to do is enter your email, then go to your email inbox and click on the link we sent you, and you'll be logged in! It's very similar to the process of resetting a password." 
   },
-  { 
-    question: "Why not use passwords?",
-    answer: "Using passwords can be problematic because they are typically not as secure as other methods. Passwords can be easily forgotten or stolen, especially if they are weak or reused. Moreover, having to create and remember can be quite inconvenient."
-  },
+  // { 
+  //   question: "Why not use passwords?",
+  //   answer: "Using passwords can be problematic because they are typically not as secure as other methods. Passwords can be easily forgotten or stolen, especially if they are weak or reused. Moreover, having to create and remember can be quite inconvenient."
+  // },
   {
-    question: "Is there a sign up page?",
-    answer: "No, the log in and sign up page are the same! On the log in page, just input your email and click the button. After you go to your email inbox and click the magic link, we'll create an account for you and you'll then go through the sign up process."
+    question: "How do I sign up?",
+    answer: "The magic link doubles for logging in and signing up! On the log in page, just input your email and click the button. After you go to your email inbox and click the magic link, we'll create an account for you and you'll then go through the sign up process."
   },
   {
     question: "Why haven't I received the link in my inbox?",
@@ -51,7 +51,7 @@ const Login = () => {
     }
   }
 
-  const dialogs = ['Send magic link', 'Sending...', (<p className='items-center flex gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>)]
+  const dialogs = ['Send magic link', 'Sending...', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>)]
 
   return <>      
     <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
@@ -96,7 +96,7 @@ const Login = () => {
 
       { helpModalFAQ.map(({ question, answer }, index) => (
         <div key={index} className="mb-4">
-          <h3 className="mb-2 font-bold">{question}</h3>
+          <h3 className="mb-4 font-bold">{question}</h3>
           <p className="text-sm">{answer}</p>
         </div>
       ))}

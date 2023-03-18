@@ -43,6 +43,7 @@ button:not(.style-link):not(.style-none) {
   border: none;
   max-width: none;
   color: #eee;
+  text-align: center;
 
   &:hover {
     background-color: darken($accent, 10%);
