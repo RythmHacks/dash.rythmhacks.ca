@@ -30,9 +30,8 @@ const helpModalFAQ = [
 const Login = () => {
   const { signInWithOtp } = useAuth()
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(0)
   const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
 
   const [helpModalOpened, setHelpModalOpened] = useState(false)
 
@@ -40,18 +39,19 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      setLoading(true)
+      setLoading(1)
       const { error } = await signInWithOtp({ email })
       if (error) throw error
       alert(`Check your email (${email}) for the login link!`)
-      setSent(true)
     } catch (error: any) {
       alert(error.error_description || error.message)
       console.error(error)
     } finally {
-      setLoading(false)
+      setLoading(2)
     }
   }
+
+  const dialogs = ['Send magic link', 'Sending...', (<p className='items-center flex gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>)]
 
   return <>      
     <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
@@ -64,32 +64,27 @@ const Login = () => {
         <div className="row flex w-full mt-12">
         <div className="col-6 form-widget w-full" aria-live="polite">
           <p className="text-[#bbb]">Enter your email to get a magic link</p>
-          {loading ? (
-            'Sending magic link...'
-          ) : (
-            <form onSubmit={handleLogin}>
-              <input
-                id="email"
-                className="mb-4 px-4 py-2 w-full mt-4"
-                type="email"
-                placeholder="email@example.com"
-                value={email}
-                onChange={(e:any) => setEmail(e.target.value)}
-                required
-              />
-              <button className='w-full text-white' type="submit">
-                Send magic link
-              </button>
-              <button 
-                className="style-link p-0 mt-2"
-                type="button"
-                onClick={() => setHelpModalOpened(true)}
-              >
-                Need help?
-              </button>
-              {(sent) ? <p className='items-center flex gap-2 text-[#bbb]'><BsCheckCircle/> Magic link sent successfully, you can now close this window</p> : <p></p>}
-            </form>
-          )}
+          <form onSubmit={handleLogin}>
+            <input
+              id="email"
+              className="mb-4 px-4 py-2 w-full mt-4"
+              type="email"
+              placeholder="email@example.com"
+              value={email}
+              onChange={(e:any) => setEmail(e.target.value)}
+              required
+            />
+            <button className='w-full text-white' type="submit">
+              {dialogs[loading]}
+            </button>
+            <button 
+              className="style-link p-0 mt-2"
+              type="button"
+              onClick={() => setHelpModalOpened(true)}
+            >
+              Need help?
+            </button>
+          </form>
         </div>
       </div>
     </div>
