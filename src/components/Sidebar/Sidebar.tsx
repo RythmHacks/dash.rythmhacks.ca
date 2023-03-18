@@ -45,7 +45,7 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            <div>
+            <div className={`${user ? "block" : "hidden"}`}>
                 <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`} onClick={() => setAccountPopupOpened(false)}>
                     <div className="link" onClick={() => navigate('/dashboard/settings')}>
                         <IoMdSettings size={16}/>
