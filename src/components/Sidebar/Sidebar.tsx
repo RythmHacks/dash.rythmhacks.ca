@@ -4,9 +4,8 @@ import logo from '../../assets/rythmhacks-circle.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
 import { BsClipboard2Check } from 'react-icons/bs'
-import { IoMdSettings } from 'react-icons/io'
-import { IoMdLogOut } from 'react-icons/io'
-import { RxPerson } from 'react-icons/rx'
+import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
+import { GoKebabVertical } from 'react-icons/go'
 import { useAuth } from '../../contexts/Auth'
 
 const Sidebar = () => {
@@ -60,7 +59,7 @@ const Sidebar = () => {
                 <div className='cursor-pointer flex items-center justify-between bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
                     {/* {(user?.name) ? user?.email : user?.name} */}
                     <span>{user?.email}</span>
-                    <RxPerson size={16}/>
+                    <GoKebabVertical size={16}/>
                 </div>
             </div>
         </div>
