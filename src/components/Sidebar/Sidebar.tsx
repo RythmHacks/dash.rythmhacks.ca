@@ -4,9 +4,8 @@ import logo from '../../assets/rythmhacks-circle.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
 import { BsClipboard2Check } from 'react-icons/bs'
-import { IoMdSettings } from 'react-icons/io'
-import { IoMdLogOut } from 'react-icons/io'
-import { RxPerson } from 'react-icons/rx'
+import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
+import { GoKebabVertical } from 'react-icons/go'
 import { useAuth } from '../../contexts/Auth'
 
 const Sidebar = () => {
@@ -45,22 +44,22 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            <div>
-                <div className="account-popup flex-col" style={{ display: accountPopupOpened ? "flex" : "none" }}>
-                    <div className="w-full h-12 p-4 flex items-center gap-2 hover:bg-dark2">
-                        <IoMdSettings size={24}/>
-                        <Link to="/dashboard/settings" className={(location === '/dashboard/apply') ? "active" : ""}>Settings</Link>
+            <div className={`${user ? "block" : "hidden"}`}>
+                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`} onClick={() => setAccountPopupOpened(false)}>
+                    <div className="link" onClick={() => navigate('/dashboard/settings')}>
+                        <IoMdSettings size={16}/>
+                        Settings
                     </div>
-                    <div className="w-full h-12 p-4 flex items-center gap-2 hover:bg-dark2">
-                        <IoMdLogOut size={24}/>
-                        <button className="style-none" onClick={() => logout()}>Logout</button>
+                    <div className="link" onClick={() => logout()}>
+                        <IoMdLogOut size={16}/>
+                        Logout
                     </div>
                 </div>
 
-                <div className='flex items-center bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
-                    <RxPerson size={18}/>
+                <div className='cursor-pointer flex items-center justify-between bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
                     {/* {(user?.name) ? user?.email : user?.name} */}
                     <span>{user?.email}</span>
+                    <GoKebabVertical size={16}/>
                 </div>
             </div>
         </div>
