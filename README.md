@@ -1,2 +1,2 @@
-# apply.rythmhacks.ca
-RythmHacks application portal
+# dash.rythmhacks.ca
+RythmHacks hacker dsahboard
