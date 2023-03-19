@@ -42,16 +42,16 @@ const Login = () => {
       setLoading(1)
       const { error } = await signInWithOtp({ email })
       if (error) throw error
-      alert(`Check your email (${email}) for the login link!`)
+      setLoading(2)
     } catch (error: any) {
       alert(error.error_description || error.message)
       console.error(error)
-    } finally {
-      setLoading(2)
+      setLoading(3)
     }
   }
 
-  const dialogs = ['Send magic link', 'Sending...', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>)]
+  const dialogs = ['Send magic link', 'Sending...', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>), 'Failed to send link']
+  const colours = ['', 'rgba(245,158,11,0.5)', 'rgb(17,184,129,0.5)', 'rgb(239,68,68,0.5)']
 
   return <>      
     <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
@@ -74,7 +74,7 @@ const Login = () => {
               onChange={(e:any) => setEmail(e.target.value)}
               required
             />
-            <button className='w-full text-white' type="submit">
+            <button className='w-full text-white' style={{backgroundColor: colours[loading]}} type="submit">
               {dialogs[loading]}
             </button>
             <button 
