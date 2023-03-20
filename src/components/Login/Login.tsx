@@ -89,6 +89,7 @@ const Login = () => {
             <button 
               className='submit-button w-full text-white' 
               style={{backgroundColor: colours[loading]}}
+              disabled={loading === 1}
               type="submit"
             >
               {dialogs[loading]}{loading === 1 && loadingDots}
