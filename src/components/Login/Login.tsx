@@ -35,23 +35,35 @@ const Login = () => {
 
   const [helpModalOpened, setHelpModalOpened] = useState(false)
 
+  const [loadingDots, setLoadingDots] = useState<string>('.')
+
+  const animateLoadingDots = () => {
+    setLoadingDots(prevDots => (
+      (prevDots === '...') ? prevDots = '.' : prevDots += '.'
+    ))
+  }
+
   const handleLogin = async (e: any) => {
     e.preventDefault()
+    const loadingDotsInterval = setInterval(animateLoadingDots, 200)
 
     try {
       setLoading(1)
       const { error } = await signInWithOtp({ email })
       if (error) throw error
       setLoading(2)
+
     } catch (error: any) {
       alert(error.error_description || error.message)
       console.error(error)
       setLoading(3)
+    } finally {
+      clearInterval(loadingDotsInterval)
     }
   }
 
-  const dialogs = ['Send magic link', 'Sending...', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>), 'Failed to send link']
-  const colours = ['', 'rgba(245,158,11,0.5)', 'rgb(17,184,129,0.5)', 'rgb(239,68,68,0.5)']
+  const dialogs = ['Send magic link', 'Sending', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>), 'Failed to send link']
+  const colours = ['', '', 'rgb(17,184,129,0.5)', 'rgb(239,68,68,0.5)']
 
   return <>      
     <div id='login' className='container min-w-[330px] w-9/12 md:w-4/12 mr-auto ml-auto mt-[5rem]'>
@@ -74,8 +86,13 @@ const Login = () => {
               onChange={(e:any) => setEmail(e.target.value)}
               required
             />
-            <button className='w-full text-white' style={{backgroundColor: colours[loading]}} type="submit">
-              {dialogs[loading]}
+            <button 
+              className='submit-button w-full text-white' 
+              style={{backgroundColor: colours[loading]}}
+              disabled={loading === 1}
+              type="submit"
+            >
+              {dialogs[loading]}{loading === 1 && loadingDots}
             </button>
             <button 
               className="style-link p-0 mt-2"

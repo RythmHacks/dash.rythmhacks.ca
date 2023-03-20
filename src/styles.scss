@@ -48,6 +48,13 @@ button:not(.style-link):not(.style-none) {
   &:hover {
     background-color: darken($accent, 10%);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: transparentize(#eee, 0.5);
+    background-color: transparentize($accent, 0.5);
+  }
+      
 }
 
 button.style-link, button.style-none {
