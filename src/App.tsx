@@ -16,7 +16,6 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <div className='flex'>
       <Routes>
         <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
         <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
@@ -27,7 +26,6 @@ const App = () => {
         </Route>
         <Route path="*" element={<div>404</div>} />
       </Routes>
-    </div>
   )
 }
 
