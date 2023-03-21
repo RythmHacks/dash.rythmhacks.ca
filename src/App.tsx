@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route  } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 
@@ -14,16 +14,18 @@ const App = () => {
   const { user } = useAuth()
 
   return (
+    <Suspense fallback={<div className="lazy-preloader"></div>}>
       <Routes>
-        <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
-        <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
-        <Route path='/dashboard' element={<Dashboard />}>
-          <Route index element={<Home />} />
-          <Route path="apply" element={<Apply />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-        <Route path="*" element={<div>404</div>} />
+          <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
+          <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route index element={<Home />} />
+            <Route path="apply" element={<Apply />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          <Route path="*" element={<div>404</div>} />
       </Routes>
+    </Suspense>
   )
 }
 
