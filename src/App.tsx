@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Routes, Route  } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
 
-import Login from './components/Login/Login'
-import Apply from './components/Apply/Apply'
-import Home from './components/Home/Home'
-import Settings from './components/Settings/Settings'
-import Dashboard from './components/Dashboard/Dashboard'
+const Login = lazy(() => import('./components/Login/Login'))
+const Apply = lazy(() => import('./components/Apply/Apply'))
+const Home = lazy(() => import('./components/Home/Home'))
+const Settings = lazy(() => import('./components/Settings/Settings'))
+const Dashboard = lazy(() => import('./components/Dashboard/Dashboard'))
 
 const App = () => {
   const { user } = useAuth()
