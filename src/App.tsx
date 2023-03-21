@@ -1,19 +1,17 @@
 import React from 'react';
 import { Routes, Route  } from 'react-router-dom'
-import { Navigate, useLocation, Link } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
-import { supabase } from './supabaseClient';
 
 import Login from './components/Login/Login'
 import Apply from './components/Apply/Apply'
 import Home from './components/Home/Home'
 import Settings from './components/Settings/Settings'
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard'
 
 const App = () => {
   const { user } = useAuth()
-  const location = useLocation();
 
   return (
       <Routes>
