@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Sidebar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
 import { BsClipboard2Check } from 'react-icons/bs'
 import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
@@ -33,8 +33,8 @@ const Sidebar = () => {
                     <h3>Hacker<br/>Dashboard</h3>
                 </div>
                 <div className='links mt-[4rem]'>
-                    <Link to='/dashboard'><BiHome/>Home</Link>
-                    <Link to='/dashboard/apply'><BsClipboard2Check/>Apply</Link> 
+                    <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
+                    <NavLink to='/dashboard/apply' end><BsClipboard2Check/>Apply</NavLink> 
 
                 </div>
             </div>
