@@ -1,38 +1,31 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route  } from 'react-router-dom'
-import { Navigate, useLocation, Link } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
-import { supabase } from './supabaseClient';
 
-import Login from './components/Login/Login'
-import Apply from './components/Apply/Apply'
-import Home from './components/Home/Home'
-import Sidebar from './components/Sidebar/Sidebar'
-import Settings from './components/Settings/Settings'
+const Login = lazy(() => import('./components/Login/Login'))
+const Apply = lazy(() => import('./components/Apply/Apply'))
+const Home = lazy(() => import('./components/Home/Home'))
+const Settings = lazy(() => import('./components/Settings/Settings'))
+const Dashboard = lazy(() => import('./components/Dashboard/Dashboard'))
 
 const App = () => {
   const { user } = useAuth()
-  const location = useLocation();
 
   return (
-    <div className='flex'>
-      <Sidebar />
+    <Suspense fallback={<div className="lazy-preloader"></div>}>
       <Routes>
-        <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
-        <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
+          <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route index element={<Home />} />
+            <Route path="apply" element={<Apply />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          <Route path="*" element={<div>404</div>} />
       </Routes>
-      {(user === null) ? <div>{(location.pathname !== '/login') ?  <div>You're not logged in! Click <Link to='/login'>here</Link> to be redirected to the login page.</div> : null}</div> : 
-      <Routes>
-        <Route path='/dashboard'>
-          <Route index element={<Home />} />
-          <Route path="apply" element={<Apply />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-        <Route path="*" element={<div>404</div>} />
-      </Routes>
-      }
-    </div>
+    </Suspense>
   )
 }
 
