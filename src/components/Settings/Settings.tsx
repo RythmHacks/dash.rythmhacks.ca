@@ -85,7 +85,11 @@ const Settings = () => {
               />
             </div>
 
-            <button type="submit" disabled={email === user?.email && firstName === user?.user_metadata.first_name && lastName === user?.user_metadata.last_name}>Save</button>
+            <button type="submit" disabled={
+              email.trim() === user?.email 
+              && firstName.trim() === user?.user_metadata.first_name 
+              && lastName.trim() === user?.user_metadata.last_name
+            }>Save</button>
 
             <div 
               className="px-4 py-2 mt-4 items-center bg-green-500/20 text-green-300 rounded-md"
