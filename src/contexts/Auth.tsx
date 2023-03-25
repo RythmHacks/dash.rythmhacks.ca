@@ -4,12 +4,14 @@ import { AuthUser } from '@supabase/supabase-js';
 
 const signUp = supabase.auth.signUp.bind(supabase.auth),
       signInWithOtp =  supabase.auth.signInWithOtp.bind(supabase.auth),
-      signOut = supabase.auth.signOut.bind(supabase.auth);
+      signOut = supabase.auth.signOut.bind(supabase.auth),
+      updateUser = supabase.auth.updateUser.bind(supabase.auth)
 
 export interface AuthProviderValue {
     signUp: typeof signUp,
     signInWithOtp: typeof signInWithOtp,
     signOut: typeof signOut,
+    updateUser: typeof updateUser,
     user: AuthUser | null
 }
 
@@ -40,6 +42,7 @@ const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
         signUp,
         signInWithOtp,
         signOut,
+        updateUser,
         user,
     };
 
