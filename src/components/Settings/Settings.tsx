@@ -87,8 +87,8 @@ const Settings = () => {
 
             <button type="submit" disabled={
               email.trim() === user?.email 
-              && firstName.trim() === user?.user_metadata.first_name 
-              && lastName.trim() === user?.user_metadata.last_name
+              && firstName.trim() === (user?.user_metadata.first_name || "Unnamed")
+              && lastName.trim() === (user?.user_metadata.last_name || "Hacker")
             }>Save</button>
 
             <div 
