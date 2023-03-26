@@ -47,7 +47,7 @@ const Settings = () => {
               <div className="mb-4">
                 <label className="block mb-2" htmlFor="firstname">First Name</label>
                 <input 
-                  className="rounded border-1.5 border-[#111111] text-md p-2 hover:border-[#111111] focus:border-accent" 
+                  className="p-2 text-md" 
                   id="firstname" 
                   type="text"
                   required
@@ -60,7 +60,7 @@ const Settings = () => {
               <div className="mb-4">
                 <label className="block mb-2" htmlFor="lastname">Last Name</label>
                 <input 
-                  className="rounded border-1.5 border-[#111111] text-md p-2 hover:border-[#111111] focus:border-accent" 
+                  className="p-2 text-md" 
                   id="lastname" 
                   type="text" 
                   required
@@ -74,7 +74,7 @@ const Settings = () => {
             <div className="mb-4">
               <label className="block mb-2" htmlFor="email">Email</label>
               <input
-                className="rounded border-1.5 border-[#111111] w-full p-2 text-md hover:border-[#111111] focus:border-accent"
+                className="w-full p-2 text-md"
                 id="email"
                 type="email"
                 required
