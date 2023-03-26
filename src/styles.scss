@@ -86,7 +86,7 @@ input {
   transition: border-color .3s ease;
 
   &:focus, &:hover {
-    border-color: #888;
+    border-color: $accent;
   }
   &::placeholder {
     color: #555;
