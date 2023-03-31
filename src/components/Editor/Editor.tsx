@@ -137,17 +137,6 @@ const Toolbar = () => {
           fill={isUnderline ? '#EEEEEE' : '#AAAACC'}
         />
       </button>
-      <button
-        className={'style-none flex items-center justify-center w-8 p-0 ' + (isStrikethrough ? 'bg-accent/75' : 'bg-transparent')}
-        onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
-        }}
-      >
-        <BiStrikethrough
-          size={24}
-          fill={isStrikethrough ? '#EEEEEE' : '#AAAACC'}
-        />
-      </button>
 
       {/*<button
         className={'px-1 bg-transparent hover:bg-gray-700 transition-colors duration-100 ease-in'}
