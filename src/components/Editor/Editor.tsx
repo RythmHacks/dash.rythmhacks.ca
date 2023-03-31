@@ -61,7 +61,7 @@ const Editor = () => {
             <ContentEditable className="outline-none p-4 resize-none overflow-hidden text-ellipsis" />
           }
           placeholder={
-            <div className="absolute top-[50px] left-[16px] pointer-events-none select-none text-gray-400">
+            <div className="absolute top-[58px] left-[16px] pointer-events-none select-none text-gray-400">
               Enter some text...
             </div>
           }
@@ -103,9 +103,9 @@ const Toolbar = () => {
   }, [updateToolbar, editor]);
 
   return (
-    <div className="h-8 px-2 bg-dark1 space-x-2 flex items-stretch">
+    <div className="p-2 bg-dark1 space-x-2 flex items-stretch">
        <button
-        className={'style-none flex items-center justify-center w-8 p-0 ' + (isBold ? 'bg-accent/75' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isBold ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
@@ -113,10 +113,11 @@ const Toolbar = () => {
         <BiBold
           size={24}
           fill={isBold ? '#EEEEEE' : '#AAAACC'}
+          className='transition-colors'
         />
       </button>
       <button
-        className={'style-none flex items-center justify-center w-8 p-0 ' + (isItalic ? 'bg-accent/75' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isItalic ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
         }}
@@ -124,10 +125,11 @@ const Toolbar = () => {
         <BiItalic
           size={24}
           fill={isItalic ? '#EEEEEE' : '#AAAACC'}
+          className='transition-colors'
         />
       </button>
       <button
-        className={'style-none flex items-center justify-center w-8 p-0 ' + (isUnderline ? 'bg-accent/75' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isUnderline ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
@@ -135,6 +137,7 @@ const Toolbar = () => {
         <BiUnderline
           size={24}
           fill={isUnderline ? '#EEEEEE' : '#AAAACC'}
+          className='transition-colors'
         />
       </button>
 
