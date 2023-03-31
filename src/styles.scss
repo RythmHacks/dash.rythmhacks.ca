@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 @tailwind utilities;
 
 $accent: #558CA9;
@@ -58,7 +58,6 @@ button:not(.style-link):not(.style-none) {
 }
 
 button.style-link, button.style-none {
-  background-color: transparent;
   border: none;
 }
 
