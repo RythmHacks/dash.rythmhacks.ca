@@ -59,6 +59,7 @@ button:not(.style-link):not(.style-none) {
 
 button.style-link, button.style-none {
   border: none;
+  background-color: transparent;
 }
 
 a, button.style-link {
