@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Editor from "../Editor/Editor"
+import Editor from "../../components/Editor/Editor"
 
 const Apply = () => {
   const [editingInProgress, setEditingInProgress] = useState(false)

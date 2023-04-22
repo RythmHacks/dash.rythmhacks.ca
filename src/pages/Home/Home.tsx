@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react"
 import { useAuth } from "../../contexts/Auth";
-import Modal from '../Modal/Modal'
+import Modal from '../../components/Modal/Modal'
 
 const Home = () => {
     const { user, updateUser } = useAuth()

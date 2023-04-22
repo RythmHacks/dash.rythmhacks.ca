@@ -4,11 +4,11 @@ import { Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
 
-const Login = lazy(() => import('./components/Login/Login'))
-const Apply = lazy(() => import('./components/Apply/Apply'))
-const Home = lazy(() => import('./components/Home/Home'))
-const Settings = lazy(() => import('./components/Settings/Settings'))
-const Dashboard = lazy(() => import('./components/Dashboard/Dashboard'))
+const Login = lazy(() => import('./pages/Login/Login'))
+const Apply = lazy(() => import('./pages/Apply/Apply'))
+const Home = lazy(() => import('./pages/Home/Home'))
+const Settings = lazy(() => import('./pages/Settings/Settings'))
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 
 const App = () => {
   const { user } = useAuth()
