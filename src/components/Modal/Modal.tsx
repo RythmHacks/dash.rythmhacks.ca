@@ -12,7 +12,7 @@ type ModalProps = {
 const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, closeButtonPresent }) => {
     return <>
         <div
-            className="modal-overlay absolute w-[100vw] h-[100vh] place-content-center z-index-50 bg-black/10"
+            className="modal-overlay absolute top-0 w-[100vw] h-[100vh] place-content-center z-index-50 bg-black/10"
             style={{ 
                 display: isOpened ? "flex" : "none"
             }}
