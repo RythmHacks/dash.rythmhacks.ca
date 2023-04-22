@@ -6,8 +6,9 @@ const Home = () => {
     const { user, updateUser } = useAuth()
 
     const [modalIsOpened, setModalIsOpened] = useState(user?.user_metadata.first_name === undefined && user?.user_metadata.last_name === undefined)
-    const [firstName, setFirstName] = useState<string>("")
-    const [lastName, setLastName] = useState<string>("")
+
+    const [firstName, setFirstName] = useState<string>(user?.user_metadata.first_name || '')
+    const [lastName, setLastName] = useState<string>(user?.user_metadata.last_name || '')
 
     const handleNameChange = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -24,7 +25,7 @@ const Home = () => {
         <div className='p-12' id='home'>
             <div className='container'>
                 <h1 className='pb-4'>Home</h1>
-                <div>Hey there! Welcome to your hacker dashboard, where you'll find important info throughout the event. </div>
+                <div>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info throughout the event. </div>
             </div>
         </div>
         <Modal 
@@ -43,6 +44,7 @@ const Home = () => {
                         type="text"
                         required
                         value={firstName}
+                        placeholder='Unnamed'
                         onChange={e => {
                             setFirstName(e.target.value)
                         }}
@@ -55,6 +57,7 @@ const Home = () => {
                         id="lastname" 
                         type="text" 
                         required
+                        placeholder='Hacker'
                         value={lastName}
                         onChange={e => {
                             setLastName(e.target.value)

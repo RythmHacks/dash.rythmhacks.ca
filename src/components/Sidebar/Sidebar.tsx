@@ -13,7 +13,8 @@ const Sidebar = () => {
 
     const navigate = useNavigate()
 
-    const [accountPopupOpened, setAccountPopupOpened] = useState(false)
+    let name = `${user?.user_metadata.first_name} ${user?.user_metadata.last_name}`
+    const [accountPopupOpened, setAccountPopupOpened] = useState<boolean>(false)
 
     const logout = async () => {
         const { error } = await signOut()
@@ -35,7 +36,6 @@ const Sidebar = () => {
                 <div className='links mt-[4rem]'>
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
                     <NavLink to='/dashboard/apply' end><BsClipboard2Check/>Apply</NavLink> 
-
                 </div>
             </div>
 
@@ -52,8 +52,7 @@ const Sidebar = () => {
                 </div>
 
                 <div className='cursor-pointer flex items-center justify-between bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
-                    {/* {(user?.name) ? user?.email : user?.name} */}
-                    <span>{user?.email}</span>
+                    <span>{(name) ? name : user?.email}</span>
                     <GoKebabVertical size={16}/>
                 </div>
             </div>
