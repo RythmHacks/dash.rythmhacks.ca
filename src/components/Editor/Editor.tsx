@@ -24,8 +24,6 @@ function onChange(state: EditorState) {
   state.read(() => {
     const root = $getRoot();
     const selection = $getSelection();
-
-    console.log(selection);
   });
 }
 
@@ -61,7 +59,7 @@ const Editor = () => {
             <ContentEditable className="outline-none p-4 resize-none overflow-hidden text-ellipsis" />
           }
           placeholder={
-            <div className="absolute top-[58px] left-[16px] pointer-events-none select-none text-gray-400">
+            <div className="absolute top-[64px] left-[16px] pointer-events-none select-none text-gray-400">
               Enter some text...
             </div>
           }
