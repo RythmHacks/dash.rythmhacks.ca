@@ -2,14 +2,14 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
 
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Dashboard = () => {
     const { user } = useAuth()
     return (<main className="flex">
         { user
             ? <>
-                <Sidebar />
+                <Navbar />
                 <Outlet />
             </>
             : <>

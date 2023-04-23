@@ -39,11 +39,11 @@ const Settings = () => {
     }
 
     return (
-      <div className="p-12" id="home">
+      <div className="p-12" id="settings">
         <div className="container">
           <form onSubmit={handleUserInfoSubmit}>
             <h1 className="mb-4">User info</h1>
-            <div className="flex gap-4">
+            <div className="flex gap-4 lg:flex-row flex-col">
               <div className="mb-4">
                 <label className="block mb-2" htmlFor="firstname">First Name</label>
                 <input 

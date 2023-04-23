@@ -28,9 +28,15 @@ const Home = () => {
                 <h1>Home</h1>
                 <p>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info to help you make the most out of RythmHacks. Check out some links below to get started!</p>
             </div>
-            <div className='container mt-4 w-1/2'>
-                <h2><Link to='/dashboard/apply'>Application Dashboard</Link></h2>
-                <p>Start or continue your RythmHacks application! </p>
+            <div className='flexwrap mt-4'>
+                <div className='container w-1/2'>
+                    <h2><Link to='/dashboard/apply'>Application Dashboard</Link></h2>
+                    <p>Start or continue your RythmHacks application! </p>
+                </div>
+                <div className='container w-1/2'>
+                    <h2>Venue and Travel Information</h2>
+                    <p>Stay tuned!</p>
+                </div>
             </div>
         </div>
         <Modal 
