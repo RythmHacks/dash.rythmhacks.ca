@@ -24,7 +24,10 @@ const Apply = () => {
             <div className='container w-1/2'>
               <h2>More info</h2>
               <p className='font-bold'>When are applications due?</p>
-              <p>Applications are due on July 31st, 2023.</p>
+              Applications are due on July 31st, 2023.
+              <p className='font-bold mt-2'>Who is eligible to apply?</p>
+              Participants must be in grade 12 or lower as of June 2023.
+              <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
             </div>
           </div>
         </div>
