@@ -75,6 +75,10 @@ const Navbar = () => {
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
                 <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
+                <div className="link" onClick={() => logout()}>
+                    <IoMdLogOut/>
+                    Logout
+                </div>
             </div>
         </div>
         </>
