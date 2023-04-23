@@ -44,10 +44,10 @@ const Navbar = () => {
 
             <div className={`${user ? "block" : "hidden"}`}>
                 <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`} onClick={() => setAccountPopupOpened(false)}>
-                    <div className="link" onClick={() => navigate('/dashboard/settings')}>
+                    <NavLink className="link" to='/dashboard/settings'>
                         <IoMdSettings size={16}/>
                         Settings
-                    </div>
+                    </NavLink>
                     <div className="link" onClick={() => logout()}>
                         <IoMdLogOut size={16}/>
                         Logout
@@ -71,7 +71,7 @@ const Navbar = () => {
                     <FiMenu size={24} />
                 </div>
             </div>
-            <div className={`${hamMenuOpened ? "open" : "close"} ham-menu`}>
+            <div className={`${hamMenuOpened ? "open" : "close"} ham-menu`} onClick={() => setHamMenuOpened(!hamMenuOpened)}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
                 <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 

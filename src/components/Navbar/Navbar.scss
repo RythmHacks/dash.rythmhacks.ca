@@ -28,9 +28,15 @@
         color: #eee;
         transition: background-color .3s ease;
         cursor: pointer;
+        border: none;
 
         &:hover {
             background-color: theme('colors.dark2');
+            border: none;
+            background-size: 0;
+        }
+        &.active {
+            color: lighten($accent, 10%);
         }
     }
 }
@@ -84,7 +90,7 @@
     display: none;
     background-color: lighten($dark2, 2%);
     border-bottom: 2px solid $dark1;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     position: sticky;
     top: 0;
     z-index: 3;
