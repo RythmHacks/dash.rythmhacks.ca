@@ -13,7 +13,11 @@ const Dashboard = () => {
                 <Outlet />
             </>
             : <>
-                <div>You're not logged in! Click <Link to='/login'>here</Link> to be redirected to the login page.</div>
+                <Navbar />
+                <div className='container h-min m-8'>
+                    <h1>Well darn</h1>
+                    You're not logged in! Click <Link to='/login'>here</Link> to be redirected to the login page.
+                </div>
             </>
         }
     </main>)
