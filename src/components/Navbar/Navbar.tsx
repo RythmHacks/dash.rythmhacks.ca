@@ -34,7 +34,7 @@ const Navbar = () => {
             <div>
                 <div className='flex gap-4 items-center p-8 pb-0 cursor-pointer' onClick={() => navigate('/dashboard')}>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[3rem]'></img>
-                    <h3>Hacker<br/>Dashboard</h3>
+                    <h3 onClick={() => navigate('/dashboard')}>Hacker<br/>Dashboard</h3>
                 </div>
                 <div className='links mt-[4rem]'>
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
@@ -65,7 +65,7 @@ const Navbar = () => {
             <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-4'>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[2.5rem]'></img>
-                    <h3>Dashboard</h3>
+                    <h3 onClick={() => navigate('/dashboard')}>Dashboard</h3>
                 </div>
                 <div onClick={() => setHamMenuOpened(!hamMenuOpened)} className='h-full flex items-center'>
                     <FiMenu size={24} />
