@@ -1,6 +1,7 @@
 import { useState, FormEvent } from "react"
 import { useAuth } from "../../contexts/Auth";
 import Modal from '../../components/Modal/Modal'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const { user, updateUser } = useAuth()
@@ -22,10 +23,14 @@ const Home = () => {
     }
 
     return (<>
-        <div className='p-12' id='home'>
-            <div className='container'>
-                <h1 className='pb-4'>Home</h1>
-                <div>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info throughout the event. </div>
+        <div className='p-12 w-full' id='home'>
+            <div className='container w-full'>
+                <h1>Home</h1>
+                <p>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info to help you make the most out of RythmHacks. Check out some links below to get started!</p>
+            </div>
+            <div className='container mt-4 w-1/2'>
+                <h2><Link to='/dashboard/apply'>Application Dashboard</Link></h2>
+                <p>Start or continue your RythmHacks application! </p>
             </div>
         </div>
         <Modal 

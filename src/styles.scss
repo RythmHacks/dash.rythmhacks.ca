@@ -28,6 +28,12 @@ h1, h2, h3, h4 {
   font-family: 'Satoshi', sans-serif;
   margin: 0;
 }
+h2 {
+  font-size: 1.75rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
 p, button, input {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -103,6 +109,10 @@ input {
   background-color: rgba(48, 50, 57, 0.4);
   backdrop-filter: blur(2px);
   border: 2px solid $dark1;
+
+  h1, h2, h3, h4 {
+    margin-bottom: 1rem;
+  }
 }
 
 .lazy-preloader {
