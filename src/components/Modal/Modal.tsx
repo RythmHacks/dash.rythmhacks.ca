@@ -16,9 +16,12 @@ const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, c
             style={{ 
                 display: isOpened ? "flex" : "none"
             }}
+            onClick={() => setIsOpened(false)}
         >
             
-            <div className="modal w-10/12 lg:w-6/12 m-auto p-8 rounded-lg z-index-50 bg-dark3 shadow-xl shadow-black/25">
+            <div 
+                className="modal w-10/12 lg:w-6/12 m-auto p-8 rounded-lg z-index-50 bg-dark3 shadow-xl shadow-black/25"
+                onClick={event => event.stopPropagation()}>
                 <div className="flex justify-between mb-4">
                     <h2>{title}</h2>
                     { closeButtonPresent && 
