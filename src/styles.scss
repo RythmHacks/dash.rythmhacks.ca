@@ -115,6 +115,25 @@ input {
   }
 }
 
+.flexwrap {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) { // equivalent to tailwind large
+  .flexwrap {
+    flex-direction: column;
+  }
+  .container {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+}
+
 .lazy-preloader {
   width: 42px;
   height: 42px;

@@ -12,11 +12,11 @@ const Apply = () => {
             <h1>Application Dashboard</h1>
             <p>This is the hub for your RythmHacks application. Fill out your application, get a response from us, then RSVP for the event.</p>
           </div>
-          <div className='flex gap-4'>
+          <div className='flexwrap'>
             <div className="container w-1/2">
-              <h2 className='flex items-center justify-between'>
+              <h2 className='flex items-center justify-between gap-2'>
                 Current Status
-                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal">Not started</p>
+                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal text-center">Not started</p>
               </h2>
               <p className='mt-4'>You haven't started your application! Click the button below to start filling it out.</p>
               <button onClick={() => setEditingInProgress(true)} className='mt-8'>Begin application</button>

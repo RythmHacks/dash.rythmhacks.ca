@@ -1,0 +1,124 @@
+@import '../../styles.scss';
+
+@mixin popup {
+    background-color: theme('colors.dark3');
+    margin: 1rem;
+    border: 2px solid theme('colors.dark1');
+    margin-bottom: 0.5rem;
+    transition: opacity .3s ease, transform .2s ease, margin-top .3s ease;
+    
+    &.open {
+        opacity: 1;
+    }
+    &.close {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+        cursor: default;
+        user-select: none;
+    }
+    
+    .link {
+        padding: 1rem;
+        width: 100%;
+        background-color: theme('colors.dark3');
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        color: #eee;
+        transition: background-color .3s ease;
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+            background-color: theme('colors.dark2');
+            border: none;
+            background-size: 0;
+        }
+        &.active {
+            color: lighten($accent, 10%);
+        }
+    }
+}
+
+.navbar-desktop {
+    background-color: lighten($dark2, 3%);
+    height: 100vh;
+    flex: 0 0 20%;
+    border-right: 2px solid $dark1;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+
+    .links a {
+        width: 90%;
+        color: rgba(255, 255, 255, 0.7);
+        display: block;
+        padding: 0.75rem 1.25rem;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-decoration: none;
+        align-items: center;
+        display: flex;
+        margin-bottom: 0.25rem;
+        border-radius: 5px;
+        gap: 1rem;
+        transition: background-color .3s ease, color .3s ease;
+        background-size: 0px 0px;
+
+        &:hover {
+            background-color: darken($dark2, 3%);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        &.active {
+            background-color: darken($dark2, 3%);
+            color: lighten($accent, 10%);
+        }
+    }
+
+    .account-popup {
+        @include popup;
+
+        &.close {
+            transform-origin: bottom;
+        }
+    }
+}
+
+.navbar-mobile {
+    display: none;
+    background-color: lighten($dark2, 2%);
+    border-bottom: 2px solid $dark1;
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    .ham-menu {
+        @include popup;
+        position: fixed;
+        right: 0;
+        top: 2.5rem;
+        min-width: 10rem;
+
+        &.close {
+            transform-origin: top right;
+        }
+        .link {
+            &:focus {
+                color: lighten($accent, 10%);
+            }
+            padding: 0.75rem 1rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-desktop {
+        display: none;
+    }
+    .navbar-mobile {
+        display: block;
+    }
+}
