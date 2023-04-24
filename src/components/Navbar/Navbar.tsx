@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Navbar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -24,9 +24,18 @@ const Navbar = () => {
         navigate('/')
     }
 
-    const handlePopupClick = () => {
+    const handlePopupClick = (event: React.MouseEvent) => {
+        event.stopPropagation()
         setAccountPopupOpened(!accountPopupOpened)
     }
+
+    useEffect(() => {
+        console.log(accountPopupOpened)
+        if (accountPopupOpened) {
+            document.addEventListener('click', () => setAccountPopupOpened(false))
+        }
+        return () => document.removeEventListener('click', () => setAccountPopupOpened(false))
+    }, [accountPopupOpened])
 
     return (
         <>
@@ -43,7 +52,7 @@ const Navbar = () => {
             </div>
 
             <div className={`${user ? "block" : "hidden"}`}>
-                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`} onClick={() => setAccountPopupOpened(false)}>
+                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`}>
                     <NavLink className="link" to='/dashboard/settings'>
                         <IoMdSettings size={16}/>
                         Settings
