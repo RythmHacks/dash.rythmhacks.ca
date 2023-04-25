@@ -15,8 +15,8 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     let name = `${user?.user_metadata.first_name} ${user?.user_metadata.last_name}`
-    const [accountPopupOpened, setAccountPopupOpened] = useState<boolean>(false)
-    const [hamMenuOpened, setHamMenuOpened] = useState<boolean>(false)
+    const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false)
+    const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false)
 
     const logout = async () => {
         const { error } = await signOut()
@@ -26,16 +26,27 @@ const Navbar = () => {
 
     const handlePopupClick = (event: React.MouseEvent) => {
         event.stopPropagation()
-        setAccountPopupOpened(!accountPopupOpened)
+        setIsAccountPopupOpened(!isAccountPopupOpened)
+    }
+
+    const handleHamMenuClick = (event: React.MouseEvent) => {
+        event.stopPropagation()
+        setIsHamMenuOpened(!isHamMenuOpened)
     }
 
     useEffect(() => {
-        console.log(accountPopupOpened)
-        if (accountPopupOpened) {
-            document.addEventListener('click', () => setAccountPopupOpened(false))
+        if (isAccountPopupOpened) {
+            document.addEventListener('click', () => setIsAccountPopupOpened(false))
         }
-        return () => document.removeEventListener('click', () => setAccountPopupOpened(false))
-    }, [accountPopupOpened])
+        return () => document.removeEventListener('click', () => setIsAccountPopupOpened(false))
+    }, [isAccountPopupOpened])
+
+    useEffect(() => {
+        if (isHamMenuOpened) {
+            document.addEventListener('click', () => setIsHamMenuOpened(false))
+        }
+        return () => document.removeEventListener('click', () => setIsHamMenuOpened(false))
+    })
 
     return (
         <>
@@ -52,7 +63,7 @@ const Navbar = () => {
             </div>
 
             <div className={`${user ? "block" : "hidden"}`}>
-                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${accountPopupOpened ? "open" : "close"}`}>
+                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${isAccountPopupOpened ? "open" : "close"}`}>
                     <NavLink className="link" to='/dashboard/settings'>
                         <IoMdSettings size={16}/>
                         Settings
@@ -76,11 +87,11 @@ const Navbar = () => {
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[2.5rem]'></img>
                     <h3 onClick={() => navigate('/dashboard')}>Dashboard</h3>
                 </div>
-                <div onClick={() => setHamMenuOpened(!hamMenuOpened)} className='h-full flex items-center'>
+                <div onClick={handleHamMenuClick} className='h-full flex items-center'>
                     <FiMenu size={24} />
                 </div>
             </div>
-            <div className={`${hamMenuOpened ? "open" : "close"} ham-menu`} onClick={() => setHamMenuOpened(!hamMenuOpened)}>
+            <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu`}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
                 <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
