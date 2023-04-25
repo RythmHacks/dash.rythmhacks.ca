@@ -34,6 +34,10 @@ const Apply = () => {
       :
         <>
           <Editor />
+          <div className='flex gap-2 mt-4'>
+            <button className='contrast' onClick={() => setEditingInProgress(false)}>Return to dashboard</button>
+            <button>Submit</button>
+          </div>
         </>
       }
     </div>

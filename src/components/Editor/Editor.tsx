@@ -49,7 +49,7 @@ const Editor = () => {
   };
 
   return (
-    <div className="bg-dark2 relative rounded-sm shadow-sm border-2 border-solid border-dark1">
+    <div className="bg-dark2 relative rounded-[5px] shadow-sm border-2 border-solid border-dark1">
       <LexicalComposer
         initialConfig={initialConfig}
       >
@@ -101,7 +101,7 @@ const Toolbar = () => {
   }, [updateToolbar, editor]);
 
   return (
-    <div className="p-2 bg-dark1 space-x-2 flex items-stretch">
+    <div className="p-2 bg-dark1 space-x-2 flex items-stretch rounded-t-[5px]">
        <button
         className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isBold ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
