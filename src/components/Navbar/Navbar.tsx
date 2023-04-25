@@ -29,13 +29,24 @@ const Navbar = () => {
         setAccountPopupOpened(!accountPopupOpened)
     }
 
+    const handleHamMenuClick = (event: React.MouseEvent) => {
+        event.stopPropagation()
+        setHamMenuOpened(!hamMenuOpened)
+    }
+
     useEffect(() => {
-        console.log(accountPopupOpened)
         if (accountPopupOpened) {
             document.addEventListener('click', () => setAccountPopupOpened(false))
         }
         return () => document.removeEventListener('click', () => setAccountPopupOpened(false))
     }, [accountPopupOpened])
+
+    useEffect(() => {
+        if (hamMenuOpened) {
+            document.addEventListener('click', () => setHamMenuOpened(false))
+        }
+        return () => document.removeEventListener('click', () => setHamMenuOpened(false))
+    })
 
     return (
         <>
@@ -76,11 +87,11 @@ const Navbar = () => {
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[2.5rem]'></img>
                     <h3 onClick={() => navigate('/dashboard')}>Dashboard</h3>
                 </div>
-                <div onClick={() => setHamMenuOpened(!hamMenuOpened)} className='h-full flex items-center'>
+                <div onClick={handleHamMenuClick} className='h-full flex items-center'>
                     <FiMenu size={24} />
                 </div>
             </div>
-            <div className={`${hamMenuOpened ? "open" : "close"} ham-menu`} onClick={() => setHamMenuOpened(!hamMenuOpened)}>
+            <div className={`${hamMenuOpened ? "open" : "close"} ham-menu`}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
                 <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
