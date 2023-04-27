@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Editor from "../../components/Editor/Editor"
+import { Link } from 'react-router-dom'
 
 const Apply = () => {
   const [editingInProgress, setEditingInProgress] = useState(false)
@@ -33,11 +34,37 @@ const Apply = () => {
         </div>
       :
         <>
+        <div className='container'>
+          <h1>Hacker Application Form</h1>
+          <p>Fill out this form to register for the event as a hacker. <Link to='/dashboard/apply'>Go back to the dashboard.</Link></p>
+        </div>
+        <div className='container mt-4'>
+          <form>
+            <p>First Name</p>
+            <input
+              type='text'
+              placeholder='Amon'
+              className='mt-2'
+              // value = {firstname}
+              required
+
+            />
+            <p className='mt-4'>Last Name</p>
+            <input
+              type='text'
+              placeholder='Gus'
+              className='mt-2'
+              // value = {firstname}
+              required
+
+            />
+          </form>
           <Editor />
           <div className='flex gap-2 mt-4'>
             <button className='contrast' onClick={() => setEditingInProgress(false)}>Return to dashboard</button>
             <button>Submit</button>
           </div>
+        </div>
         </>
       }
     </div>
