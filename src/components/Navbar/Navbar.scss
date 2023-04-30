@@ -49,6 +49,8 @@
     flex-direction: column;
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
 
     .links a {
         width: 90%;
