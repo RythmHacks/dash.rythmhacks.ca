@@ -5,6 +5,32 @@ import { Link } from 'react-router-dom'
 const Apply = () => {
   const [editingInProgress, setEditingInProgress] = useState(false)
 
+  const [formData, setFormData] = useState({
+    age: '',
+    grade: '',
+    phone_number: '',
+    school: '',
+    gender: '',
+    t_shirt_size: ''
+   
+ 
+ 
+  })
+ 
+ 
+  const dietaryRestrictions = [
+    "vegetarian",
+    "gluten-free",
+    "lactose-free",
+    "halal",
+  ]
+ 
+ 
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+    alert(formData)
+  }
+ 
   return (
     <div className="p-12 flex-1" id="apply">
       { !editingInProgress ? 
@@ -40,25 +66,118 @@ const Apply = () => {
         </div>
         <div className='container mt-4'>
           <form>
-            <p>First Name</p>
-            <input
-              type='text'
-              placeholder='Amon'
-              className='mt-2'
-              // value = {firstname}
-              required
+            <h3>Basic Information</h3>
+            <div>
+              <label htmlFor="gender">Gender (optional)</label>
+              <select id="gender">
+                <option>Prefer not to say</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
 
-            />
-            <p className='mt-4'>Last Name</p>
-            <input
-              type='text'
-              placeholder='Gus'
-              className='mt-2'
-              // value = {firstname}
-              required
 
-            />
+            <div>
+              <label htmlFor="age">Age</label>
+              <input id="age" type="number" min={0} max={100} />
+            </div>
+
+
+            <div>
+              <label htmlFor="grade">Grade (as of September 2023)</label>
+              <select id="grade">
+                <option value="">Please select a grade</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>Graduating</option>
+              </select>
+            </div>
+
+
+            <div>
+              <label htmlFor="phone-number">Phone Number</label>
+              <input id="phone-number" type="phone-number" />
+            </div>
+
+
+            <div>
+              <label htmlFor="school">School</label>
+              <input id="school" type="text" />
+            </div>
+          
+            <h3>Event-specific Information</h3>
+            <div>
+              <label htmlFor="gender">T-Shirt Size (optional)</label>
+              <select id="gender">
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+            </div>
+
+
+            <div>
+              <label>Dietary Restrictions</label>
+              <br></br>
+
+
+              { dietaryRestrictions.map((d) => (<>
+                <input type="checkbox" id={d} value={d} />
+                <label htmlFor={d} className="capitalize">{d}</label>
+              </>)) }
+            
+              <input type="checkbox" id="other" value="other"></input>
+              <label htmlFor="other">Other</label>
+            </div>
+
+
+            <h3>Address</h3>
+            <p>These fields are optional if you want to recieve prizes.</p>
+
+            <div>
+              <input type="radio" name="country" id="canada" value="Canada" defaultChecked></input>
+              <label htmlFor="canada">Canada</label>
+
+
+              <input type="radio" name="country" id="usa" value="United States"></input>
+              <label htmlFor="usa">United States</label>
+
+
+              <input type="radio" name="country" id="other"></input>
+              <label htmlFor="other">Other</label>
+            </div>
+
+
+            <div>
+              <label htmlFor="province">Province</label>
+              <input id="province" placeholder="Ontario" />
+            </div>
+
+
+            <div>
+              <label htmlFor="city">City</label>
+              <input id="city" placeholder="Waterloo" />
+            </div>
+
+
+            <div>
+              <label htmlFor="address">Address</label>
+              <input id="address" placeholder="10 Main Street" />
+            </div>
+
+
+            <div>
+              <label htmlFor="postal-code">Postal Code</label>
+              <input id="postal-code" placeholder="N2V 3Q8" />
+            </div>
           </form>
+
+          <h3>Application Questions</h3>
+          <Editor />
           <Editor />
           <div className='flex gap-2 mt-4'>
             <button className='contrast' onClick={() => setEditingInProgress(false)}>Return to dashboard</button>
