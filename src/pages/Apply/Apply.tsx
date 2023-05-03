@@ -33,6 +33,8 @@ const Apply = () => {
     question_2: '',
   })
 
+
+
   const updateApplicationData = (column: string, value: string | boolean) => {
     setApplicationData(appData => ({
       ...appData,
@@ -48,8 +50,8 @@ const Apply = () => {
     
   }
 
-  /*useEffect(() => {
-    supabase.from('applications-hackers').select('*')
+  useEffect(() => {
+    supabase.from('hacker_applications').select('*')
       .then(({ data, error }) => {
         if (data === null || !data.length || error) {
           alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
@@ -59,7 +61,7 @@ const Apply = () => {
         
         setApplicationData(data[0])
       })
-  }, [supabase])*/
+  }, [supabase])
  
   return (
     <div className="p-12 flex-1" id="apply">
