@@ -9,33 +9,117 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      profiles: {
+      faq: {
         Row: {
-          avatar_url: string | null
-          full_name: string | null
           id: string
-          updated_at: string | null
-          username: string | null
-          website: string | null
-          email: string | null
+          timesAsked: number | null
         }
         Insert: {
-          avatar_url?: string | null
-          full_name?: string | null
           id: string
-          updated_at?: string | null
-          username?: string | null
-          website?: string | null
-          email?: string | null
+          timesAsked?: number | null
         }
         Update: {
-          avatar_url?: string | null
-          full_name?: string | null
           id?: string
-          updated_at?: string | null
-          username?: string | null
-          website?: string | null
+          timesAsked?: number | null
+        }
+      }
+      hacker_applications: {
+        Row: {
+          address: string | null
+          age: string | null
+          apartment_suite: string | null
+          city: string | null
+          country: string | null
+          dietary_restrictions_dairy_free: boolean | null
+          dietary_restrictions_gluten_free: boolean | null
+          dietary_restrictions_halal: boolean | null
+          dietary_restrictions_other: string | null
+          dietary_restrictions_vegetarian: boolean | null
+          email: string | null
+          gender: string | null
+          grade: string | null
+          id: string
+          phone_number: string | null
+          postal_code: string | null
+          province: string | null
+          question_1: string | null
+          question_2: string | null
+          school: string | null
+          t_shirt_size: string | null
+        }
+        Insert: {
+          address?: string | null
+          age?: string | null
+          apartment_suite?: string | null
+          city?: string | null
+          country?: string | null
+          dietary_restrictions_dairy_free?: boolean | null
+          dietary_restrictions_gluten_free?: boolean | null
+          dietary_restrictions_halal?: boolean | null
+          dietary_restrictions_other?: string | null
+          dietary_restrictions_vegetarian?: boolean | null
           email?: string | null
+          gender?: string | null
+          grade?: string | null
+          id: string
+          phone_number?: string | null
+          postal_code?: string | null
+          province?: string | null
+          question_1?: string | null
+          question_2?: string | null
+          school?: string | null
+          t_shirt_size?: string | null
+        }
+        Update: {
+          address?: string | null
+          age?: string | null
+          apartment_suite?: string | null
+          city?: string | null
+          country?: string | null
+          dietary_restrictions_dairy_free?: boolean | null
+          dietary_restrictions_gluten_free?: boolean | null
+          dietary_restrictions_halal?: boolean | null
+          dietary_restrictions_other?: string | null
+          dietary_restrictions_vegetarian?: boolean | null
+          email?: string | null
+          gender?: string | null
+          grade?: string | null
+          id?: string
+          phone_number?: string | null
+          postal_code?: string | null
+          province?: string | null
+          question_1?: string | null
+          question_2?: string | null
+          school?: string | null
+          t_shirt_size?: string | null
+        }
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+        }
+      }
+      "starboard-msgs": {
+        Row: {
+          id: string
+          "starboard-message-id": string
+        }
+        Insert: {
+          id: string
+          "starboard-message-id": string
+        }
+        Update: {
+          id?: string
+          "starboard-message-id"?: string
         }
       }
     }
@@ -46,6 +130,9 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
       [_ in never]: never
     }
   }
