@@ -30,7 +30,6 @@ const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
             setLoading(false);
         
             supabase.auth.onAuthStateChange(async (event, session) => {
-                console.log(event)
                 setUser(session?.user ?? null);
                 setLoading(false);
             });

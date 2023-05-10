@@ -20,13 +20,6 @@ import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 
 import { BiBold, BiItalic, BiUnderline, BiStrikethrough } from 'react-icons/bi'
 
-function onChange(state: EditorState) {
-  state.read(() => {
-    const root = $getRoot();
-    const selection = $getSelection();
-  });
-}
-
 const Editor = () => {
   const initialConfig = {
     theme: {
@@ -47,6 +40,13 @@ const Editor = () => {
       throw error;
     },
   };
+
+  const onChange = (state: EditorState) => {
+    state.read(() => {
+      const root = $getRoot();
+      const selection = $getSelection();
+    });
+  }
 
   return (
     <div className="bg-dark2 relative rounded-[5px] shadow-sm border-2 border-solid border-dark1">

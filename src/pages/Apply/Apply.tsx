@@ -3,40 +3,43 @@ import Editor from "../../components/Editor/Editor"
 import { Link } from 'react-router-dom'
 import { useAuth } from "../../contexts/Auth"
 
+interface applicationDataType {
+  id: number,
+  gender: string,
+  age: string,
+  grade: string,
+  phone_number: string,
+  school: string,
+
+  t_shirt_size: string,
+  dietary_restrictions_vegetarian: boolean,
+  dietary_restrictions_gluten_free: boolean,
+  dietary_restrictions_dairy_free: boolean,
+  dietary_restrictions_halal: boolean,
+  dietary_restrictions_other: '',
+
+  country: string,
+  province: string,
+  city: string,
+  address: string,
+  apartment_suite: string,
+  postal_code: string,
+
+  question_1: string,
+  question_2: string,
+}
+
 const Apply = () => {
   const { supabase } = useAuth()
 
   const [editingInProgress, setEditingInProgress] = useState(false)
 
-  const [applicationData, setApplicationData] = useState({
-    gender: 'Prefer not to say',
-    age: '',
-    grade: '',
-    phone_number: '',
-    school: '',
-
-    t_shirt_size: 'Not Selected',
-    dietary_restrictions_vegetarian: false,
-    dietary_restrictions_gluten_free: false,
-    dietary_restrictions_dairy_free: false,
-    dietary_restrictions_halal: false,
-    dietary_restrictions_other: '',
-
-    country: 'Canada',
-    province: '',
-    city: '',
-    address: '',
-    apartment_suite: '',
-    postal_code: '',
-
-    question_1: '',
-    question_2: '',
-  })
+  const [applicationData, setApplicationData] = useState<any>({})
 
 
 
   const updateApplicationData = (column: string, value: string | boolean) => {
-    setApplicationData(appData => ({
+    setApplicationData((appData: any) => ({
       ...appData,
       [column]: value,
     }))
@@ -47,16 +50,17 @@ const Apply = () => {
  
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
-    
   }
 
   useEffect(() => {
     supabase.from('hacker_applications').select('*')
       .then(({ data, error }) => {
-        if (data === null || !data.length || error) {
+        const appData = data?.[0]
+
+        if (error || data === null || appData === null) {
           alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
           if (error) throw error;
-          else throw TypeError('no application matching the id was found')
+          else throw TypeError('no hacker application matching the id was found')
         }
         
         setApplicationData(data[0])
@@ -262,7 +266,7 @@ const Apply = () => {
                 name="country"
                 id="canada"
                 checked={applicationData.country === 'Canada'}
-                onChange={() => { updateApplicationData('country', 'Canada'); console.log(applicationData);}}
+                onChange={() => updateApplicationData('country', 'Canada')}
               ></input>
               <label htmlFor="canada">Canada</label>
 
@@ -349,6 +353,7 @@ const Apply = () => {
           
 
             <h3>Application Questions</h3>
+
             <Editor />
             <Editor />
 
