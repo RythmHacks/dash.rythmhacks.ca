@@ -2,40 +2,19 @@ import { useState, useEffect } from "react"
 import Editor from "../../components/Editor/Editor"
 import { Link } from 'react-router-dom'
 import { useAuth } from "../../contexts/Auth"
+import { Database } from "../../types/supabase"
 
-interface applicationDataType {
-  id: number,
-  gender: string,
-  age: string,
-  grade: string,
-  phone_number: string,
-  school: string,
-
-  t_shirt_size: string,
-  dietary_restrictions_vegetarian: boolean,
-  dietary_restrictions_gluten_free: boolean,
-  dietary_restrictions_dairy_free: boolean,
-  dietary_restrictions_halal: boolean,
-  dietary_restrictions_other: '',
-
-  country: string,
-  province: string,
-  city: string,
-  address: string,
-  apartment_suite: string,
-  postal_code: string,
-
-  question_1: string,
-  question_2: string,
-}
+type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
 
 const Apply = () => {
   const { supabase } = useAuth()
 
   const [editingInProgress, setEditingInProgress] = useState(false)
 
-  const [applicationData, setApplicationData] = useState<any>({})
+  const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
+  const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
 
+  const [isApplicationDataRetrieved, setIsApplicationDataRetrieved] = useState(false)
 
 
   const updateApplicationData = (column: string, value: string | boolean) => {
@@ -45,7 +24,6 @@ const Apply = () => {
     }))
   }
 
-  const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
  
  
   const handleSubmit = (event: React.FormEvent) => {
@@ -54,20 +32,22 @@ const Apply = () => {
 
   useEffect(() => {
     supabase.from('hacker_applications').select('*')
-      .then(({ data, error }) => {
+      .then(({ data, error }: { data: any, error: any }) => {
         const appData = data?.[0]
 
-        if (error || data === null || appData === null) {
+        if (error || !data || appData === null) {
           alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
           if (error) throw error;
           else throw TypeError('no hacker application matching the id was found')
         }
-        
-        setApplicationData(data[0])
+        else {
+          setApplicationData(data[0])
+          setIsApplicationDataRetrieved(true)
+        }
       })
   }, [supabase])
  
-  return (
+  if (isApplicationDataRetrieved) return (
     <div className="p-12 flex-1" id="apply">
       { !editingInProgress ? 
         <div>
@@ -107,7 +87,7 @@ const Apply = () => {
               <label htmlFor="gender">Gender (optional)</label>
               <select
                 id="gender"
-                value={["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender) ? applicationData.gender : ''}
+                value={["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender || '') ? applicationData.gender : ''}
                 onChange={e => {
                   updateApplicationData('gender', e.target.value)
                 }}
@@ -118,7 +98,7 @@ const Apply = () => {
                 <option>Non-binary</option>
                 <option value="">Prefer to self-describe</option>
               </select>
-              {!["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender) && (<>
+              {!["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender || '') && (<>
                 <label htmlFor="self-described-gender">Self-described Gender:</label>
                 <input id="self-described-gender" value={applicationData.gender} onChange={e => {
                   updateApplicationData('gender', e.target.value)
@@ -367,6 +347,11 @@ const Apply = () => {
       }
     </div>
   )
+
+  else return (<div className="p-12 flex-1">
+    <h1>Oh no!</h1>
+    <p>Your data could not be retrieved. Check your internet connectivity or reload the page. If this error persists, contact the RythmHacks team.</p>
+  </div>)
 }
 
 export default Apply

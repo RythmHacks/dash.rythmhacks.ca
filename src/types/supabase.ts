@@ -25,73 +25,73 @@ export interface Database {
       }
       hacker_applications: {
         Row: {
-          address: string | null
-          age: string | null
-          apartment_suite: string | null
-          city: string | null
-          country: string | null
-          dietary_restrictions_dairy_free: boolean | null
-          dietary_restrictions_gluten_free: boolean | null
-          dietary_restrictions_halal: boolean | null
-          dietary_restrictions_other: string | null
-          dietary_restrictions_vegetarian: boolean | null
-          email: string | null
-          gender: string | null
-          grade: string | null
+          address: string
+          age: string
+          apartment_suite: string
+          city: string
+          country: string
+          dietary_restrictions_dairy_free: boolean
+          dietary_restrictions_gluten_free: boolean
+          dietary_restrictions_halal: boolean
+          dietary_restrictions_other: string
+          dietary_restrictions_vegetarian: boolean
+          email: string
+          gender: string
+          grade: string
           id: string
-          phone_number: string | null
-          postal_code: string | null
-          province: string | null
-          question_1: string | null
-          question_2: string | null
-          school: string | null
-          t_shirt_size: string | null
+          phone_number: string
+          postal_code: string
+          province: string
+          question_1: string
+          question_2: string
+          school: string
+          t_shirt_size: string
         }
         Insert: {
-          address?: string | null
-          age?: string | null
-          apartment_suite?: string | null
-          city?: string | null
-          country?: string | null
-          dietary_restrictions_dairy_free?: boolean | null
-          dietary_restrictions_gluten_free?: boolean | null
-          dietary_restrictions_halal?: boolean | null
-          dietary_restrictions_other?: string | null
-          dietary_restrictions_vegetarian?: boolean | null
-          email?: string | null
-          gender?: string | null
-          grade?: string | null
+          address?: string
+          age?: string
+          apartment_suite?: string
+          city?: string
+          country?: string
+          dietary_restrictions_dairy_free?: boolean
+          dietary_restrictions_gluten_free?: boolean
+          dietary_restrictions_halal?: boolean
+          dietary_restrictions_other?: string
+          dietary_restrictions_vegetarian?: boolean
+          email: string
+          gender?: string
+          grade?: string
           id: string
-          phone_number?: string | null
-          postal_code?: string | null
-          province?: string | null
-          question_1?: string | null
-          question_2?: string | null
-          school?: string | null
-          t_shirt_size?: string | null
+          phone_number?: string
+          postal_code?: string
+          province?: string
+          question_1?: string
+          question_2?: string
+          school?: string
+          t_shirt_size?: string
         }
         Update: {
-          address?: string | null
-          age?: string | null
-          apartment_suite?: string | null
-          city?: string | null
-          country?: string | null
-          dietary_restrictions_dairy_free?: boolean | null
-          dietary_restrictions_gluten_free?: boolean | null
-          dietary_restrictions_halal?: boolean | null
-          dietary_restrictions_other?: string | null
-          dietary_restrictions_vegetarian?: boolean | null
-          email?: string | null
-          gender?: string | null
-          grade?: string | null
+          address?: string
+          age?: string
+          apartment_suite?: string
+          city?: string
+          country?: string
+          dietary_restrictions_dairy_free?: boolean
+          dietary_restrictions_gluten_free?: boolean
+          dietary_restrictions_halal?: boolean
+          dietary_restrictions_other?: string
+          dietary_restrictions_vegetarian?: boolean
+          email?: string
+          gender?: string
+          grade?: string
           id?: string
-          phone_number?: string | null
-          postal_code?: string | null
-          province?: string | null
-          question_1?: string | null
-          question_2?: string | null
-          school?: string | null
-          t_shirt_size?: string | null
+          phone_number?: string
+          postal_code?: string
+          province?: string
+          question_1?: string
+          question_2?: string
+          school?: string
+          t_shirt_size?: string
         }
       }
       profiles: {
