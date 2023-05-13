@@ -7,10 +7,12 @@ import { Database } from "../../types/supabase"
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
 
 const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () => void }) => {
-    const { supabase } = useAuth()
+    const { supabase, user } = useAuth()
 
     const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
     const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
+
+    const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
 
     const [loading, setLoading] = useState(0)
 
@@ -19,15 +21,39 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         event.preventDefault()
     }
 
-    const updateApplicationData = (column: string, value: string | boolean) => {
-        setApplicationData((appData: any) => ({
+    const updateApplicationData = (column: keyof updateHackerApplicationTableType, value: string | boolean) => {
+        
+        setApplicationData((appData: updateHackerApplicationTableType) => ({
           ...appData,
           [column]: value,
         }))
+        
+        setModifiedApplicationData((appData: updateHackerApplicationTableType) => ({
+            ...appData,
+            [column]: value,
+        }))
     }
 
+    
+
     useEffect(() => {
-        supabase.from('hacker_applications').select('*')
+        if (Object.keys(modifiedApplicationData).length === 0) return
+        const handler = setTimeout(() => {
+            
+            supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
+                .then(({ data, error }: { data: any, error: any}) => {
+                    if (error) throw error;
+                })
+            setModifiedApplicationData({})
+        }, 2500)
+
+        return () => {
+            clearTimeout(handler)
+        }
+    }, [modifiedApplicationData, supabase, user?.id])
+
+    useEffect(() => {
+        supabase.from('hacker_applications').select('*').eq('id', user?.id)
           .then(({ data, error }: { data: any, error: any }) => {
             const appData = data?.[0]
     
@@ -42,7 +68,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                 setLoading(2)
             }
           })
-      }, [supabase])
+      }, [supabase, user?.id])
 
     if (loading === 0) {
         return <div className='lazy-preloader'></div>
