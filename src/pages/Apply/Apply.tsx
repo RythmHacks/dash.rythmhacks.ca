@@ -1,12 +1,32 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import HackerApplication from "./HackerApplication"
+import { useAuth } from "../../contexts/Auth"
+
+ 
 
 const Apply = () => {
-  
+  const { supabase, user } = useAuth()
 
   const [editingInProgress, setEditingInProgress] = useState(false)
+  const [status, setStatus] = useState('Loading...')
 
+  useEffect(() => {
+    supabase.from('hacker_applications').select('*').eq('id', user?.id)
+      .then(({ data, error }: { data: any, error: any }) => {
+        const fetchedStatus = data?.[0]?.status
+        if (error || !fetchedStatus) {
+            alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
+            if (error) throw error;
+            else throw TypeError('no hacker application matching the id was found')
+        }
+        else {
+            setStatus(fetchedStatus)
+        }
+      })
+  }, [supabase, user?.id])
+
+  
  
   return (
     <div className="p-12 flex-1" id="apply">
@@ -20,7 +40,7 @@ const Apply = () => {
             <div className="container w-1/2">
               <h2 className='flex items-center justify-between gap-2'>
                 Current Status
-                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal text-center">Not started</p>
+                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal text-center capitalize">{status}</p>
               </h2>
               <p className='mt-4'>You haven't started your application! Click the button below to start filling it out.</p>
               <button onClick={() => setEditingInProgress(true)} className='mt-8'>Begin application</button>
