@@ -155,7 +155,6 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             <input
                 id="phone-number"
                 type="tel"
-                required
                 value={applicationData.phone_number}
                 onChange={e => updateApplicationData('phone_number', e.target.value)}
             ></input>
@@ -338,8 +337,8 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
             <h3>Application Questions</h3>
 
-            <Editor />
-            <Editor />
+            <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
+            <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
             <div className='flex gap-2 mt-4'>
             <button className='contrast' onClick={onReturnToDashboard}>Return to dashboard</button>
