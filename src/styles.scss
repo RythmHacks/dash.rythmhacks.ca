@@ -39,6 +39,11 @@ html.light {
   input {
     background-color: #fcfcfc;
     color: #111;
+    border-color: rgb(209, 213, 219);
+
+    &:focus {
+      border-color: $accent;
+    }
   }
 }
 

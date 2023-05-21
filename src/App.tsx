@@ -14,7 +14,11 @@ const App = () => {
   const { user } = useAuth()
 
   if (!localStorage.theme) {
-    localStorage.theme = 'dark'
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      localStorage.theme = 'dark'
+    } else {
+      localStorage.theme = 'light'
+    }
   }
 
   if (localStorage.theme === 'dark' && !document.documentElement.classList.contains('dark')) {
