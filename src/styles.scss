@@ -24,6 +24,37 @@ body {
   background-attachment: fixed;
 }
 
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+  }  
+  p {
+    color: #334155;
+  }
+  h1, h2, h3, h4 {
+    color: #111;
+  }
+  .container {
+    background-color: darken(#fff, 1%);
+    border: 1px solid rgb(209, 213, 219);
+  }
+  input {
+    background-color: #fcfcfc;
+    color: #111;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: rgba(48, 50, 57, 0.4);
+    border: 2px solid $dark1;
+  }
+  input {
+    background-color: $dark2;
+    color: #eee;
+  }
+}
+
 h1, h2, h3, h4 {
   font-family: 'Satoshi', sans-serif;
   margin: 0;
@@ -94,10 +125,8 @@ a, button.style-link {
 }
 
 input {
-  background-color: $dark2;
   border: 1px solid #555;
   border-radius: 5px;
-  color: #eee;
   padding: 0.5rem;
   outline: none;
   transition: border-color .3s ease;
@@ -117,9 +146,7 @@ input {
 .container {
   padding: 2.5rem;
   border-radius: 5px;
-  background-color: rgba(48, 50, 57, 0.4);
   backdrop-filter: blur(2px);
-  border: 2px solid $dark1;
 
   h1, h2, h3, h4 {
     margin-bottom: 1rem;

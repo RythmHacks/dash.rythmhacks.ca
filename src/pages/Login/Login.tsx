@@ -65,9 +65,9 @@ const Login = () => {
   const dialogs = ['Send magic link', 'Sending', (<p className='flex items-center gap-2 justify-center'><BsCheckCircle/> Magic link sent!</p>), 'Failed to send link']
   const colours = ['', '', 'rgb(17,184,129,0.5)', 'rgb(239,68,68,0.5)']
 
-  return <div className='px-8'>      
+  return <div>      
     <div id='login' className='container min-w-[330px] md:w-4/12 mr-auto ml-auto mt-[5rem]'>
-        <p className='hidden md:block uppercase text-[#888] text-[0.8rem] m-0'>log in</p>
+        <p className='hidden md:block uppercase dark:text-[#888] light:text-[#334155] text-[0.8rem] m-0'>log in</p>
         <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
           <img src={logo} alt='loginlogo' className='block md:hidden rounded-md h-[4rem]'></img>
           <h1 className='mt-4 text-center md:text-left'>Log In to RythmHacks</h1>
@@ -76,7 +76,7 @@ const Login = () => {
 
         <div className="row flex w-full mt-4 md:mt-12">
         <div className="col-6 form-widget w-full" aria-live="polite">
-          <p className="text-[#bbb]">Enter your email to get a magic link</p>
+          <p className="dark:text-[#888] light:text-[#334155]">Enter your email to get a magic link</p>
           <form onSubmit={handleLogin}>
             <input
               id="email"

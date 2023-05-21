@@ -42,14 +42,16 @@
 }
 
 .navbar-desktop {
-    background-color: lighten($dark2, 3%);
     height: 100vh;
     flex: 0 0 20%;
-    border-right: 2px solid $dark1;
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-
+    background-color: lighten($dark2, 3%);
+    border-right: 2px solid $dark1;
+    h3 {
+        color: #eee;
+    }
     .links a {
         width: 90%;
         color: rgba(255, 255, 255, 0.7);
