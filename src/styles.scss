@@ -16,15 +16,13 @@ $dark2: #1B1F2A;
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: $dark2;
-  color: #eee;
   background-image: radial-gradient(#777 1px, transparent 0);
   background-size: 40px 40px;
   background-position: -19px ;
   background-attachment: fixed;
 }
 
-@media (prefers-color-scheme: light) {
+html.light {
   body {
     background-color: #ffffff;
   }  
@@ -44,7 +42,11 @@ body {
   }
 }
 
-@media (prefers-color-scheme: dark) {
+html.dark {
+  body {
+    background-color: $dark2;
+    color: #eee;  
+  }
   .container {
     background-color: rgba(48, 50, 57, 0.4);
     border: 2px solid $dark1;
