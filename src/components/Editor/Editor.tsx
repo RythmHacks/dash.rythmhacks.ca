@@ -49,7 +49,7 @@ const Editor = () => {
   };
 
   return (
-    <div className="bg-dark2 relative rounded-[5px] shadow-sm border-2 border-solid border-dark1">
+    <div className="dark:bg-dark2 relative rounded-[7px] shadow-sm border-2 border-solid border-light2 dark:border-dark1">
       <LexicalComposer
         initialConfig={initialConfig}
       >
@@ -101,40 +101,40 @@ const Toolbar = () => {
   }, [updateToolbar, editor]);
 
   return (
-    <div className="p-2 bg-dark1 space-x-2 flex items-stretch rounded-t-[5px]">
+    <div className="p-2 bg-light2 dark:bg-dark1 space-x-2 flex items-stretch rounded-t-[5px]">
        <button
-        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isBold ? 'bg-dark3' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors rounded-md cursor-pointer hover:bg-light1 dark:hover:bg-dark3 ' + (isBold ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
       >
         <BiBold
           size={24}
-          fill={isBold ? '#EEEEEE' : '#AAAACC'}
+          fill={isBold ? ((localStorage.theme === 'dark') ? '#EEEEEE' : "#334155") : ((localStorage.theme === 'dark') ? '#AAAACC' : "#8691a1")}
           className='transition-colors'
         />
       </button>
       <button
-        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isItalic ? 'bg-dark3' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors rounded-md cursor-pointer hover:bg-light1 dark:hover:bg-dark3 ' + (isItalic ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
         }}
       >
         <BiItalic
           size={24}
-          fill={isItalic ? '#EEEEEE' : '#AAAACC'}
+          fill={isItalic ? ((localStorage.theme === 'dark') ? '#EEEEEE' : "#334155") : ((localStorage.theme === 'dark') ? '#AAAACC' : "#8691a1")}
           className='transition-colors'
         />
       </button>
       <button
-        className={'style-none flex items-center justify-center w-8 h-8 transition-colors cursor-pointer hover:bg-dark3 ' + (isUnderline ? 'bg-dark3' : 'bg-transparent')}
+        className={'style-none flex items-center justify-center w-8 h-8 transition-colors rounded-md cursor-pointer hover:bg-light1 dark:hover:bg-dark3 ' + (isUnderline ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
       >
         <BiUnderline
           size={24}
-          fill={isUnderline ? '#EEEEEE' : '#AAAACC'}
+          fill={isUnderline ? ((localStorage.theme === 'dark') ? '#EEEEEE' : "#334155") : ((localStorage.theme === 'dark') ? '#AAAACC' : "#8691a1")}
           className='transition-colors'
         />
       </button>

@@ -111,25 +111,27 @@ const Settings = () => {
         <div className='container mt-4'>
           <h1>Theme</h1>
           <p>Current theme: <span className='font-bold'>{localStorage.theme}</span></p>
-          <button className='mt-4 mr-2' onClick={
-            () => {
-              let current = localStorage.theme
-              if (current === 'dark') {
-                localStorage.theme = 'light'
-              } else if (current === 'light') {
-                localStorage.theme = 'dark'
+          <div className='flex gap-2 flex-col lg:flex-row mt-4'>
+            <button onClick={
+              () => {
+                let current = localStorage.theme
+                if (current === 'dark') {
+                  localStorage.theme = 'light'
+                } else if (current === 'light') {
+                  localStorage.theme = 'dark'
+                }
+                window.location.reload()
               }
-              window.location.reload()
-            }
-          }>Toggle Theme</button>
-          <button onClick={
-            () => {
-              localStorage.removeItem('theme')
-              window.location.reload()
-            }
-          }>
-            Reset to OS theme
-          </button>
+            }>Toggle Theme</button>
+            <button onClick={
+              () => {
+                localStorage.removeItem('theme')
+                window.location.reload()
+              }
+            }>
+              Reset to OS theme
+            </button>
+          </div>
         </div>
       </div>
     )

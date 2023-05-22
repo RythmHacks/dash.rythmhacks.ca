@@ -2,6 +2,12 @@
    backdrop-filter: blur(2px);
 }
 
+html.light {
+    .modal {
+        border: 2px solid theme('colors.light2')
+    }
+}
+
 .modal {
     border: 2px solid theme('colors.dark1');
     overflow-y: auto;

@@ -14,7 +14,9 @@ module.exports = {
         dark3: "#2a2e39",
         blurred: "rgba(18, 19, 19, 0.5)",
 
-        textlight: "#334155"
+        textlight: "#334155",
+        light1: "#fcfcfc",
+        light2: "rgb(209, 213, 219)"
       }
     },
     transitionDuration: {

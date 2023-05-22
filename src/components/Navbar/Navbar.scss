@@ -59,10 +59,15 @@ html.dark {
     }
 }
 html.light {
+    .navbar-mobile {
+        background-color: #f3f4f6;
+        border-bottom: 2px solid theme('colors.light2');
+    }
     .navbar-desktop {
         background-color: #f3f4f6;
+        border-right: 2px solid theme('colors.light2');
 
-        .links a {
+        .links a {  
             color: theme('colors.textlight');
 
             &:hover {
