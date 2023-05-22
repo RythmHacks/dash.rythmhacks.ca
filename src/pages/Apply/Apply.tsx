@@ -1,10 +1,33 @@
-import { useState } from "react"
-import Editor from "../../components/Editor/Editor"
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from "react"
+
+import HackerApplication from "./HackerApplication"
+import { useAuth } from "../../contexts/Auth"
+
+ 
 
 const Apply = () => {
-  const [editingInProgress, setEditingInProgress] = useState(false)
+  const { supabase, user } = useAuth()
 
+  const [editingInProgress, setEditingInProgress] = useState(false)
+  const [status, setStatus] = useState('Loading...')
+
+  useEffect(() => {
+    supabase.from('hacker_applications').select('*').eq('id', user?.id)
+      .then(({ data, error }: { data: any, error: any }) => {
+        const fetchedStatus = data?.[0]?.status
+        if (error || !fetchedStatus) {
+            alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
+            if (error) throw error;
+            else throw TypeError('no hacker application matching the id was found')
+        }
+        else {
+            setStatus(fetchedStatus)
+        }
+      })
+  }, [supabase, user?.id])
+
+  
+ 
   return (
     <div className="p-12 flex-1" id="apply">
       { !editingInProgress ? 
@@ -17,7 +40,7 @@ const Apply = () => {
             <div className="container w-1/2">
               <h2 className='flex items-center justify-between gap-2'>
                 Current Status
-                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal text-center">Not started</p>
+                <p className="text-xl text-gray-500 bg-black p-2 rounded-md flex items-center font-normal text-center capitalize">{status}</p>
               </h2>
               <p className='mt-4'>You haven't started your application! Click the button below to start filling it out.</p>
               <button onClick={() => setEditingInProgress(true)} className='mt-8'>Begin application</button>
@@ -33,39 +56,7 @@ const Apply = () => {
           </div>
         </div>
       :
-        <>
-        <div className='container'>
-          <h1>Hacker Application Form</h1>
-          <p>Fill out this form to register for the event as a hacker. <Link to='/dashboard/apply'>Go back to the dashboard.</Link></p>
-        </div>
-        <div className='container mt-4'>
-          <form>
-            <p>First Name</p>
-            <input
-              type='text'
-              placeholder='Amon'
-              className='mt-2'
-              // value = {firstname}
-              required
-
-            />
-            <p className='mt-4'>Last Name</p>
-            <input
-              type='text'
-              placeholder='Gus'
-              className='mt-2'
-              // value = {firstname}
-              required
-
-            />
-          </form>
-          <Editor />
-          <div className='flex gap-2 mt-4'>
-            <button className='contrast' onClick={() => setEditingInProgress(false)}>Return to dashboard</button>
-            <button>Submit</button>
-          </div>
-        </div>
-        </>
+        <HackerApplication onReturnToDashboard={() => setEditingInProgress(!editingInProgress)} />
       }
     </div>
   )

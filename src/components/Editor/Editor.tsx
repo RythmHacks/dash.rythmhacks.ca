@@ -7,7 +7,8 @@ import {
   FORMAT_ELEMENT_COMMAND,
   UNDO_COMMAND,
   REDO_COMMAND,
-  EditorState
+  EditorState,
+  LexicalEditor
 } from 'lexical';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -20,14 +21,9 @@ import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 
 import { BiBold, BiItalic, BiUnderline, BiStrikethrough } from 'react-icons/bi'
 
-function onChange(state: EditorState) {
-  state.read(() => {
-    const root = $getRoot();
-    const selection = $getSelection();
-  });
-}
+import {$generateHtmlFromNodes} from '@lexical/html'
 
-const Editor = () => {
+const Editor = ({ onEditorChange }: { onEditorChange: (html: string) => void }) => {
   const initialConfig = {
     theme: {
       // ltr: 'ltr',
@@ -48,6 +44,12 @@ const Editor = () => {
     },
   };
 
+  const onChange = (state: EditorState, editor: LexicalEditor) => {
+    state.read(() => {
+      onEditorChange($generateHtmlFromNodes(editor, null))
+    });
+  }
+
   return (
     <div className="bg-dark2 relative rounded-[5px] shadow-sm border-2 border-solid border-dark1">
       <LexicalComposer
@@ -63,6 +65,7 @@ const Editor = () => {
               Enter some text...
             </div>
           }
+          
           ErrorBoundary={LexicalErrorBoundary}
         />
         <OnChangePlugin onChange={onChange} />
