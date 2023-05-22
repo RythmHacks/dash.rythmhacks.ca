@@ -82,7 +82,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     else return (<>
         <div className='container'>
         <h1>Hacker Application Form</h1>
-        <p>Fill out this form to register for the event as a hacker. <Link to='/dashboard/apply'>Go back to the dashboard.</Link></p>
+        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={onReturnToDashboard}>Go back to the dashboard.</button></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit}>
