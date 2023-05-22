@@ -63,7 +63,7 @@ const Navbar = () => {
             </div>
 
             <div className={`${user ? "block" : "hidden"}`}>
-                <div className={`transition-opacity account-popup flex-col shadow-xl shadow-black/25 ${isAccountPopupOpened ? "open" : "close"}`}>
+                <div className={`transition-opacity account-popup popup flex-col shadow-xl shadow-black/25 ${isAccountPopupOpened ? "open" : "close"}`}>
                     <NavLink className="link" to='/dashboard/settings'>
                         <IoMdSettings size={16}/>
                         Settings
@@ -74,7 +74,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className='cursor-pointer flex items-center justify-between bg-dark1 p-4 gap-2' onClick={handlePopupClick}>
+                <div className='cursor-pointer flex items-center justify-between dark:bg-dark1 bg-[#e4e7eb] p-4 gap-2' onClick={handlePopupClick}>
                     <span>{(name) ? name : user?.email}</span>
                     <GoKebabVertical size={16}/>
                 </div>
@@ -91,7 +91,7 @@ const Navbar = () => {
                     <FiMenu size={24} />
                 </div>
             </div>
-            <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu`}>
+            <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu popup`}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
                 <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 

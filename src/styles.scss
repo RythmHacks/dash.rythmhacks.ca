@@ -16,12 +16,75 @@ $dark2: #1B1F2A;
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: $dark2;
-  color: #eee;
   background-image: radial-gradient(#777 1px, transparent 0);
   background-size: 40px 40px;
   background-position: -19px ;
   background-attachment: fixed;
+}
+
+html.light {
+  body {
+    background-color: #ffffff;
+  }  
+  p {
+    color: #334155;
+  }
+  h1, h2, h3, h4 {
+    color: #111;
+  }
+  .container {
+    background-color: darken(#fff, 1%);
+    border: 1px solid rgb(209, 213, 219);
+  }
+  input {
+    background-color: #fcfcfc;
+    color: #111;
+    border-color: rgb(209, 213, 219);
+
+    &:focus {
+      border-color: $accent;
+    }
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+  button.contrast {
+    background-color: theme('colors.light1');
+    color: theme('colors.textlight');
+    border: 1px solid theme('colors.accent');
+
+    &:hover {
+      background-color: theme('colors.accent');
+      color: theme('colors.light1');
+    }
+  }
+}
+
+html.dark {
+  body {
+    background-color: $dark2;
+    color: #eee;  
+  }
+  .container {
+    background-color: rgba(48, 50, 57, 0.4);
+    border: 2px solid $dark1;
+  }
+  input {
+    background-color: $dark2;
+    color: #eee;
+  }
+  button {
+    &.contrast {
+      background-color: $dark2;
+      border: 1px solid $accent;
+      color: $accent;
+  
+      &:hover {
+        background-color: $accent;
+        color: #eee;
+      }
+    }  
+  }
 }
 
 h1, h2, h3, h4 {
@@ -60,17 +123,6 @@ button:not(.style-link):not(.style-none) {
     color: transparentize(#eee, 0.5);
     background-color: transparentize($accent, 0.5);
   }
-  
-  &.contrast {
-    background-color: $dark2;
-    border: 1px solid $accent;
-    color: $accent;
-
-    &:hover {
-      background-color: $accent;
-      color: #eee;
-    }
-  }
 }
 
 button.style-link, button.style-none {
@@ -94,10 +146,8 @@ a, button.style-link {
 }
 
 input {
-  background-color: $dark2;
   border: 1px solid #555;
   border-radius: 5px;
-  color: #eee;
   padding: 0.5rem;
   outline: none;
   transition: border-color .3s ease;
@@ -108,18 +158,12 @@ input {
   &::placeholder {
     color: #555;
   }
-  &:autofill {
-    -webkit-box-shadow: 0 0 0 30px $dark2 inset;
-    -webkit-text-fill-color: #eee;
-  }
 }
 
 .container {
   padding: 2.5rem;
   border-radius: 5px;
-  background-color: rgba(48, 50, 57, 0.4);
   backdrop-filter: blur(2px);
-  border: 2px solid $dark1;
 
   h1, h2, h3, h4 {
     margin-bottom: 1rem;

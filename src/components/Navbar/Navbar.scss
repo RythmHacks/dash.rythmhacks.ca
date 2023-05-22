@@ -1,12 +1,11 @@
 @import '../../styles.scss';
 
-@mixin popup {
-    background-color: theme('colors.dark3');
+.popup {
     margin: 1rem;
-    border: 2px solid theme('colors.dark1');
     margin-bottom: 0.5rem;
+    border-radius: 5px;
     transition: opacity .3s ease, transform .2s ease, margin-top .3s ease;
-    
+
     &.open {
         opacity: 1;
     }
@@ -41,20 +40,78 @@
     }
 }
 
+html.dark {
+    .navbar-desktop {
+        background-color: lighten($dark2, 3%);
+        border-right: 2px solid $dark1;
+
+        .links a {
+            color: rgba(255, 255, 255, 0.7);
+
+            &.active {
+                color: $accent;
+            }
+        }
+    }
+    .popup {
+        background-color: theme('colors.dark3');
+        border: 2px solid theme('colors.dark1');    
+    }
+}
+html.light {
+    .navbar-mobile {
+        background-color: #f3f4f6;
+        border-bottom: 2px solid theme('colors.light2');
+    }
+    .navbar-desktop {
+        background-color: #f3f4f6;
+        border-right: 2px solid theme('colors.light2');
+
+        .links a {  
+            color: theme('colors.textlight');
+
+            &:hover {
+                background-color: darken(#f3f4f6, 5%);
+            }
+            &.active {
+                background-color: darken(#f3f4f6, 5%);
+                color: darken($accent, 10%);
+            }
+        }
+    }
+    .popup {
+        background-color: #e4e7eb;
+        border: 2px solid rgb(209, 213, 219);
+        box-shadow: none;
+
+        .link {
+            background-color: #e4e7eb;
+            color: theme('colors.textlight');
+
+            &:hover {
+                background-color: darken(#e4e7eb, 5%);
+            }
+            &.active {
+                color: $accent;
+            }
+        }
+    }
+}
+
 .navbar-desktop {
-    background-color: lighten($dark2, 3%);
     height: 100vh;
     flex: 0 0 20%;
-    border-right: 2px solid $dark1;
     flex-direction: column;
     display: flex;
     justify-content: space-between;
+    h3 {
+        color: #eee;
+    }
     position: sticky;
     top: 0;
 
     .links a {
         width: 90%;
-        color: rgba(255, 255, 255, 0.7);
         display: block;
         padding: 0.75rem 1.25rem;
         margin-left: 5%;
@@ -80,7 +137,6 @@
     }
 
     .account-popup {
-        @include popup;
 
         &.close {
             transform-origin: bottom;
@@ -98,7 +154,6 @@
     z-index: 3;
 
     .ham-menu {
-        @include popup;
         position: fixed;
         right: 0;
         top: 2.5rem;
