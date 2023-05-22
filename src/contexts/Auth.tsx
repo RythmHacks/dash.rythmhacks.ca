@@ -8,6 +8,7 @@ const signUp = supabase.auth.signUp.bind(supabase.auth),
       updateUser = supabase.auth.updateUser.bind(supabase.auth)
 
 export interface AuthProviderValue {
+    supabase: typeof supabase,
     signUp: typeof signUp,
     signInWithOtp: typeof signInWithOtp,
     signOut: typeof signOut,
@@ -39,6 +40,7 @@ const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
     }, []);
     
     const value: AuthProviderValue = {
+        supabase,
         signUp,
         signInWithOtp,
         signOut,
