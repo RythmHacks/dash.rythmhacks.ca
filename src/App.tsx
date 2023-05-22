@@ -13,12 +13,14 @@ const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const App = () => {
   const { user } = useAuth()
 
-  if (!localStorage.theme) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      localStorage.theme = 'dark'
-    } else {
-      localStorage.theme = 'light'
-    }
+  console.log(window.matchMedia, window.matchMedia('(prefers-color-scheme: light)').matches)
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    localStorage.theme = 'dark'
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    localStorage.theme = 'light'
+  } else {
+    localStorage.theme = 'dark'
   }
 
   if (localStorage.theme === 'dark' && !document.documentElement.classList.contains('dark')) {

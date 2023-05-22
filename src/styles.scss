@@ -144,10 +144,6 @@ input {
   &::placeholder {
     color: #555;
   }
-  &:autofill {
-    -webkit-box-shadow: 0 0 0 30px $dark2 inset;
-    -webkit-text-fill-color: #eee;
-  }
 }
 
 .container {
