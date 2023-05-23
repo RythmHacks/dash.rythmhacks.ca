@@ -39,21 +39,21 @@ const Apply = () => {
           <div className='flexwrap'>
             <div className="container w-1/2">
               <h2 className='flex items-center justify-between gap-2'>
-                Apply to be a hacker
+                Apply to be a Hacker
                 <p className="text-xl dark:text-gray-500 dark:bg-black bg-[#ddd] p-2 rounded-md flex items-center font-normal text-center capitalize">{status}</p>
               </h2>
               <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this application.</p>
               <p className='mt-4'>You haven't started your application! Click the button below to start filling it out.</p>
               <button onClick={() => setEditingInProgress(true)} className='mt-8'>Begin application</button>
             </div>
-            <div className='container w-1/2 text-textlight'>
+            <div className='container w-1/2'>
               <h2>Apply to be a Mentor/Judge</h2>
-              <p className='mt-4'>Want to attend the event as a mentor/judge? You'll be on-site helping participants with their projects, giving technical advice and assistance when necessary. Additionally, you'll be judging the projects at the end of the competition. You can also choose to run a self-hosted workshop on a topic of your choice.</p>
+              <p className='mt-4'>Want to attend the event as a mentor/judge? You'll be on-site helping participants with their projects, giving technical advice and assistance when necessary. <br/><br/>Additionally, you'll be judging the projects at the end of the competition. You can also choose to run a self-hosted workshop on a topic of your choice.</p>
               <button className='mt-4' disabled>Stay tuned for more info!</button>
             </div>
           </div>
           <div className='flex gap-4'>
-            <div className='container w-1/2 mt-4 text-textlight'>
+            <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>
               <h2>Hacker Info</h2>
               <p className='font-bold'>When are applications due?</p>
               Applications are due on July 31st, 2023.
@@ -61,7 +61,7 @@ const Apply = () => {
               Participants must be in grade 12 or lower as of June 2023.
               <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
             </div>
-            <div className='container w-1/2 mt-4 text-textlight'>
+            <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>
               <h2>Mentor Info</h2>
               <p className='font-bold'>Can I join as a mentor online?</p>
               No. As a mentor, you'll be required to be on-site at our event.
