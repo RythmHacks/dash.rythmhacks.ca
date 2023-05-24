@@ -12,7 +12,6 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const { supabase, user } = useAuth()
 
     const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
-    const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
 
     const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
     const [basicInfoAutosavingMessage, setBasicInfoAutosavingMessage] = useState<autosavingIconType>('')
@@ -56,18 +55,25 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     useEffect(() => {
         if (Object.keys(modifiedApplicationData).length === 0) return
-        const handler = setTimeout(() => {
-            if ("question_1" in modifiedApplicationData) setQuestion1AutosavingMessage("Saving...")
-            if ("question_2" in modifiedApplicationData) setQuestion2AutosavingMessage("Saving...")
-            
-            
 
+        if ("question_1" in modifiedApplicationData) setQuestion1AutosavingMessage("Saving...")
+        if ("question_2" in modifiedApplicationData) setQuestion2AutosavingMessage("Saving...")
+        if (Object.keys(modifiedApplicationData).length - (+question1AutosavingMessage) - (+question1AutosavingMessage) > 0) {
+            setBasicInfoAutosavingMessage("Saving...")
+        }
+        const handler = setTimeout(() => {
             supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
-                    setBasicInfoAutosavingMessage("")
-                    setQuestion1AutosavingMessage("")
-                    setQuestion2AutosavingMessage("")
+                    if (basicInfoAutosavingMessage) setBasicInfoAutosavingMessage("Saved!")
+                    if (question1AutosavingMessage) setQuestion1AutosavingMessage("Saved!")
+                    if (question2AutosavingMessage) setQuestion2AutosavingMessage("Saved!")
+
+                    setTimeout(() => {
+                        setBasicInfoAutosavingMessage("")
+                        setQuestion1AutosavingMessage("")
+                        setQuestion2AutosavingMessage("")
+                    }, 1500)
                 })
             setModifiedApplicationData({})
             
@@ -113,7 +119,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
             <h3>Basic Information</h3>
-            <p>Saving...</p>
+            <p>{basicInfoAutosavingMessage}</p>
             <div>
                 <label>First Name</label>
                 <input 
