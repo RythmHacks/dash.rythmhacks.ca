@@ -4,9 +4,10 @@ import { useAuth } from "../../contexts/Auth"
 import { Link } from 'react-router-dom'
 import { Database } from "../../types/supabase"
 import './Apply.scss'
+import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs"
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
-type autosavingIconType = "Saving..." | "Saved!" | ""
+type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
 
 const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () => void }) => {
     const { supabase, user } = useAuth()
@@ -14,9 +15,8 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
 
     const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
-    const [basicInfoAutosavingMessage, setBasicInfoAutosavingMessage] = useState<autosavingIconType>('')
-    const [question1AutosavingMessage, setQuestion1AutosavingMessage] = useState<autosavingIconType>('')
-    const [question2AutosavingMessage, setQuestion2AutosavingMessage] = useState<autosavingIconType>('')
+    const [basicInfoAutosavingMessage, setBasicInfoAutosavingMessage] = useState<autosavingIconType>('No changes detected')
+    const [saving, setSaving] = useState<boolean>(false)
 
     const [loading, setLoading] = useState(0)
     const [submitted, setSubmitted] = useState<boolean>(false)
@@ -56,28 +56,19 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     useEffect(() => {
         if (Object.keys(modifiedApplicationData).length === 0) return
-
-        if ("question_1" in modifiedApplicationData) setQuestion1AutosavingMessage("Saving...")
-        if ("question_2" in modifiedApplicationData) setQuestion2AutosavingMessage("Saving...")
-        if (Object.keys(modifiedApplicationData).length - (+question1AutosavingMessage) - (+question1AutosavingMessage) > 0) {
+        if (Object.keys(modifiedApplicationData).length > 0) {
             setBasicInfoAutosavingMessage("Saving...")
+            setSaving(true)
         }
+
         const handler = setTimeout(() => {
             supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
                     if (basicInfoAutosavingMessage) setBasicInfoAutosavingMessage("Saved!")
-                    if (question1AutosavingMessage) setQuestion1AutosavingMessage("Saved!")
-                    if (question2AutosavingMessage) setQuestion2AutosavingMessage("Saved!")
-
-                    setTimeout(() => {
-                        setBasicInfoAutosavingMessage("")
-                        setQuestion1AutosavingMessage("")
-                        setQuestion2AutosavingMessage("")
-                    }, 1500)
+                    setSaving(false)
                 })
-            setModifiedApplicationData({})
-            
+            setModifiedApplicationData({})            
         }, 2500)
 
         return () => {
@@ -119,8 +110,10 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
-            <h3>Basic Information</h3>
-            <p>{basicInfoAutosavingMessage}</p>
+            <h3 className='flex justify-between items-center'>
+                Basic Information
+                <p className={`flex gap-2 items-center dark:text-dark3 ${(!saving) ? "bg-[#cef1dd]" : "bg-[#f9eed2]"} p-3 transition-colors rounded-md font-normal`}>{basicInfoAutosavingMessage} {(!saving) ? <BsCloudCheck size={20}/> : <BsCloudArrowUp size={20}/>}</p>
+            </h3>
             <div>
                 <label>First Name</label>
                 <input 
