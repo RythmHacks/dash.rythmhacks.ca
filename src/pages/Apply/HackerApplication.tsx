@@ -16,6 +16,8 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     const [loading, setLoading] = useState(0)
 
+    const firstName = `${useAuth().user?.user_metadata.first_name}`
+    const lastName = `${useAuth().user?.user_metadata.last_name}`
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -87,6 +89,31 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         <div className='container mt-4'>
         <form onSubmit={handleSubmit}>
             <h3>Basic Information</h3>
+            <div>
+                <label>First Name</label>
+                <input 
+                    value={firstName}
+                    disabled
+                    className='cursor-not-allowed'
+                ></input>
+            </div>
+            <div>
+                <label>Last Name</label>
+                <input
+                    value={lastName}
+                    disabled
+                    className='cursor-not-allowed'
+                ></input>
+            </div>
+            <div>
+                <label>Email</label>
+                <input
+                    value={user?.email}
+                    disabled
+                    className='cursor-not-allowed'
+                ></input>
+            </div>
+            <p>Want to change these values? do so in the settings</p>
             <div>
             <label htmlFor="gender">Gender (optional)</label>
             <select
