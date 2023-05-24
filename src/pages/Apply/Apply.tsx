@@ -7,11 +7,16 @@ const Apply = () => {
   const { supabase, user } = useAuth()
 
   const [editingInProgress, setEditingInProgress] = useState(false)
-  const [status, setStatus] = useState('Loading...')
+  const [status, setStatus] = useState<string>('Loading...')
 
-  let buttonMsg = 'Begin application'
-  let msg, setMsg = 'You haven\'t started your application! Click the button below to begin.'
+  const buttonMsgs = ['Begin application', 'Continue application', 'Edit application']
+  const msgs = ['You haven\'t started your application! Click the button below to begin.', 'Click the button below to continue your application.', 'Your application has been successfully submitted! You can continue to edit it until the deadline.']
+  const buttonBgs = ['#151821', '#447087', '#64B786']
   
+  const [msg, setMsg] = useState(msgs[0])
+  const [buttonMsg, setButtonMsg] = useState(buttonMsgs[0])
+  const [buttonBg, setButtonBg] = useState(buttonBgs[0])
+
   useEffect(() => {
     supabase.from('hacker_applications').select('*').eq('id', user?.id)
       .then(({ data, error }: { data: any, error: any }) => {
@@ -23,18 +28,25 @@ const Apply = () => {
         }
         else {
             setStatus(fetchedStatus)
+
+            let statusInt = 0
+
+            if (fetchedStatus === 'Not Started') {
+              statusInt = 0
+            }
+            if (fetchedStatus === 'In Progress') {
+              statusInt = 1
+            }
+            if (fetchedStatus === 'Submitted') {
+              statusInt = 2
+            }
+
+            setMsg(msgs[statusInt])
+            setButtonMsg(buttonMsgs[statusInt])
+            setButtonBg(buttonBgs[statusInt])
         }
       })
   }, [supabase, user?.id, editingInProgress])
-  console.log(status)
- 
-  if (status === 'In Progress') {
-    buttonMsg = 'Continue application'
-    msg = 'Click the button below to continue editing your application.'
-  } else if (status === 'Submitted') {
-    buttonMsg = 'Edit application'
-    msg = 'Your application has been successfully submitted! You can continue to edit it until the deadline.'
-  }
 
   return (
     <div className="p-12 flex-1" id="apply">
@@ -48,7 +60,7 @@ const Apply = () => {
             <div className="container w-1/2">
               <h2 className='flex items-center justify-between gap-2'>
                 Apply to be a Hacker
-                <p className="text-xl dark:text-gray-500 dark:bg-black bg-[#ddd] p-2 rounded-md flex items-center font-normal text-center capitalize">{status}</p>
+                <p className="text-xl dark:text-gray-500 p-2 rounded-md flex items-center font-normal text-center capitalize dark:text-[#eee]" style={{backgroundColor: buttonBg}}>{status}</p>
               </h2>
               <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this application.</p>
               <p className='mt-4'>{msg}</p>
