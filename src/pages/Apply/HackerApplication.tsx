@@ -19,6 +19,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const [question2AutosavingMessage, setQuestion2AutosavingMessage] = useState<autosavingIconType>('')
 
     const [loading, setLoading] = useState(0)
+    const [submitted, setSubmitted] = useState<boolean>(false)
 
     const firstName = `${useAuth().user?.user_metadata.first_name}`
     const lastName = `${useAuth().user?.user_metadata.last_name}`
@@ -401,7 +402,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             <h4>If you had the ability to create any app/website that would solve any problem in the world, what would it be? What technologies would you use? What features would it have? (800c)</h4>
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
-            <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What personality traits or roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of! (1000c)</h4>
+            <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of! (1000c)</h4>
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
             <div className='flex gap-2 mt-8'>
@@ -413,7 +414,8 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
                 })
-            }}>Submit (you can edit it later)</button>
+                setSubmitted(true);
+            }} style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
             </div>
         </form>
         </div>

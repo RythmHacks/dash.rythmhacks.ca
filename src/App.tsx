@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route  } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
@@ -22,7 +22,6 @@ const App = () => {
       localStorage.theme = 'dark'
     }
   }
-
 
   if (localStorage.theme === 'dark' && !document.documentElement.classList.contains('dark')) {
     document.documentElement.classList.add('dark')
