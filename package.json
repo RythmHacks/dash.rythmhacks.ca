@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "vite",
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
