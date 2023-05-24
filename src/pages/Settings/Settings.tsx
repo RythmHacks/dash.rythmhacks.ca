@@ -39,7 +39,7 @@ const Settings = () => {
     }
 
     return (
-      <div className="p-12" id="settings">
+      <div className="p-6 sm:p-12" id="settings">
         <div className="container">
           <form onSubmit={handleUserInfoSubmit}>
             <h1 className="mb-4">User info</h1>

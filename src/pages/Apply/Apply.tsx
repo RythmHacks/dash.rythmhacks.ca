@@ -49,7 +49,7 @@ const Apply = () => {
   }, [supabase, user?.id, editingInProgress])
 
   return (
-    <div className="p-12 flex-1" id="apply">
+    <div className="p-6 sm:p-12 flex-1" id="apply">
       { !editingInProgress ? 
         <div>
           <div className='container mb-4'>
@@ -58,7 +58,7 @@ const Apply = () => {
           </div>
           <div className='flexwrap'>
             <div className="container w-1/2">
-              <h2 className='flex items-center justify-between gap-2'>
+              <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
                 Apply to be a Hacker
                 <p className="text-xl dark:text-gray-500 p-2 rounded-md flex items-center font-normal text-center capitalize dark:text-[#eee]" style={{backgroundColor: buttonBg}}>{status}</p>
               </h2>
@@ -82,7 +82,7 @@ const Apply = () => {
               <button className='mt-4' disabled>Stay tuned for more info!</button>
             </div>
           </div>
-          <div className='flex gap-4'>
+          <div className='flex gap-4 flex-col lg:flex-row'>
             <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>
               <h2>Hacker Info</h2>
               <p className='font-bold'>When are applications due?</p>
