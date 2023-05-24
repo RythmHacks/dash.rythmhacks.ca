@@ -374,10 +374,10 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
             <h3 className='mt-12'>Application Questions</h3>
 
-            <h4>If you had the ability to create any app/website that would solve any problem in the world, what would it be? What technologies would you use? What features would it have?</h4>
+            <h4>If you had the ability to create any app/website that would solve any problem in the world, what would it be? What technologies would you use? What features would it have? (max 800c)</h4>
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
-            <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What personality traits or roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of!</h4>
+            <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What personality traits or roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of! (max 1000c)</h4>
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
             <div className='flex gap-2 mt-8'>

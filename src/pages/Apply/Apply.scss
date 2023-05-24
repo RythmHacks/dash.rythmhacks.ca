@@ -17,6 +17,26 @@
     }
 }
 
+@media (max-width: 768px) {
+    .hacker-app-form {
+        div:not(.editor) {
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: center;
+
+            label {
+                width: 100% !important;
+            }
+            input {
+                width: 100% !important;
+            }
+        }
+    }
+    select {
+        width: 100% !important;
+    }
+}
+
 select {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -24,14 +44,14 @@ select {
     width: 80%;
     appearance: none;
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
 
     transition: background-color .3s ease, border-color .3s ease;
 }
 html.dark {
     select {
         background-color: theme('colors.dark3');
-        padding: 0.5rem;
-        border-radius: 5px;
         color: #eee;
 
         &:hover {
@@ -41,6 +61,20 @@ html.dark {
             &:hover {
                 background-color: theme('colors.accent');
             }
+        }
+    }
+}
+html.light select {
+    background-color: #fcfcfc;
+    color: #333;
+    border-color: rgb(209, 213, 219);
+
+    &:hover {
+        border-color: theme('colors.accent');
+    }
+    option {
+        &:hover {
+            background-color: theme('colors.accent');
         }
     }
 }

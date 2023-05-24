@@ -58,10 +58,10 @@ const Editor = ({ onEditorChange }: { onEditorChange: (html: string) => void }) 
         <Toolbar />
         <RichTextPlugin
           contentEditable={
-            <ContentEditable className="outline-none p-4 resize-none overflow-hidden text-ellipsis" />
+            <ContentEditable className="outline-none p-4 resize-none overflow-hidden text-ellipsis editor" />
           }
           placeholder={
-            <div className="absolute top-[64px] left-[16px] pointer-events-none select-none text-gray-400">
+            <div className="absolute top-[64px] left-[16px] pointer-events-none select-none text-gray-400 text-left editor">
               Enter some text...
             </div>
           }
@@ -104,7 +104,7 @@ const Toolbar = () => {
   }, [updateToolbar, editor]);
 
   return (
-    <div className="p-2 bg-light2 dark:bg-dark1 space-x-2 flex items-stretch rounded-t-[5px]">
+    <div className="p-2 bg-light2 dark:bg-dark1 space-x-2 flex items-stretch rounded-t-[5px] editor">
        <button
         className={'style-none flex items-center justify-center w-8 h-8 transition-colors rounded-md cursor-pointer hover:bg-light1 dark:hover:bg-dark3 ' + (isBold ? 'bg-dark3' : 'bg-transparent')}
         onClick={() => {
