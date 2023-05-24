@@ -1,0 +1,46 @@
+.hacker-app-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    div:not(.editor) {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        label {
+            width: 20%;
+        }
+        input {
+            width: 80%;
+        }
+    }
+}
+
+select {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    width: 80%;
+    appearance: none;
+    cursor: pointer;
+
+    transition: background-color .3s ease, border-color .3s ease;
+}
+html.dark {
+    select {
+        background-color: theme('colors.dark3');
+        padding: 0.5rem;
+        border-radius: 5px;
+        color: #eee;
+
+        &:hover {
+            border-color: theme('colors.accent');
+        }
+        option {
+            &:hover {
+                background-color: theme('colors.accent');
+            }
+        }
+    }
+}

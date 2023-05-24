@@ -51,7 +51,7 @@ const Editor = ({ onEditorChange }: { onEditorChange: (html: string) => void }) 
   }
 
   return (
-    <div className="dark:bg-dark2 relative rounded-[7px] shadow-sm border-2 border-solid border-light2 dark:border-dark1">
+    <div className="dark:bg-dark2 relative rounded-[7px] shadow-sm border-2 border-solid border-light2 dark:border-dark1 editor">
       <LexicalComposer
         initialConfig={initialConfig}
       >

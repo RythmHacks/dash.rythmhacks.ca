@@ -3,8 +3,10 @@ import Editor from "../../components/Editor/Editor"
 import { useAuth } from "../../contexts/Auth"
 import { Link } from 'react-router-dom'
 import { Database } from "../../types/supabase"
+import './Apply.scss'
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
+type autosavingLocationType = "basic_information" | "question_1" | "question_2" | null
 
 const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () => void }) => {
     const { supabase, user } = useAuth()
@@ -13,6 +15,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
 
     const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
+    const [autosavingLocation, setAutosavingLocation] = useState<autosavingLocationType>(null)
 
     const [loading, setLoading] = useState(0)
 
@@ -41,12 +44,15 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     useEffect(() => {
         if (Object.keys(modifiedApplicationData).length === 0) return
         const handler = setTimeout(() => {
-            
+            const modifiedKey = Object.keys(modifiedApplicationData)[0]
+            setAutosavingLocation(modifiedKey !== 'question_1' && modifiedKey !== 'question_2' ? 'basic_information' : modifiedKey)
+
             supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
                 })
             setModifiedApplicationData({})
+            setAutosavingLocation(null)
         }, 2500)
 
         return () => {
@@ -87,8 +93,9 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={onReturnToDashboard}>Go back to the dashboard.</button></p>
         </div>
         <div className='container mt-4'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='hacker-app-form'>
             <h3>Basic Information</h3>
+            <p className={"relative" + autosavingLocation === 'basic_information' ? " hidden" : ""}>Saving...</p>
             <div>
                 <label>First Name</label>
                 <input 
@@ -113,7 +120,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                     className='cursor-not-allowed'
                 ></input>
             </div>
-            <p>Want to change these values? do so in the settings</p>
+            <p className='text-[#999] mb-4'>Want to change these values? Do so in the <Link to='/dashboard/settings'>settings</Link></p>
             <div>
             <label htmlFor="gender">Gender (optional)</label>
             <select
@@ -145,6 +152,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                 type="number"
                 min={0}
                 max={100}
+                placeholder='Enter age'
                 value={applicationData.age}
                 onChange={e => updateApplicationData('age', e.target.value)}
             />
@@ -168,10 +176,11 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
 
             <div>
-            <label htmlFor="school">School</label>
+            <label htmlFor="school">School (don't abbreviate)</label>
             <input 
                 id="school"
                 value={applicationData.school}
+                placeholder='Laurel Heights Secondary School'
                 onChange={e => updateApplicationData('school', e.target.value)}
             />
             </div>
@@ -183,12 +192,13 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                 id="phone-number"
                 type="tel"
                 value={applicationData.phone_number}
+                placeholder='Enter phone number'
                 onChange={e => updateApplicationData('phone_number', e.target.value)}
             ></input>
             </div>
 
         
-            <h3>Event-specific Information</h3>
+            {/* <h3>Event-specific Information</h3>
             <div>
             <label htmlFor="t-shirt-size">T-Shirt Size (optional)</label>
             <select 
@@ -264,10 +274,10 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                     updateApplicationData('dietary_restrictions_other', e.target.value)
                 }}></input>
             </>)}
-            </div>
+            </div> */}
 
 
-            <h3>Address</h3>
+            {/* <h3>Address</h3>
             <p>These fields are optional if you want to recieve prizes.</p>
 
             <div>
@@ -359,16 +369,19 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
                 value={applicationData.postal_code}
                 onChange={e => updateApplicationData('postal_code', e.target.value)}
             />
-            </div>
+            </div> */}
         
 
-            <h3>Application Questions</h3>
+            <h3 className='mt-12'>Application Questions</h3>
 
-            <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
+            <h4>If you had the ability to create any app/website that would solve any problem in the world, what would it be? What technologies would you use? What features would it have?</h4>
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
-            <div className='flex gap-2 mt-4'>
-            <button className='contrast' onClick={onReturnToDashboard}>Return to dashboard</button>
+            <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What personality traits or roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of!</h4>
+            <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
+
+            <div className='flex gap-2 mt-8'>
+            <button className='contrast' onClick={() => onReturnToDashboard}>Save and return</button>
             <button type="submit">Submit</button>
             </div>
         </form>

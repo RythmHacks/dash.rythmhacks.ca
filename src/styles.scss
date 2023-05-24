@@ -47,6 +47,9 @@ html.light {
     &::placeholder {
       color: #aaa;
     }
+    &:disabled {
+      color: #999;
+    }
   }
   button.contrast {
     background-color: theme('colors.light1');
@@ -72,6 +75,15 @@ html.dark {
   input {
     background-color: $dark2;
     color: #eee;
+
+    &:disabled {
+      color: #aaa;
+      user-select: none;
+
+      &:hover {
+        border-color: #555;
+      }
+    }
   }
   button {
     &.contrast {
