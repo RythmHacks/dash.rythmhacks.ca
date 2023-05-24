@@ -66,7 +66,7 @@ const Login = () => {
   const colours = ['', '', 'rgb(17,184,129,0.5)', 'rgb(239,68,68,0.5)']
 
   return <div>      
-    <div id='login' className='container min-w-[330px] md:w-4/12 mr-auto ml-auto mt-[5rem]'>
+    <div id='login' className='container !w-3/4 min-w-[270px] md:!w-1/2 mr-auto ml-auto mt-[5rem]'>
         <p className='hidden md:block uppercase dark:text-[#888] light:text-[#334155] text-[0.8rem] m-0'>log in</p>
         <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
           <img src={logo} alt='loginlogo' className='block md:hidden rounded-md h-[4rem]'></img>
