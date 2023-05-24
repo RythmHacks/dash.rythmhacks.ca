@@ -60,7 +60,7 @@ const Apply = () => {
             <div className="container w-1/2">
               <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
                 Apply to be a Hacker
-                <p className="text-xl dark:text-gray-500 p-2 rounded-md flex items-center font-normal text-center capitalize dark:text-[#eee]" style={{backgroundColor: buttonBg}}>{status}</p>
+                <p className="text-xl !text-[#eee] p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}}>{status}</p>
               </h2>
               <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this application.</p>
               <p className='mt-4'>{msg}</p>
