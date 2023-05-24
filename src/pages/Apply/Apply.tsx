@@ -25,7 +25,7 @@ const Apply = () => {
             setStatus(fetchedStatus)
         }
       })
-  }, [supabase, user?.id])
+  }, [supabase, user?.id, editingInProgress])
   console.log(status)
  
   if (status === 'In Progress') {
