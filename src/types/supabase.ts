@@ -45,6 +45,7 @@ export interface Database {
           question_1: string
           question_2: string
           school: string
+          status: string
           t_shirt_size: string
         }
         Insert: {
@@ -68,6 +69,7 @@ export interface Database {
           question_1?: string
           question_2?: string
           school?: string
+          status?: string
           t_shirt_size?: string
         }
         Update: {
@@ -91,6 +93,7 @@ export interface Database {
           question_1?: string
           question_2?: string
           school?: string
+          status?: string
           t_shirt_size?: string
         }
       }

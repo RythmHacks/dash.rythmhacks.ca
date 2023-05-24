@@ -3,14 +3,15 @@ import { useEffect, useState } from "react"
 import HackerApplication from "./HackerApplication"
 import { useAuth } from "../../contexts/Auth"
 
- 
-
 const Apply = () => {
   const { supabase, user } = useAuth()
 
   const [editingInProgress, setEditingInProgress] = useState(false)
   const [status, setStatus] = useState('Loading...')
 
+  let buttonMsg = 'Begin application'
+  let msg, setMsg = 'You haven\'t started your application! Click the button below to begin.'
+  
   useEffect(() => {
     supabase.from('hacker_applications').select('*').eq('id', user?.id)
       .then(({ data, error }: { data: any, error: any }) => {
@@ -25,9 +26,16 @@ const Apply = () => {
         }
       })
   }, [supabase, user?.id])
-
-  
+  console.log(status)
  
+  if (status === 'In Progress') {
+    buttonMsg = 'Continue application'
+    msg = 'Click the button below to continue editing your application.'
+  } else if (status === 'Submitted') {
+    buttonMsg = 'Edit application'
+    msg = 'Your application has been successfully submitted! You can continue to edit it until the deadline.'
+  }
+
   return (
     <div className="p-12 flex-1" id="apply">
       { !editingInProgress ? 
@@ -43,8 +51,18 @@ const Apply = () => {
                 <p className="text-xl dark:text-gray-500 dark:bg-black bg-[#ddd] p-2 rounded-md flex items-center font-normal text-center capitalize">{status}</p>
               </h2>
               <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this application.</p>
-              <p className='mt-4'>You haven't started your application! Click the button below to start filling it out.</p>
-              <button onClick={() => setEditingInProgress(true)} className='mt-8'>Begin application</button>
+              <p className='mt-4'>{msg}</p>
+              <button onClick={() => {
+                setEditingInProgress(true);
+                if (status === 'Not Started') {
+                  supabase.from('hacker_applications').update({
+                    status: 'In Progress'
+                  }).eq('id', user?.id)
+                  .then(({ data, error }: { data: any, error: any}) => {
+                      if (error) throw error;
+                  })
+                }
+              }} className='mt-8'>{buttonMsg}</button>
             </div>
             <div className='container w-1/2'>
               <h2>Apply to be a Mentor/Judge</h2>
@@ -59,6 +77,8 @@ const Apply = () => {
               Applications are due on July 31st, 2023.
               <p className='font-bold mt-2'>Who is eligible to apply?</p>
               Participants must be in grade 12 or lower as of June 2023.
+              <p className='font-bold mt-2'>How do I submit my application?</p>
+              Your application will be automatically saved as you edit it. The final saved product will be your application. You'll be able to edit it up until the deadline.
               <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
             </div>
             <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>

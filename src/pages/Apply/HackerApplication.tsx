@@ -6,7 +6,7 @@ import { Database } from "../../types/supabase"
 import './Apply.scss'
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
-type autosavingLocationType = "basic_information" | "question_1" | "question_2" | null
+type autosavingIconType = "Saving..." | "Saved!" | ""
 
 const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () => void }) => {
     const { supabase, user } = useAuth()
@@ -15,7 +15,9 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const [isOtherDietaryRestrictionChecked, setIsOtherDietaryRestrictionChecked] = useState(false)
 
     const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
-    const [autosavingLocation, setAutosavingLocation] = useState<autosavingLocationType>(null)
+    const [basicInfoAutosavingMessage, setBasicInfoAutosavingMessage] = useState<autosavingIconType>('')
+    const [question1AutosavingMessage, setQuestion1AutosavingMessage] = useState<autosavingIconType>('')
+    const [question2AutosavingMessage, setQuestion2AutosavingMessage] = useState<autosavingIconType>('')
 
     const [loading, setLoading] = useState(0)
 
@@ -24,13 +26,26 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
+
+        supabase
+            .from('hacker_applications')
+            .update({
+                status: 'Submitted'
+            })
+            .eq('id', user?.id)
+            .then(({ data, error }: { data: any, error: any}) => {
+                if (error) {
+                    alert('Something went wrong with submitting your application! Please contact the RythmHacks devs.')
+                    throw error;
+                }
+            })
     }
 
     const updateApplicationData = (column: keyof updateHackerApplicationTableType, value: string | boolean) => {
         
         setApplicationData((appData: updateHackerApplicationTableType) => ({
-          ...appData,
-          [column]: value,
+            ...appData,
+            [column]: value,
         }))
         
         setModifiedApplicationData((appData: updateHackerApplicationTableType) => ({
@@ -39,20 +54,23 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         }))
     }
 
-    
-
     useEffect(() => {
         if (Object.keys(modifiedApplicationData).length === 0) return
         const handler = setTimeout(() => {
-            const modifiedKey = Object.keys(modifiedApplicationData)[0]
-            setAutosavingLocation(modifiedKey !== 'question_1' && modifiedKey !== 'question_2' ? 'basic_information' : modifiedKey)
+            if ("question_1" in modifiedApplicationData) setQuestion1AutosavingMessage("Saving...")
+            if ("question_2" in modifiedApplicationData) setQuestion2AutosavingMessage("Saving...")
+            
+            
 
             supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
+                    setBasicInfoAutosavingMessage("")
+                    setQuestion1AutosavingMessage("")
+                    setQuestion2AutosavingMessage("")
                 })
             setModifiedApplicationData({})
-            setAutosavingLocation(null)
+            
         }, 2500)
 
         return () => {
@@ -95,7 +113,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
             <h3>Basic Information</h3>
-            <p className={"relative" + autosavingLocation === 'basic_information' ? " hidden" : ""}>Saving...</p>
+            <p>Saving...</p>
             <div>
                 <label>First Name</label>
                 <input 
@@ -381,8 +399,15 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             <Editor onEditorChange={html => updateApplicationData("question_1", html)}/>
 
             <div className='flex gap-2 mt-8'>
-            <button className='contrast' onClick={() => onReturnToDashboard}>Save and return</button>
-            <button type="submit">Submit</button>
+            <button className='contrast' onClick={onReturnToDashboard}>Save and return</button>
+            <button onClick={() => {
+                supabase.from('hacker_applications').update({
+                status: 'Submitted'
+                }).eq('id', user?.id)
+                .then(({ data, error }: { data: any, error: any}) => {
+                    if (error) throw error;
+                })
+            }}>Submit (you can edit it later)</button>
             </div>
         </form>
         </div>
