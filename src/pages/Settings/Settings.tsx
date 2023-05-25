@@ -3,6 +3,8 @@ import { BsFillCheckCircleFill } from "react-icons/bs"
 import { RiErrorWarningFill } from "react-icons/ri"
 import { useAuth } from "../../contexts/Auth";
 
+import { supabase } from '../../supabaseClient'
+
 const Settings = () => {
     const { user, updateUser } = useAuth()
 
@@ -37,6 +39,12 @@ const Settings = () => {
         console.error(error)
       }
     }
+
+    // const deleteUser = async () => {
+    //   const { data, error } = await supabase.auth.admin.deleteUser(
+    //     user?.id!
+    //   )
+    // }
 
     return (
       <div className="p-6 sm:p-12" id="settings">
@@ -122,7 +130,7 @@ const Settings = () => {
                 }
                 window.location.reload()
               }
-            }>Toggle Theme</button>
+            }>Toggle theme</button>
             <button onClick={
               () => {
                 localStorage.removeItem('theme')
@@ -133,6 +141,17 @@ const Settings = () => {
             </button>
           </div>
         </div>
+        {/* <div className='container mt-4'>
+          <h2>Delete Account</h2>
+          <p>Press the button below to delete your account. <strong>This cannot be undone.</strong></p>
+          <button className='!bg-red-600 hover:!bg-red-500 mt-4' onClick={
+            () => {
+              if (window.confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+                deleteUser()
+              }
+            }
+          }>Delete my account</button>
+        </div> */}
       </div>
     )
   }
