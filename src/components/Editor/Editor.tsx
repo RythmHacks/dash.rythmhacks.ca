@@ -8,7 +8,8 @@ import {
   UNDO_COMMAND,
   REDO_COMMAND,
   EditorState,
-  LexicalEditor
+  LexicalEditor,
+  $insertNodes
 } from 'lexical';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -21,9 +22,9 @@ import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 
 import { BiBold, BiItalic, BiUnderline, BiStrikethrough } from 'react-icons/bi'
 
-import {$generateHtmlFromNodes} from '@lexical/html'
+import {$generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
 
-const Editor = ({ onEditorChange }: { onEditorChange: (html: string) => void }) => {
+const Editor = ({ initialValue, onEditorChange }: { initialValue: string, onEditorChange: (html: string) => void }) => {
   const initialConfig = {
     theme: {
       // ltr: 'ltr',
@@ -39,6 +40,14 @@ const Editor = ({ onEditorChange }: { onEditorChange: (html: string) => void }) 
       },
     },
     namespace: 'LexicalEditor',
+    editorState(editor: LexicalEditor) {
+      const domParser = new DOMParser()
+      const dom = domParser.parseFromString(initialValue, "text/html")
+      const nodes = $generateNodesFromDOM(editor, dom)
+
+      $getRoot().select()
+      $insertNodes(nodes)
+    },
     onError(error: Error) {
       throw error;
     },
