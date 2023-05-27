@@ -20,6 +20,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     const [loading, setLoading] = useState(0)
     const [submitted, setSubmitted] = useState<boolean>(false)
+    const [validationMessages, setValidationMessages] = useState<String[]>()
 
     const firstName = `${useAuth().user?.user_metadata.first_name}`
     const lastName = `${useAuth().user?.user_metadata.last_name}`
@@ -27,18 +28,46 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
 
-        supabase
-            .from('hacker_applications')
-            .update({
-                status: 'Submitted'
-            })
-            .eq('id', user?.id)
-            .then(({ data, error }: { data: any, error: any}) => {
-                if (error) {
-                    alert('Something went wrong with submitting your application! Please contact the RythmHacks devs.')
-                    throw error;
-                }
-            })
+        const currentValidationMessages: String[] = []
+        const emptyFields: String[] = []
+
+        Object.entries(applicationData).forEach(([ column, value ]) => {
+            if (column === 'question_1' && value === '<p class="mb-1"><br></p>') {
+                emptyFields.push('Application Question 1')
+            }
+            else if (column === 'question_2' && value === '<p class="mb-1"><br></p>') {
+                emptyFields.push('Application Question 2')
+            }
+            else if (value === '') {
+                if (column === 'phone_number') emptyFields.push('Phone Number')
+                emptyFields.push(column[0].toUpperCase() + column.slice(1))
+            }
+        })
+
+        emptyFields.forEach(column => {
+            currentValidationMessages.push(column + ' is empty.')
+        })
+
+        if (currentValidationMessages.length) {
+            setValidationMessages(currentValidationMessages)
+        }
+
+        else {
+            setValidationMessages([])
+            supabase
+                .from('hacker_applications')
+                .update({
+                    status: 'Submitted'
+                })
+                .eq('id', user?.id)
+                .then(({ data, error }: { data: any, error: any}) => {
+                    if (error) {
+                        alert('Something went wrong with submitting your application! Please contact the RythmHacks devs.')
+                        throw error;
+                    }
+                })
+            setSubmitted(true)
+        }
     }
 
     const updateApplicationData = (column: keyof updateHackerApplicationTableType, value: string | boolean) => {
@@ -406,16 +435,14 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
             <div className='flex gap-2 mt-8'>
             <button className='contrast' onClick={onReturnToDashboard}>Save and return</button>
-            <button onClick={() => {
-                supabase.from('hacker_applications').update({
-                status: 'Submitted'
-                }).eq('id', user?.id)
-                .then(({ data, error }: { data: any, error: any}) => {
-                    if (error) throw error;
-                })
-                setSubmitted(true);
-            }} style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
+            <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
             </div>
+            {validationMessages && (<div className="mt-4">
+                <p>Uh oh! Your form has some errors that need to be fixed before submitting:</p>
+                {validationMessages.map((message, index) => {
+                    return <p key={index}>{message}</p>
+                })}
+            </div>)}
         </form>
         </div>
     </>)
