@@ -32,15 +32,15 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
         const emptyFields: String[] = []
 
         Object.entries(applicationData).forEach(([ column, value ]) => {
-            if (column === 'question_1' && value === '<p class="mb-1"><br></p>') {
+            if (column === 'question_1' && (value === '<p class="mb-1"><br></p>' || value === '')) {
                 emptyFields.push('Application Question 1')
             }
-            else if (column === 'question_2' && value === '<p class="mb-1"><br></p>') {
+            else if (column === 'question_2' && (value === '<p class="mb-1"><br></p>' || value === '')) {
                 emptyFields.push('Application Question 2')
             }
             else if (value === '') {
                 if (column === 'phone_number') emptyFields.push('Phone Number')
-                emptyFields.push(column[0].toUpperCase() + column.slice(1))
+                else emptyFields.push(column[0].toUpperCase() + column.slice(1))
             }
         })
 
