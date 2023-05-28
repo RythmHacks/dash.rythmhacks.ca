@@ -1,0 +1,16 @@
+name: Update Supabase database types
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: lyqht/generate-supabase-db-types-github-action@main
+      with:
+        SUPABASE_REF_ID: ${{ secrets.SUPABASE_REF_ID }}
+        SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        OUTPUT_PATH: db.types.ts
