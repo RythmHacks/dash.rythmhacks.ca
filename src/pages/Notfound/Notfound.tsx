@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Notfound = () => {
   return (
-    <div className='flex'>
+    <div className='flex flex-col md:flex-row'>
         <Navbar />
         <div className='container h-min m-8'>
             <h1>Well darn again</h1>
