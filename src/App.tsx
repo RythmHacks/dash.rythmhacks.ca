@@ -9,6 +9,7 @@ const Apply = lazy(() => import('./pages/Apply/Apply'))
 const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
+const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 
 const App = () => {
   const { user } = useAuth()
@@ -42,7 +43,8 @@ const App = () => {
             <Route path="apply" element={<Apply />} />
             <Route path="settings" element={<Settings />} />
           </Route>
-          <Route path="*" element={<div>404</div>} />
+          <Route path="/dashboard/*" element={<Notfound/>} />
+          <Route path="*" element={<Notfound/>} />
       </Routes>
     </Suspense>
   )
