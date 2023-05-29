@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Database } from "../../types/supabase"
 import './Apply.scss'
 import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs"
+import { AiOutlineWarning } from 'react-icons/ai'
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
@@ -50,6 +51,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
         if (currentValidationMessages.length) {
             setValidationMessages(currentValidationMessages)
+            return;
         }
 
         else {
@@ -437,11 +439,13 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             <button className='contrast' onClick={onReturnToDashboard}>Save and return</button>
             <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
             </div>
-            {validationMessages && (<div className="mt-4">
-                <p>Uh oh! Your form has some errors that need to be fixed before submitting:</p>
-                {validationMessages.map((message, index) => {
-                    return <p key={index}>{message}</p>
-                })}
+            {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3">
+                <div className='bg-red-200 p-2 rounded-md !flex-row flex items-center'><AiOutlineWarning size={'24px'}/> <p>Uh oh! Your form has some errors that need to be fixed before submitting.</p></div>
+                <div className='flex-col !items-start bg-slate-200 p-2 rounded-md w-full'>
+                    {validationMessages.map((message, index) => {
+                        return <p key={index}>{message}</p>
+                    })}
+                </div>
             </div>)}
         </form>
         </div>

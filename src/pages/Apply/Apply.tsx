@@ -82,8 +82,8 @@ const Apply = () => {
               <button className='mt-4' disabled>Stay tuned for more info!</button>
             </div>
           </div>
-          <div className='flex gap-4 flex-col lg:flex-row'>
-            <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>
+          <div className='flexwrap mt-4'>
+            <div className='container w-1/2 dark:text-[#eee] text-textlight'>
               <h2>Hacker Info</h2>
               <p className='font-bold'>When are applications due?</p>
               Applications are due on July 31st, 2023.
@@ -93,7 +93,7 @@ const Apply = () => {
               Your application will be automatically saved as you edit it. The final saved product will be your application. You'll be able to edit it up until the deadline.
               <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
             </div>
-            <div className='container w-1/2 mt-4 dark:text-[#eee] text-textlight'>
+            <div className='container w-1/2 dark:text-[#eee] text-textlight'>
               <h2>Mentor Info</h2>
               <p className='font-bold'>Can I join as a mentor online?</p>
               No. As a mentor, you'll be required to be on-site at our event.

@@ -185,14 +185,24 @@ input {
 .flexwrap {
   display: flex;
   gap: 1rem;
+
+  .container {
+    width: 50%;
+  }
 }
 
 @media (max-width: 768px) {
   main {
     flex-direction: column;
   }
+}
+@media (max-width: 1024px) {
   .flexwrap {
     flex-direction: column;
+
+    .container {
+      width: 100%;
+    }
   }
 }
 
