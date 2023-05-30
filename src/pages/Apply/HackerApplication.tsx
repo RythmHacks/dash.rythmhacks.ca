@@ -249,7 +249,16 @@ const HackerApplication = () => {
             ></input>
             </div>
 
-        
+            <div>
+            <label htmlFor="country">Country</label>
+            <input
+                id="country"
+                value={applicationData.country}
+                placeholder='Enter country'
+                onChange={e => updateApplicationData('country', e.target.value)}
+            ></input>
+            </div>
+
             {/* <h3>Event-specific Information</h3>
             <div>
             <label htmlFor="t-shirt-size">T-Shirt Size (optional)</label>
@@ -422,7 +431,6 @@ const HackerApplication = () => {
                 onChange={e => updateApplicationData('postal_code', e.target.value)}
             />
             </div> */}
-        
 
             <h3 className='mt-12'>Application Questions</h3>
 
