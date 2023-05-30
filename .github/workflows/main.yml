@@ -4,6 +4,8 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions: read-all|write-all
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,4 +15,4 @@ jobs:
         SUPABASE_REF_ID: ${{ secrets.SUPABASE_REF_ID }}
         SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        OUTPUT_PATH: db.types.ts
+        OUTPUT_PATH: src/types/supabase.ts
