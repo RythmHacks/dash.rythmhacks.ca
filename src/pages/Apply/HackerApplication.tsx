@@ -213,17 +213,17 @@ const HackerApplication = () => {
 
             <div>
             <label htmlFor="grade">Grade (as of September 1, 2023)</label>
-            <select
+            <input
                 id="grade"
+                type="number"
+                min={8}
+                max={12}
+                placeholder='Enter grade'
                 value={applicationData.grade}
                 onChange={e => updateApplicationData('grade', e.target.value)}
             >
-                <option value="">Please select a grade</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>Graduating</option>
-            </select>
+                
+            </input>
             </div>
 
 
