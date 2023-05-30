@@ -118,6 +118,7 @@ const HackerApplication = () => {
             if (error || !data || appData === null) {
                 setLoading(1)
                 alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
+                navigate('/login')
                 if (error) throw error;
                 else throw TypeError('no hacker application matching the id was found')
             }
