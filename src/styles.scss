@@ -12,6 +12,8 @@ $dark2: #1B1F2A;
 
 *, *::before, *::after {
   box-sizing: border-box;  
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -52,13 +54,11 @@ html.light {
     }
   }
   button.contrast {
-    background-color: theme('colors.light1');
+    background-color: theme('colors.light2');
     color: theme('colors.textlight');
-    border: 1px solid theme('colors.accent');
 
     &:hover {
-      background-color: theme('colors.accent');
-      color: theme('colors.light1');
+      background-color: #E4E7EB;
     }
   }
 }
@@ -88,12 +88,10 @@ html.dark {
   button {
     &.contrast {
       background-color: $dark2;
-      border: 1px solid $accent;
       color: $accent;
   
       &:hover {
-        background-color: $accent;
-        color: #eee;
+        background-color: theme('colors.dark3');
       }
     }  
   }
