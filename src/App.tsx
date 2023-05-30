@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
+const Privacy = lazy(() => import('./pages/Privacy/Privacy'))
 
 const App = () => {
   const { user } = useAuth()
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="apply" element={<Apply />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path='/privacy' element={<Privacy/>} />
           <Route path="/dashboard/*" element={<Notfound/>} />
           <Route path="*" element={<Notfound/>} />
       </Routes>
