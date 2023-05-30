@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
 
@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 const Privacy = lazy(() => import('./pages/Privacy/Privacy'))
+const HackerApplication = lazy(() => import('./pages/Apply/HackerApplication'))
 
 const App = () => {
   const { user } = useAuth()
@@ -37,15 +38,18 @@ const App = () => {
   return (
     <Suspense fallback={<div className="lazy-preloader"></div>}>
       <Routes>
-          <Route path='/' element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
-          <Route path="/login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
-          <Route path='/dashboard' element={<Dashboard />}>
+          <Route index element = {(user === null) ? <Navigate to='/login' /> : <Navigate to='/dashboard' />} />
+          <Route path="login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
+          <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
-            <Route path="apply" element={<Apply />} />
+            <Route path="apply" element={<Outlet/>} >
+              <Route index element={<Apply />} />
+              <Route path="hacker" element={<HackerApplication/>} />
+            </Route>
             <Route path="settings" element={<Settings />} />
           </Route>
-          <Route path='/privacy' element={<Privacy/>} />
-          <Route path="/dashboard/*" element={<Notfound/>} />
+          <Route path='privacy' element={<Privacy/>} />
+          <Route path="dashboard/*" element={<Notfound/>} />
           <Route path="*" element={<Notfound/>} />
       </Routes>
     </Suspense>

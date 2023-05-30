@@ -6,11 +6,12 @@ import { Database } from "../../types/supabase"
 import './Apply.scss'
 import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs"
 import { AiOutlineWarning } from 'react-icons/ai'
+import { useNavigate } from "react-router-dom"
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
 
-const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () => void }) => {
+const HackerApplication = () => {
     const { supabase, user } = useAuth()
 
     const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
@@ -25,6 +26,8 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
 
     const firstName = `${useAuth().user?.user_metadata.first_name}`
     const lastName = `${useAuth().user?.user_metadata.last_name}`
+
+    const navigate = useNavigate()
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -134,10 +137,10 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             <p>Your data could not be retrieved. Try checking your internet connection. If this error persists, contact the RythmHacks team.</p>
         </div>
     }
-    else return (<>
+    else return (<div className='flex-col flex p-12'>
         <div className='container'>
         <h1>Hacker Application Form</h1>
-        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={onReturnToDashboard}>Go back to the dashboard.</button></p>
+        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</button></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
@@ -436,7 +439,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             />
 
             <div className='flex gap-2 mt-8'>
-            <button className='contrast' onClick={onReturnToDashboard}>Save and return</button>
+            <button className='contrast' onClick={() => navigate('/dashboard/apply')}>Save and return</button>
             <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
             </div>
             {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3">
@@ -449,7 +452,7 @@ const HackerApplication = ({ onReturnToDashboard } : { onReturnToDashboard: () =
             </div>)}
         </form>
         </div>
-    </>)
+    </div>)
 }
 
 export default HackerApplication;
