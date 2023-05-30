@@ -172,7 +172,7 @@ const HackerApplication = () => {
                     className='cursor-not-allowed'
                 ></input>
             </div>
-            <p className='text-[#999] mb-4'>Want to change these values? Do so in the <Link to='/dashboard/settings'>settings</Link></p>
+            <p className='!text-[#888] mb-4'>Want to change these values? Do so in the <Link to='/dashboard/settings'>settings</Link></p>
             <div>
             <label htmlFor="gender">Gender (optional)</label>
             <select
@@ -212,7 +212,7 @@ const HackerApplication = () => {
 
 
             <div>
-            <label htmlFor="grade">Grade (as of September 1, 2023)</label>
+            <label htmlFor="grade">Grade (during the 2022-23 school year)</label>
             <input
                 id="grade"
                 type="number"
@@ -236,7 +236,7 @@ const HackerApplication = () => {
                 onChange={e => updateApplicationData('school', e.target.value)}
             />
             </div>
-
+            <p className='!text-[#888] mb-4'>Note: only students that are about to enter or are already in high school during our event are allowed to attend.</p>
 
             <div>
             <label htmlFor="phone-number">Phone Number</label>
