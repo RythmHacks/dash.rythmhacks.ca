@@ -3,6 +3,8 @@ import { BsFillCheckCircleFill } from "react-icons/bs"
 import { RiErrorWarningFill } from "react-icons/ri"
 import { useAuth } from "../../contexts/Auth";
 
+import { Link } from 'react-router-dom'
+
 import { supabase } from '../../supabaseClient'
 
 const Settings = () => {
@@ -140,6 +142,10 @@ const Settings = () => {
               Reset to OS theme
             </button>
           </div>
+        </div>
+        <div className='container mt-4'>
+          <h1>Privacy</h1>
+          <p>Here at RythmHacks, we highly value having a <Link to='/privacy'>privacy policy.</Link></p>
         </div>
         {/* <div className='container mt-4'>
           <h2>Delete Account</h2>

@@ -140,7 +140,7 @@ const HackerApplication = () => {
     else return (<div className='flex-col flex p-12'>
         <div className='container'>
         <h1>Hacker Application Form</h1>
-        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</button></p>
+        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</button> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
