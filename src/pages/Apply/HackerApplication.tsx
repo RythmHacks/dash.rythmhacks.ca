@@ -449,7 +449,7 @@ const HackerApplication = () => {
 
             <div className='flex gap-2 mt-8'>
             <button className='contrast' onClick={() => navigate('/dashboard/apply')}>Save and return</button>
-            <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>
+            {applicationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
             </div>
             {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3">
                 <div className='bg-red-200 p-2 rounded-md !flex-row flex items-center'><AiOutlineWarning size={'24px'}/> <p>Uh oh! Your form has some errors that need to be fixed before submitting.</p></div>
