@@ -22,94 +22,56 @@ export interface Database {
           id?: string
           timesAsked?: number | null
         }
+        Relationships: []
       }
       hacker_applications: {
         Row: {
-          address: string
           age: string
-          apartment_suite: string
-          city: string
-          country: string
-          dietary_restrictions_dairy_free: boolean
-          dietary_restrictions_gluten_free: boolean
-          dietary_restrictions_halal: boolean
-          dietary_restrictions_other: string
-          dietary_restrictions_vegetarian: boolean
+          country: string | null
           email: string
           gender: string
           grade: string
           id: string
           phone_number: string
-          postal_code: string
-          province: string
           question_1: string
           question_2: string
           school: string
           status: string
-          t_shirt_size: string
         }
         Insert: {
-          address?: string
           age?: string
-          apartment_suite?: string
-          city?: string
-          country?: string
-          dietary_restrictions_dairy_free?: boolean
-          dietary_restrictions_gluten_free?: boolean
-          dietary_restrictions_halal?: boolean
-          dietary_restrictions_other?: string
-          dietary_restrictions_vegetarian?: boolean
+          country?: string | null
           email: string
           gender?: string
           grade?: string
           id: string
           phone_number?: string
-          postal_code?: string
-          province?: string
           question_1?: string
           question_2?: string
           school?: string
           status?: string
-          t_shirt_size?: string
         }
         Update: {
-          address?: string
           age?: string
-          apartment_suite?: string
-          city?: string
-          country?: string
-          dietary_restrictions_dairy_free?: boolean
-          dietary_restrictions_gluten_free?: boolean
-          dietary_restrictions_halal?: boolean
-          dietary_restrictions_other?: string
-          dietary_restrictions_vegetarian?: boolean
+          country?: string | null
           email?: string
           gender?: string
           grade?: string
           id?: string
           phone_number?: string
-          postal_code?: string
-          province?: string
           question_1?: string
           question_2?: string
           school?: string
           status?: string
-          t_shirt_size?: string
         }
-      }
-      profiles: {
-        Row: {
-          created_at: string | null
-          id: string
-        }
-        Insert: {
-          created_at?: string | null
-          id: string
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-        }
+        Relationships: [
+          {
+            foreignKeyName: "hacker_applications_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       "starboard-msgs": {
         Row: {
@@ -124,6 +86,7 @@ export interface Database {
           id?: string
           "starboard-message-id"?: string
         }
+        Relationships: []
       }
     }
     Views: {
@@ -140,3 +103,4 @@ export interface Database {
     }
   }
 }
+
