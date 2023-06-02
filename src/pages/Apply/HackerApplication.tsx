@@ -145,7 +145,7 @@ const HackerApplication = () => {
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
-            <h3 className='flex justify-between items-center'>
+            <h3 className='flex justify-between lg:items-center flex-col lg:flex-row'>
                 Basic Information
                 <p className={`flex gap-2 items-center dark:text-dark3 ${(!saving) ? "bg-[#cef1dd]" : "bg-[#f9eed2]"} p-3 transition-colors rounded-md font-normal`}>{basicInfoAutosavingMessage} {(!saving) ? <BsCloudCheck size={20}/> : <BsCloudArrowUp size={20}/>}</p>
             </h3>
