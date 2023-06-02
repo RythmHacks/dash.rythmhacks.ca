@@ -43,6 +43,7 @@ const Home = () => {
             isOpened={modalIsOpened}
             setIsOpened={setModalIsOpened}
             title="You're almost there!"
+            closable={false}
         >
             <p className="mb-4">Before proceeding to the dashboard, please enter your full name.</p>
             <form onSubmit={handleNameChange}>

@@ -7,16 +7,21 @@ type ModalProps = {
     setIsOpened: React.Dispatch<React.SetStateAction<boolean>>,
     children: React.ReactNode,
     title: string,
-    closeButtonPresent?: boolean
+    closeButtonPresent?: boolean,
+    closable?: boolean
 }
-const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, closeButtonPresent }) => {
+const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, closeButtonPresent, closable=true }) => {
     return <>
         <div
             className="modal-overlay fixed top-0 w-[100vw] h-[100vh] place-content-center z-index-50 dark:bg-black/10"
             style={{ 
                 display: isOpened ? "flex" : "none"
             }}
-            onClick={() => setIsOpened(false)}
+            onClick={() => 
+                {if (closable) {
+                    setIsOpened(false)
+                }}
+            }
         >
             
             <div 
