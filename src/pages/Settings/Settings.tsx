@@ -95,6 +95,8 @@ const Settings = () => {
               />
             </div>
 
+            <p className='mt-4 mb-4'>Want to change your email? Contact the organizers at <a href='mailto:rythmhacks@gmail.com'>rythmhacks@gmail.com</a>.</p>
+
             <button type="submit" disabled={
               email.trim() === user?.email 
               && firstName.trim() === (user?.user_metadata.first_name || "Unnamed")
@@ -109,13 +111,13 @@ const Settings = () => {
               <p><strong>Success!</strong> Your name has been updated.</p>
             </div>
 
-            <div 
+            {/* <div 
               className="px-4 py-2 mt-4 items-center bg-yellow-500/20 text-yellow-200 rounded-md"
               style={{ display: emailUpdated ? "flex" : "none"}}
             >
               <RiErrorWarningFill size={24} fill="#FFEE22" className="mr-4" />
               <p>Check your email inbox at <span className="text-[#659CE1]">{email}</span> to finalize your email change.</p>
-            </div>
+            </div> */}
           </form>
         </div>
         <div className='container mt-4'>
