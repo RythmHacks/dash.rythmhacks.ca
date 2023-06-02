@@ -46,11 +46,11 @@ const Home = () => {
         >
             <p className="mb-4">Before proceeding to the dashboard, please enter your full name.</p>
             <form onSubmit={handleNameChange}>
-                <div className="flex gap-4">
+                <div className="flex flex-col">
                     <div className="mb-4">
                         <label className="block mb-2" htmlFor="firstname">First Name</label>
                         <input 
-                        className="p-2 text-md" 
+                        className="p-2 text-md w-full" 
                         id="firstname" 
                         type="text"
                         required
@@ -64,7 +64,7 @@ const Home = () => {
                     <div className="mb-4">
                         <label className="block mb-2" htmlFor="lastname">Last Name</label>
                         <input 
-                        className="p-2 text-md" 
+                        className="p-2 text-md w-full" 
                         id="lastname" 
                         type="text" 
                         required

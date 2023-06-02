@@ -12,7 +12,7 @@ type ModalProps = {
 const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, closeButtonPresent }) => {
     return <>
         <div
-            className="modal-overlay absolute top-0 w-[100vw] h-[100vh] place-content-center z-index-50 dark:bg-black/10"
+            className="modal-overlay fixed top-0 w-[100vw] h-[100vh] place-content-center z-index-50 dark:bg-black/10"
             style={{ 
                 display: isOpened ? "flex" : "none"
             }}
@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ isOpened, setIsOpened, children, title, c
         >
             
             <div 
-                className="modal w-10/12 lg:w-6/12 m-auto p-8 rounded-lg z-index-50 bg-light1 dark:bg-dark3 dark:shadow-xl dark:shadow-black/25"
+                className="modal w-10/12 lg:w-6/12 m-auto p-4 md:p-8 rounded-lg z-index-50 bg-light1 dark:bg-dark3 dark:shadow-xl dark:shadow-black/25"
                 onClick={event => event.stopPropagation()}>
                 <div className="flex justify-between mb-4">
                     <h2>{title}</h2>
