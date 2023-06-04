@@ -23,6 +23,7 @@ const HackerApplication = () => {
     const [loading, setLoading] = useState(0)
     const [submitted, setSubmitted] = useState<boolean>(false)
     const [validationMessages, setValidationMessages] = useState<String[]>()
+    const [showValidationMessages, setShowValidationMessages] = useState<boolean>(false)
 
     const firstName = `${useAuth().user?.user_metadata.first_name}`
     const lastName = `${useAuth().user?.user_metadata.last_name}`
@@ -60,11 +61,11 @@ const HackerApplication = () => {
 
         if (currentValidationMessages.length) {
             setValidationMessages(currentValidationMessages)
+            setShowValidationMessages(true)
             return;
-        }
-
-        else {
+        } else {
             setValidationMessages([])
+            setShowValidationMessages(false)
             supabase
                 .from('hacker_applications')
                 .update({
@@ -144,14 +145,14 @@ const HackerApplication = () => {
             <p>Your data could not be retrieved. Try checking your internet connection. If this error persists, contact the RythmHacks team.</p>
         </div>
     }
-    else return (<div className='flex-col flex p-12'>
-        <div className='container'>
-        <h1>Hacker Application Form</h1>
-        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</button> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
+    else return (<div className='page'>
+        <div className='container text-left justify-start'>
+            <h1>Hacker Application Form</h1>
+            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</a> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
-            <h3 className='flex justify-between items-center'>
+            <h3 className='flex flex-col md:flex-row justify-between md:items-center'>
                 Basic Information
                 <p className={`flex gap-2 items-center dark:text-dark3 ${(!saving) ? "bg-[#cef1dd]" : "bg-[#f9eed2]"} p-3 transition-colors rounded-md font-normal`}>{basicInfoAutosavingMessage} {(!saving) ? <BsCloudCheck size={20}/> : <BsCloudArrowUp size={20}/>}</p>
             </h3>
@@ -210,7 +211,7 @@ const HackerApplication = () => {
                 id="age"
                 type="number"
                 min={0}
-                max={100}
+                max={200}
                 placeholder='Enter age'
                 value={applicationData.age}
                 onChange={e => updateApplicationData('age', e.target.value)}
@@ -457,7 +458,7 @@ const HackerApplication = () => {
             <button className='contrast' onClick={() => navigate('/dashboard/apply')}>Save and return</button>
             {applicationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
             </div>
-            {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3">
+            {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3" style={{display: (showValidationMessages ? "flex" : "none")}}>
                 <div className='bg-red-200 p-2 rounded-md !flex-row flex items-center'><AiOutlineWarning size={'24px'}/> <p>Uh oh! Your form has some errors that need to be fixed before submitting.</p></div>
                 <div className='flex-col !items-start bg-slate-200 p-2 rounded-md w-full'>
                     {validationMessages.map((message, index) => {

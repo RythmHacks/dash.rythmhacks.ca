@@ -58,7 +58,7 @@ const Apply = () => {
   }, [supabase, user?.id])
 
   return (
-    <div className="p-6 sm:p-12 flex-1" id="apply">
+    <div className="page" id="apply">
       <div>
         <div className='container mb-4'>
           <h1>Application Dashboard</h1>

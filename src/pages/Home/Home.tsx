@@ -23,7 +23,7 @@ const Home = () => {
     }
 
     return (<>
-        <div className='p-6 sm:p-12 w-full' id='home'>
+        <div className='page' id='home'>
             <div className='container w-full'>
                 <h1>Home</h1>
                 <p>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info to help you make the most out of RythmHacks. Check out some links below to get started!</p>
