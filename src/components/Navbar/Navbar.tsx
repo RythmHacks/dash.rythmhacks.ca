@@ -51,7 +51,7 @@ const Navbar = () => {
 
     return (
         <>
-        <div className="navbar-desktop">
+        <nav className="navbar-desktop">
             <div>
                 <div className='flex gap-4 items-center p-8 pb-0 cursor-pointer' onClick={() => navigate('/dashboard')}>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[3rem]'></img>
@@ -81,13 +81,13 @@ const Navbar = () => {
                     <GoKebabVertical size={16}/>
                 </div>
             </div>
-        </div>
+        </nav>
 
-        <div className='navbar-mobile'>
+        <nav className='navbar-mobile'>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-4'>
                     <img src={logo} alt='sidebarlogo' className='rounded-md h-[2.5rem]'></img>
-                    <h3 onClick={() => navigate('/dashboard')}>Dashboard</h3>
+                    <h3 onClick={() => navigate('/dashboard')} className='heckinsmall:block hidden'>Dashboard</h3>
                 </div>
                 <div onClick={handleHamMenuClick} className='h-full flex items-center'>
                     <FiMenu size={24} />
@@ -103,7 +103,7 @@ const Navbar = () => {
                     Logout
                 </div>
             </div>
-        </div>
+        </nav>
         </>
     )
 }

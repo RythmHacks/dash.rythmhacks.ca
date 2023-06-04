@@ -138,14 +138,14 @@ const HackerApplication = () => {
             <p>Your data could not be retrieved. Try checking your internet connection. If this error persists, contact the RythmHacks team.</p>
         </div>
     }
-    else return (<div className='flex-col flex p-12'>
-        <div className='container'>
-        <h1>Hacker Application Form</h1>
-        <p>Fill out this form to register for the event as a hacker. <button className='style-link p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</button> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
+    else return (<div className='page'>
+        <div className='container text-left justify-start'>
+            <h1>Hacker Application Form</h1>
+            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</a> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
-            <h3 className='flex justify-between lg:items-center flex-col lg:flex-row'>
+            <h3 className='flex flex-col md:flex-row justify-between md:items-center'>
                 Basic Information
                 <p className={`flex gap-2 items-center dark:text-dark3 ${(!saving) ? "bg-[#cef1dd]" : "bg-[#f9eed2]"} p-3 transition-colors rounded-md font-normal`}>{basicInfoAutosavingMessage} {(!saving) ? <BsCloudCheck size={20}/> : <BsCloudArrowUp size={20}/>}</p>
             </h3>

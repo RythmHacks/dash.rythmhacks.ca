@@ -189,11 +189,12 @@ input {
   }
 }
 
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
-  }
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
 }
+
 @media (max-width: 1024px) {
   .flexwrap {
     flex-direction: column;
@@ -201,6 +202,25 @@ input {
     .container {
       width: 100%;
     }
+  }
+}
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  .page {
+    padding: 2rem;
+  }
+  .container {
+    padding: 2rem;
+  }
+}
+@media (max-width: 320px) {
+  .page {
+    padding: 1rem;
+  }
+  .container {
+    padding: 1rem;
   }
 }
 
