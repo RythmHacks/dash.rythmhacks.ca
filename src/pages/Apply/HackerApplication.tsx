@@ -12,7 +12,7 @@ type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_app
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
 
 const HackerApplication = () => {
-    const { supabase, user } = useAuth()
+    const { supabase, user,signOut } = useAuth()
 
     const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
 
@@ -28,6 +28,12 @@ const HackerApplication = () => {
     const lastName = `${useAuth().user?.user_metadata.last_name}`
 
     const navigate = useNavigate()
+
+    const logout = async () => {
+        const { error } = await signOut()
+        if (error) throw error;
+        navigate('/')
+    }    
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -118,7 +124,7 @@ const HackerApplication = () => {
             if (error || !data || appData === null) {
                 setLoading(1)
                 alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
-                navigate('/login')
+                logout()
                 if (error) throw error;
                 else throw TypeError('no hacker application matching the id was found')
             }

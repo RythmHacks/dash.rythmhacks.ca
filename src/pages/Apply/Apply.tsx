@@ -5,7 +5,7 @@ import { useAuth } from "../../contexts/Auth"
 
 
 const Apply = () => {
-  const { supabase, user } = useAuth()
+  const { supabase, user, signOut } = useAuth()
 
   const [status, setStatus] = useState<string>('Loading...')
 
@@ -19,13 +19,19 @@ const Apply = () => {
 
   const navigate = useNavigate()
 
+  const logout = async () => {
+    const { error } = await signOut()
+    if (error) throw error;
+    navigate('/')
+  }
+
   useEffect(() => {
     supabase.from('hacker_applications').select('*').eq('id', user?.id)
       .then(({ data, error }: { data: any, error: any }) => {
         const fetchedStatus = data?.[0]?.status
         if (error || !fetchedStatus) {
             alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
-            navigate('/login')
+            logout()
             if (error) throw error;
             else throw TypeError('no hacker application matching the id was found')
         }
