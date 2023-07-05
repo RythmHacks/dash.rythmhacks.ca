@@ -148,7 +148,7 @@ const HackerApplication = () => {
     else return (<div className='page'>
         <div className='container text-left justify-start'>
             <h1>Hacker Application Form</h1>
-            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/apply')}>Go back to the dashboard.</a> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
+            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/register')}>Go back to the dashboard.</a> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
@@ -455,7 +455,7 @@ const HackerApplication = () => {
             />
 
             <div className='flex gap-2 mt-8'>
-            <button className='contrast' onClick={() => navigate('/dashboard/apply')}>Save and return</button>
+            <button className='contrast' onClick={() => navigate('/dashboard/register')}>Save and return</button>
             {applicationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
             </div>
             {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3" style={{display: (showValidationMessages ? "flex" : "none")}}>

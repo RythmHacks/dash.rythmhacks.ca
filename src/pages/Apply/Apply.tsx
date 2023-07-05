@@ -9,8 +9,8 @@ const Apply = () => {
 
   const [status, setStatus] = useState<string>('Loading...')
 
-  const buttonMsgs = ['Begin application', 'Continue application', 'Edit application']
-  const msgs = ['You haven\'t started your application! Click the button below to begin.', 'Click the button below to continue your application.', 'Your application has been successfully submitted! You can continue to edit it until the deadline.']
+  const buttonMsgs = ['Begin registration', 'Continue registration', 'Edit registration']
+  const msgs = ['You haven\'t started your registration! Click the button below to begin.', 'Click the button below to continue your registration.', 'Your registration has been successfully submitted! You can continue to edit it until the deadline.']
   const buttonBgs = ['#151821', '#447087', '#64B786']
   
   const [msg, setMsg] = useState(msgs[0])
@@ -33,7 +33,7 @@ const Apply = () => {
             alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
             logout()
             if (error) throw error;
-            else throw TypeError('no hacker application matching the id was found')
+            else throw TypeError('no hacker registration matching the id was found')
         }
         else {
             setStatus(fetchedStatus)
@@ -58,55 +58,51 @@ const Apply = () => {
   }, [supabase, user?.id])
 
   return (
-    <div className="page" id="apply">
+    <div className="page w-full" id="Register">
       <div>
         <div className='container mb-4'>
-          <h1>Application Dashboard</h1>
-          <p>This is the hub for your RythmHacks application. Fill out your application, get a response from us, then RSVP for the event.</p>
+          <h1>Registration Dashboard</h1>
+          <p>This is the hub for your RythmHacks registration. Fill out your registration, get a response from us, then RSVP for the event.</p>
         </div>
-        <div className='flexwrap'>
-          <div className="container w-1/2">
-            <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
-              Apply to be a Hacker
-              <p className="text-xl !text-[#eee] p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}}>{status}</p>
-            </h2>
-            <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this application.</p>
-            <p className='mt-4'>{msg}</p>
-            <button onClick={() => {
-              if (status === 'Not Started') {
-                supabase.from('hacker_applications').update({
-                  status: 'In Progress'
-                }).eq('id', user?.id)
-                .then(({ data, error }: { data: any, error: any}) => {
-                    if (error) throw error;
-                })
-              }
-              navigate('/dashboard/apply/hacker')
-            }} className='mt-8'>{buttonMsg}</button>
-          </div>
-          <div className='container w-1/2'>
+        <div className="container w-full">
+          <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
+            Register to be a Hacker
+            <p className="text-xl !text-[#eee] p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}}>{status}</p>
+          </h2>
+          <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this registration.</p>
+          <p className='mt-4'>{msg}</p>
+          <button onClick={() => {
+            if (status === 'Not Started') {
+              supabase.from('hacker_applications').update({
+                status: 'In Progress'
+              }).eq('id', user?.id)
+              .then(({ data, error }: { data: any, error: any}) => {
+                  if (error) throw error;
+              })
+            }
+            navigate('/dashboard/register/hacker')
+          }} className='mt-8'>{buttonMsg}</button>
+        </div>
+          {/* <div className='container w-1/2'>
             <h2>Apply to be a Mentor/Judge</h2>
             <p className='mt-4'>Want to attend the event as a mentor/judge? You'll be on-site helping participants with their projects, giving technical advice and assistance when necessary. <br/><br/>Additionally, you'll be judging the projects at the end of the competition. You can also choose to run a self-hosted workshop on a topic of your choice.</p>
             <button className='mt-4' disabled>Stay tuned for more info!</button>
-          </div>
+          </div> */}
+        <div className='container w-full mt-4 dark:text-[#eee] text-textlight'>
+          <h2>Hacker Info</h2>
+          <p className='font-bold'>When are registrations due?</p>
+          Registrations are due on August 8th, 2023, at 11:59 PM EST.
+          <p className='font-bold mt-2'>Who is eligible to Register?</p>
+          Participants must be in secondary school as of the 2023-24 school year.
+          <p className='font-bold mt-2'>How do I submit my registration?</p>
+          Your registration will be automatically saved as you edit it. The final saved product will be your registration. You'll be able to edit it up until the deadline.
+          <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
         </div>
-        <div className='flexwrap mt-4'>
-          <div className='container w-1/2 dark:text-[#eee] text-textlight'>
-            <h2>Hacker Info</h2>
-            <p className='font-bold'>When are applications due?</p>
-            Applications are due on July 31st, 2023.
-            <p className='font-bold mt-2'>Who is eligible to apply?</p>
-            Participants must be in grade 12 or lower as of June 2023.
-            <p className='font-bold mt-2'>How do I submit my application?</p>
-            Your application will be automatically saved as you edit it. The final saved product will be your application. You'll be able to edit it up until the deadline.
-            <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
-          </div>
-          <div className='container w-1/2 dark:text-[#eee] text-textlight'>
+          {/* <div className='container w-1/2 dark:text-[#eee] text-textlight'>
             <h2>Mentor Info</h2>
             <p className='font-bold'>Can I join as a mentor online?</p>
             No. As a mentor, you'll be required to be on-site at our event.
-          </div>
-        </div>
+          </div> */}
       </div>
     </div>
   )

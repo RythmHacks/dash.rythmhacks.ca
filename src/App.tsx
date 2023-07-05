@@ -42,7 +42,7 @@ const App = () => {
           <Route path="login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
-            <Route path="apply" element={<Outlet/>} >
+            <Route path="register" element={<Outlet/>} >
               <Route index element={<Apply />} />
               <Route path="hacker" element={<HackerApplication/>} />
             </Route>
