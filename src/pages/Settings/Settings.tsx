@@ -147,7 +147,7 @@ const Settings = () => {
         </div>
         <div className='container mt-4'>
           <h1>Privacy</h1>
-          <p>Here at RythmHacks, we highly value having a <a href='https://rythmhacks.ca/documents/privacy.pdf'>privacy policy</a> and a <a href='https://rythmhacks.ca/documents/cookies.pdf'>cookie policy.</a></p>
+          <p>Here at RythmHacks, we highly value having a <a href='https://www.rythmhacks.ca/documents/privacy.pdf'>privacy policy</a> and a <a href='https://www.rythmhacks.ca/documents/cookies.pdf'>cookie policy.</a></p>
         </div>
       </div>
     )
