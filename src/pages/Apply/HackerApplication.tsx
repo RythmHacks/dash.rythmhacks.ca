@@ -148,7 +148,7 @@ const HackerApplication = () => {
     else return (<div className='page'>
         <div className='container text-left justify-start'>
             <h1>Hacker Application Form</h1>
-            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/register')}>Go back to the dashboard.</a> <br/><br/>View our <Link to='/privacy'>privacy policy.</Link></p>
+            <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/register')}>Go back to the dashboard.</a> <br/><br/>View our <a href='https://rythmhacks.ca/documents/privacy.pdf'>privacy policy.</a></p>
         </div>
         <div className='container mt-4'>
         <form onSubmit={handleSubmit} className='hacker-app-form'>
