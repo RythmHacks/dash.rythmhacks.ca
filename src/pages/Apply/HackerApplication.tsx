@@ -220,7 +220,7 @@ const HackerApplication = () => {
 
 
             <div>
-            <label htmlFor="grade">Grade (during the 2022-23 school year)</label>
+            <label htmlFor="grade">Grade (during the 2023-24 school year)</label>
             <input
                 id="grade"
                 type="number"
