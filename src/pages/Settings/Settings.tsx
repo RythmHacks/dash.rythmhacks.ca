@@ -83,6 +83,7 @@ const Settings = () => {
                   id="email"
                   type="email"
                   required
+                  disabled
                   value={email}
                   onChange={e => {
                     setEmail(e.target.value)
