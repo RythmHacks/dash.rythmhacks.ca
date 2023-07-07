@@ -49,7 +49,12 @@ const Login = () => {
 
     try {
       setLoading(1)
-      const { error } = await signInWithOtp({ email })
+      const { error } = await signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: import.meta.env.VITE_SITE_URL
+        }
+      })
       if (error) throw error
       setLoading(2)
 
