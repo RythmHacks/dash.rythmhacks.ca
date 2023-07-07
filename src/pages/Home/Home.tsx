@@ -2,14 +2,17 @@ import { useState, FormEvent } from "react"
 import { useAuth } from "../../contexts/Auth";
 import Modal from '../../components/Modal/Modal'
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-    const { user, updateUser } = useAuth()
+    const { user, updateUser, signOut } = useAuth()
 
     const [modalIsOpened, setModalIsOpened] = useState(user?.user_metadata.first_name === undefined && user?.user_metadata.last_name === undefined)
 
     const [firstName, setFirstName] = useState<string>(user?.user_metadata.first_name || '')
     const [lastName, setLastName] = useState<string>(user?.user_metadata.last_name || '')
+
+    const navigate = useNavigate()
 
     const handleNameChange = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -20,6 +23,12 @@ const Home = () => {
             }
         })
         setModalIsOpened(false)
+    }
+
+    const logout = async () => {
+        const { error } = await signOut()
+        if (error) throw error;
+        navigate('/')
     }
 
     return (<>
@@ -77,6 +86,7 @@ const Home = () => {
                         />
                     </div>
                 </div>
+                <p className="mb-4">Did you mess up? <button className='style-link'>Log out.</button></p>
                 <button disabled={firstName === "" || lastName === ""}>Continue</button>
             </form>
         </Modal>
