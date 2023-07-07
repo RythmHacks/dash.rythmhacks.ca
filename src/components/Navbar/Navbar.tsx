@@ -15,7 +15,14 @@ const Navbar = () => {
 
     const navigate = useNavigate()
 
-    let name = `${user?.user_metadata.first_name} ${user?.user_metadata.last_name}`
+    let name;
+
+    if (user?.user_metadata.first_name && user?.user_metadata.last_name && user?.user_metadata.first_name !== "" && user?.user_metadata.last_name !== "") {
+        name = `${user?.user_metadata.first_name} ${user?.user_metadata.last_name}`
+    } else {
+        name = 'Unnamed Hacker'
+    }
+
     const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false)
     const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false)
 
