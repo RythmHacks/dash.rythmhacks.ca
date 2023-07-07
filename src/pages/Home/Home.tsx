@@ -35,7 +35,7 @@ const Home = () => {
                 </div>
                 <div className='container w-1/2'>
                     <h2>Venue and Travel Information</h2>
-                    <p>Stay tuned!</p>
+                    <p>This year, RythmHacks will be taking place at the <a href='https://www.acceleratorcentre.com' target='_blank' rel='noreferrer'>Accelerator Centre</a> (295 Hagey Blvd, Waterloo, ON N2L 6R5) from September 1-3, 2023. Unfortunately, we're unable to reimburse travel this year, but there is plenty of parking and bike rack space to park your vehicle at the Accelerator Centre.</p>
                 </div>
             </div>
         </div>

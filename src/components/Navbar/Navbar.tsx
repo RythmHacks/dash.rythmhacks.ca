@@ -102,7 +102,7 @@ const Navbar = () => {
             </div>
             <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu popup`}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
-                <NavLink to='/dashboard/apply' className='link' end><BsClipboard2Check/>Apply</NavLink> 
+                <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink> 
                 <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer' className='link'><AiOutlineLink/>Important Links</a>
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
                 <div className="link" onClick={() => logout()}>
