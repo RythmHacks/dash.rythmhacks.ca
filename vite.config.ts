@@ -8,7 +8,7 @@ export default ({ mode }) => {
     plugins: [react()],
     server: {
       open: true,
-      origin: process.env.ORIGIN
+      origin: process.env.VITE_SITE_URL
     }
   })
 }
