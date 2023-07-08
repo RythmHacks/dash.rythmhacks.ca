@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { useAuth } from "../../contexts/Auth"
-
+import { useReward } from 'react-rewards';
 
 const Apply = () => {
   const { supabase, user, signOut } = useAuth()
@@ -12,7 +12,9 @@ const Apply = () => {
   const buttonMsgs = ['Begin registration', 'Continue registration', 'Edit registration']
   const msgs = ['You haven\'t started your registration! Click the button below to begin.', 'Click the button below to continue your registration.', 'Your registration has been successfully submitted! You can continue to edit it until the deadline.']
   const buttonBgs = ['#151821', '#447087', '#64B786']
-  
+
+  const { reward } = useReward('rewardId', 'confetti');
+
   const [msg, setMsg] = useState(msgs[0])
   const [buttonMsg, setButtonMsg] = useState(buttonMsgs[0])
   const [buttonBg, setButtonBg] = useState(buttonBgs[0])
@@ -67,7 +69,10 @@ const Apply = () => {
         <div className="container w-full">
           <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
             Register to be a Hacker
-            <p className="text-xl !text-[#eee] p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}}>{status}</p>
+            <button className="style-none text-xl !text-[#eee] cursor-pointer !p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}} onClick={reward}>
+              <span id="rewardId" style={{width: 2, height: 2, background: "red"}} />
+              {status}
+            </button>
           </h2>
           <p className='mt-4'>Want to attend the event in-person as a competitor? Fill out this registration.</p>
           <p className='mt-4'>{msg}</p>
