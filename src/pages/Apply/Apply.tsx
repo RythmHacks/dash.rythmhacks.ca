@@ -93,7 +93,7 @@ const Apply = () => {
           <p className='font-bold'>When are registrations due?</p>
           Registrations are due on August 8th, 2023, at 11:59 PM EST.
           <p className='font-bold mt-2'>Who is eligible to Register?</p>
-          Participants must be in secondary school as of the 2023-24 school year.
+          Participants must be in secondary school or below as of the 2023-24 school year.
           <p className='font-bold mt-2'>How do I submit my registration?</p>
           Your registration will be automatically saved as you edit it. The final saved product will be your registration. You'll be able to edit it up until the deadline.
           <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
