@@ -86,7 +86,7 @@ const Home = () => {
                         />
                     </div>
                 </div>
-                <p className="mb-4">Did you mess up? <button className='style-link'>Log out.</button></p>
+                <p className="mb-4">Did you mess up? <button className='style-link' onClick={() => {logout()}}>Log out.</button></p>
                 <button disabled={firstName === "" || lastName === ""}>Continue</button>
             </form>
         </Modal>
