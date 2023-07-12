@@ -7,6 +7,7 @@ import './Apply.scss'
 import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs"
 import { AiOutlineWarning } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom"
+import { useReward } from 'react-rewards';
 
 type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
@@ -29,6 +30,8 @@ const HackerApplication = () => {
     const lastName = `${useAuth().user?.user_metadata.last_name}`
 
     const navigate = useNavigate()
+
+    const { reward } = useReward('rewardId', 'confetti');
 
     const logout = async () => {
         const { error } = await signOut()
@@ -79,6 +82,7 @@ const HackerApplication = () => {
                     }
                 })
             setSubmitted(true)
+            reward()
         }
     }
 
@@ -456,6 +460,7 @@ const HackerApplication = () => {
 
             <div className='flex gap-2 mt-8'>
             <button className='contrast' onClick={() => navigate('/dashboard/register')}>Save and return</button>
+            <span id="rewardId" style={{width: 2, height: 2, background: "red"}} />
             {applicationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
             </div>
             {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3" style={{display: (showValidationMessages ? "flex" : "none")}}>
