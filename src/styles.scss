@@ -147,7 +147,7 @@ button.style-link, button.style-none {
   margin: 0;
 }
 
-a, button.style-link {
+a:not(.style-none), button.style-link {
   transition: all 0.3s;
   color: $accent;
   cursor: pointer;

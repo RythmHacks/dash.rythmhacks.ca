@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 const HackerApplication = lazy(() => import('./pages/Apply/HackerApplication'))
+const Discord = lazy(() => import('./pages/Discord/Discord'))
 
 const App = () => {
   const { user } = useAuth()
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
+            <Route path="discord" element={<Discord />} />
             <Route path="register" element={<Outlet/>} >
               <Route index element={<Apply />} />
               <Route path="hacker" element={<HackerApplication/>} />
