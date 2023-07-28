@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 const HackerApplication = lazy(() => import('./pages/Apply/HackerApplication'))
+const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
 
 const App = () => {
   const { user } = useAuth()
@@ -45,6 +46,7 @@ const App = () => {
               <Route index element={<Apply />} />
               <Route path="hacker" element={<HackerApplication/>} />
             </Route>
+            <Route path='schedule' element={<Schedule />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="dashboard/*" element={<Notfound/>} />
