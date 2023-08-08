@@ -3,7 +3,7 @@ import Editor from "../../components/Editor/Editor"
 import { useAuth } from "../../contexts/Auth"
 import { Link } from 'react-router-dom'
 import { Database } from "../../types/supabase"
-import './Apply.scss'
+import './Register.scss'
 import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs"
 import { AiOutlineWarning } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom"

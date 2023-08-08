@@ -39,8 +39,8 @@ const Home = () => {
             </div>
             <div className='flexwrap mt-4'>
                 <div className='container w-1/2'>
-                    <h2><Link to='/dashboard/register'>Register now!</Link></h2>
-                    <p>Registration for RythmHacks 2023 is open now! The registration deadline is August 8, 2023, at 11:59 PM EST. Unfortunately, any submissions after that point will not be considered.</p>
+                    <h2><Link to='/dashboard/register'>Registration Closed</Link></h2>
+                    <p>Registration for RythmHacks 2023 is now closed. Keep an eye on your inbox in the coming days for your invitation!</p>
                 </div>
                 <div className='container w-1/2'>
                     <h2>Venue and Travel Information</h2>
