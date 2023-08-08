@@ -66,6 +66,18 @@ const Apply = () => {
           <h1>Registration Dashboard</h1>
           <p>This is the hub for your RythmHacks registration. Fill out your registration, get a response from us, then RSVP for the event.</p>
         </div>
+        {status === 'Accepted' && <div className="container w-full">
+          <h2>You're invited!</h2>  
+          <p>
+            Congratulations! We'd like to extend an offer for you to attend this year's event.<br/><br/>
+            Welcome to RythmHacks 2023! We are excited to offer you the opportunity to hack with us.<br/><br/>
+            Thanks for confirming your attendance. If can no longer join us in person, please click the button below.
+          </p>
+
+          <button className='mt-4'>I cannot come to RythmHacks</button>
+        </div>}
+        {status === 'Rejected' && <div className="container w-full"></div>}
+        {status === 'Waitlisted' && <div className="container w-full"></div>}
         <div className="container w-full">
           <h2>Registration Closed</h2>
           <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/>

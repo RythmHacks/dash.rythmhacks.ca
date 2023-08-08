@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from './contexts/Auth'
 
 const Login = lazy(() => import('./pages/Login/Login'))
-const Apply = lazy(() => import('./pages/Register/Register'))
+const Register = lazy(() => import('./pages/Register/Register'))
 const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
@@ -42,8 +42,8 @@ const App = () => {
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
             <Route path="register" element={<Outlet/>} >
-              <Route index element={<Apply />} />
-              <Route path="hacker" element={<HackerRegistration />} />
+              <Route index element={<Register />} />
+              {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             </Route>
             <Route path="settings" element={<Settings />} />
           </Route>
