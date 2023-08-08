@@ -2,7 +2,7 @@
 RythmHacks hacker dashboard and application portal
 
 ## How to contribute
-1. Clone the repo
+1. Clone the repository
 2. Create a file in the project root directory called `.env`
 3. Copy everything in `.env.template` and put it in `.env`, filling in the missing values
 4. Write some code and run `npm start` to start the web app
