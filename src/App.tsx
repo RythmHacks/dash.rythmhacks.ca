@@ -5,12 +5,12 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from './contexts/Auth'
 
 const Login = lazy(() => import('./pages/Login/Login'))
-const Apply = lazy(() => import('./pages/Apply/Apply'))
+const Register = lazy(() => import('./pages/Register/Register'))
 const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
-const HackerApplication = lazy(() => import('./pages/Apply/HackerApplication'))
+const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
 const Discord = lazy(() => import('./pages/Discord/Discord'))
 
 const App = () => {
@@ -44,13 +44,13 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="discord" element={<Discord />} />
             <Route path="register" element={<Outlet/>} >
-              <Route index element={<Apply />} />
-              <Route path="hacker" element={<HackerApplication/>} />
+              <Route index element={<Register />} />
+              {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             </Route>
             <Route path="settings" element={<Settings />} />
           </Route>
-          <Route path="dashboard/*" element={<Notfound/>} />
-          <Route path="*" element={<Notfound/>} />
+          <Route path="dashboard/*" element={<Notfound />} />
+          <Route path="*" element={<Notfound />} />
       </Routes>
     </Suspense>
   )
