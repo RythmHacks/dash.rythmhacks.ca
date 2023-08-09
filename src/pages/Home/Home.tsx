@@ -37,12 +37,12 @@ const Home = () => {
                 <h1>Home</h1>
                 <p>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info to help you make the most out of RythmHacks. Check out some links below to get started!</p>
             </div>
-            <div className='flexwrap mt-4'>
-                <div className='container w-1/2'>
-                    <h2><Link to='/dashboard/register'>Register now!</Link></h2>
-                    <p>Registration for RythmHacks 2023 is open now! The registration deadline is August 8, 2023, at 11:59 PM EST. Unfortunately, any submissions after that point will not be considered.</p>
-                </div>
-                <div className='container w-1/2'>
+            <div className='mt-4'>
+                {/* <div className='container w-1/2'>
+                    <h2><Link to='/dashboard/register'>Registration Closed</Link></h2>
+                    <p>Registration for RythmHacks 2023 is now closed. Keep an eye on your inbox in the coming days for your invitation!</p>
+                </div> */}
+                <div className='container w-full'>
                     <h2>Venue and Travel Information</h2>
                     <p>This year, RythmHacks will be taking place at the <a href='https://www.acceleratorcentre.com' target='_blank' rel='noreferrer'>Accelerator Centre</a> (295 Hagey Blvd, Waterloo, ON N2L 6R5) from September 1-3, 2023. Unfortunately, we're unable to reimburse travel this year, but there is plenty of parking and bike rack space to park your vehicle at the Accelerator Centre.</p>
                 </div>

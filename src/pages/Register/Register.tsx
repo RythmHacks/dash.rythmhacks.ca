@@ -66,7 +66,24 @@ const Apply = () => {
           <h1>Registration Dashboard</h1>
           <p>This is the hub for your RythmHacks registration. Fill out your registration, get a response from us, then RSVP for the event.</p>
         </div>
+        {status === 'Accepted' && <div className="container w-full">
+          <h2>You're invited!</h2>  
+          <p>
+            Congratulations! We'd like to extend an offer for you to attend this year's event.<br/><br/>
+            Welcome to RythmHacks 2023! We are excited to offer you the opportunity to hack with us.<br/><br/>
+            Thanks for confirming your attendance. If can no longer join us in person, please click the button below.
+          </p>
+
+          <button className='mt-4'>I cannot come to RythmHacks</button>
+        </div>}
+        {status === 'Rejected' && <div className="container w-full"></div>}
+        {status === 'Waitlisted' && <div className="container w-full"></div>}
         <div className="container w-full">
+          <h2>Registration Closed</h2>
+          <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/>
+          <p>Your registration status: <span className='font-bold'>{(status === 'Submitted' ? status : "Expired")}</span></p>
+        </div>
+        {/* <div className="container w-full">
           <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
             Register to be a Hacker
             <button className="style-none text-xl !text-[#eee] cursor-pointer !p-2 rounded-md flex items-center font-normal text-center capitalize" style={{backgroundColor: buttonBg}} onClick={reward}>
@@ -87,7 +104,7 @@ const Apply = () => {
             }
             navigate('/dashboard/register/hacker')
           }} className='mt-8'>{buttonMsg}</button>
-        </div>
+        </div> */}
           {/* <div className='container w-1/2'>
             <h2>Apply to be a Mentor/Judge</h2>
             <p className='mt-4'>Want to attend the event as a mentor/judge? You'll be on-site helping participants with their projects, giving technical advice and assistance when necessary. <br/><br/>Additionally, you'll be judging the projects at the end of the competition. You can also choose to run a self-hosted workshop on a topic of your choice.</p>
@@ -99,8 +116,8 @@ const Apply = () => {
           Registrations are due on August 8th, 2023, at 11:59 PM EST.
           <p className='font-bold mt-2'>Who is eligible to Register?</p>
           Participants must be in secondary school or below as of the 2023-24 school year.
-          <p className='font-bold mt-2'>How do I submit my registration?</p>
-          Your registration will be automatically saved as you edit it. The final saved product will be your registration. You'll be able to edit it up until the deadline.
+          {/* <p className='font-bold mt-2'>How do I submit my registration?</p>
+          Your registration will be automatically saved as you edit it. The final saved product will be your registration. You'll be able to edit it up until the deadline. */}
           <p className='mt-4'>If you have other questions, <a href='mailto:rythmhacks@gmail.com'>email us</a>, check out our <a href='https://rythmhacks.ca/' target='_blank' rel='noreferrer'>main website</a> or DM us on <a href='https://www.instagram.com/rythm.hacks/' target='_blank' rel='noreferrer'>Instagram</a>.</p>
         </div>
           {/* <div className='container w-1/2 dark:text-[#eee] text-textlight'>
