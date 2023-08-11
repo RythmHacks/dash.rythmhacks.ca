@@ -30,11 +30,7 @@ export interface Database {
           apartment_suite: string
           city: string
           country: string
-          dietary_restrictions_dairy_free: boolean
-          dietary_restrictions_gluten_free: boolean
-          dietary_restrictions_halal: boolean
-          dietary_restrictions_other: string
-          dietary_restrictions_vegetarian: boolean
+          dietary_restrictions: Array<string>
           email: string
           gender: string
           grade: string
@@ -54,11 +50,7 @@ export interface Database {
           apartment_suite?: string
           city?: string
           country?: string
-          dietary_restrictions_dairy_free?: boolean
-          dietary_restrictions_gluten_free?: boolean
-          dietary_restrictions_halal?: boolean
-          dietary_restrictions_other?: string
-          dietary_restrictions_vegetarian?: boolean
+          dietary_restrictions?: Array<string>
           email: string
           gender?: string
           grade?: string
@@ -78,11 +70,7 @@ export interface Database {
           apartment_suite?: string
           city?: string
           country?: string
-          dietary_restrictions_dairy_free?: boolean
-          dietary_restrictions_gluten_free?: boolean
-          dietary_restrictions_halal?: boolean
-          dietary_restrictions_other?: string
-          dietary_restrictions_vegetarian?: boolean
+          dietary_restrictions?: Array<string>
           email?: string
           gender?: string
           grade?: string

@@ -13,7 +13,7 @@ type updateHackerRegistrationTableType = Database["public"]["Tables"]["hacker_re
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
 
 const HackerRegistration = () => {
-    const { supabase, user,signOut } = useAuth()
+    const { supabase, user, signOut } = useAuth()
 
     const [registrationData, setRegistrationData] = useState<updateHackerRegistrationTableType>({})
 
