@@ -81,7 +81,7 @@ const Register = () => {
         <div className="container w-full mt-4">
           <h2>Registration Closed</h2>
           <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/> 
-          <p>Your registration status: <span className='font-bold'>{((status === 'Submitted' || status === 'Accepted' || status === 'Waitlisted') ? status : "Expired")}</span></p>
+          <p>Your registration status: <span className='font-bold'>{((status === 'Submitted' || status === 'Accepted' || status === 'Waitlisted' || status === 'Confirmed' || status === 'Not Attending') ? status : "Expired")}</span></p>
         </div>
         {/* <div className="container w-full">
           <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>

@@ -1,13 +1,13 @@
 import { useAuth } from "../../contexts/Auth"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 
 const HackerRSVP = () => {
-  const { supabase, user } = useAuth()
+  const { supabase, user, signOut } = useAuth()
 
   const navigate = useNavigate()
 
-  const [submitText, setSubmitText] = useState<string>('Submit RSVP')
+  const [submitText, setSubmitText] = useState<string>()
   
   const [attending, setAttending] = useState<any>(false)
   const [overnight, setOvernight] = useState<any>(false)
@@ -18,6 +18,28 @@ const HackerRSVP = () => {
   const [mlh2, setMlh2] = useState<any>(false)
   const [mlh3, setMlh3] = useState<any>(false)
   const restrictions = ['Halal', 'Kosher', 'Vegetarian', 'Vegan', 'Gluten Free', 'Lactose Free', 'Nut Allergy']
+
+  const logout = async () => {
+    const { error } = await signOut()
+    if (error) throw error;
+    navigate('/')
+  }
+
+  supabase.from('hacker_registrations').select('*').eq('id', user?.id)
+  .then(({ data, error }: { data: any, error: any }) => {
+    const fetchedStatus = data?.[0]?.status
+    if (error || !fetchedStatus) {
+      alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
+      logout()
+      if (error) throw error;
+      else throw TypeError('no hacker registration matching the id was found')
+    }
+    else {
+      if (fetchedStatus !== 'Accepted') {
+        navigate('/dashboard')
+      }
+    }
+  })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
