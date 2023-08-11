@@ -9,15 +9,15 @@ import { AiOutlineWarning } from 'react-icons/ai'
 import { useNavigate } from "react-router-dom"
 import { useReward } from 'react-rewards';
 
-type updateHackerApplicationTableType = Database["public"]["Tables"]["hacker_applications"]["Update"]
+type updateHackerRegistrationTableType = Database["public"]["Tables"]["hacker_registrations"]["Update"]
 type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | ""
 
-const HackerApplication = () => {
+const HackerRegistration = () => {
     const { supabase, user,signOut } = useAuth()
 
-    const [applicationData, setApplicationData] = useState<updateHackerApplicationTableType>({})
+    const [registrationData, setRegistrationData] = useState<updateHackerRegistrationTableType>({})
 
-    const [modifiedApplicationData, setModifiedApplicationData] = useState<updateHackerApplicationTableType>({})
+    const [modifiedRegistrationData, setModifiedRegistrationData] = useState<updateHackerRegistrationTableType>({})
     const [basicInfoAutosavingMessage, setBasicInfoAutosavingMessage] = useState<autosavingIconType>('No changes detected')
     const [saving, setSaving] = useState<boolean>(false)
 
@@ -45,12 +45,12 @@ const HackerApplication = () => {
         const currentValidationMessages: String[] = []
         const emptyFields: String[] = []
 
-        Object.entries(applicationData).forEach(([ column, value ]) => {
+        Object.entries(registrationData).forEach(([ column, value ]) => {
             if (column === 'question_1' && (value === '<p class="mb-1"><br></p>' || value === '')) {
-                emptyFields.push('Application Question 1')
+                emptyFields.push('Registration Question 1')
             }
             else if (column === 'question_2' && (value === '<p class="mb-1"><br></p>' || value === '')) {
-                emptyFields.push('Application Question 2')
+                emptyFields.push('Registration Question 2')
             }
             else if (value === '') {
                 if (column === 'phone_number') emptyFields.push('Phone Number')
@@ -70,14 +70,14 @@ const HackerApplication = () => {
             setValidationMessages([])
             setShowValidationMessages(false)
             supabase
-                .from('hacker_applications')
+                .from('hacker_registrations')
                 .update({
                     status: 'Submitted'
                 })
                 .eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) {
-                        alert('Something went wrong with submitting your application! Please contact the RythmHacks devs.')
+                        alert('Something went wrong with submitting your registration! Please contact the RythmHacks devs.')
                         throw error;
                     }
                 })
@@ -86,43 +86,43 @@ const HackerApplication = () => {
         }
     }
 
-    const updateApplicationData = (column: keyof updateHackerApplicationTableType, value: string | boolean) => {
+    const updateRegistrationData = (column: keyof updateHackerRegistrationTableType, value: string | boolean) => {
         
-        setApplicationData((appData: updateHackerApplicationTableType) => ({
+        setRegistrationData((appData: updateHackerRegistrationTableType) => ({
             ...appData,
             [column]: value,
         }))
         
-        setModifiedApplicationData((appData: updateHackerApplicationTableType) => ({
+        setModifiedRegistrationData((appData: updateHackerRegistrationTableType) => ({
             ...appData,
             [column]: value,
         }))
     }
 
     useEffect(() => {
-        if (Object.keys(modifiedApplicationData).length === 0) return
-        if (Object.keys(modifiedApplicationData).length > 0) {
+        if (Object.keys(modifiedRegistrationData).length === 0) return
+        if (Object.keys(modifiedRegistrationData).length > 0) {
             setBasicInfoAutosavingMessage("Saving...")
             setSaving(true)
         }
 
         const handler = setTimeout(() => {
-            supabase.from('hacker_applications').update(modifiedApplicationData).eq('id', user?.id)
+            supabase.from('hacker_registrations').update(modifiedRegistrationData).eq('id', user?.id)
                 .then(({ data, error }: { data: any, error: any}) => {
                     if (error) throw error;
                     if (basicInfoAutosavingMessage) setBasicInfoAutosavingMessage("Saved!")
                     setSaving(false)
                 })
-            setModifiedApplicationData({})            
+            setModifiedRegistrationData({})            
         }, 2500)
 
         return () => {
             clearTimeout(handler)
         }
-    }, [modifiedApplicationData, supabase, user?.id])
+    }, [modifiedRegistrationData, supabase, user?.id])
 
     useEffect(() => {
-        supabase.from('hacker_applications').select('*').eq('id', user?.id)
+        supabase.from('hacker_registrations').select('*').eq('id', user?.id)
           .then(({ data, error }: { data: any, error: any }) => {
             const appData = data?.[0]
     
@@ -131,10 +131,10 @@ const HackerApplication = () => {
                 alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
                 logout()
                 if (error) throw error;
-                else throw TypeError('no hacker application matching the id was found')
+                else throw TypeError('no hacker registration matching the id was found')
             }
             else {
-                setApplicationData(data[0])
+                setRegistrationData(data[0])
                 setLoading(2)
             }
           })
@@ -151,7 +151,7 @@ const HackerApplication = () => {
     }
     else return (<div className='page'>
         <div className='container text-left justify-start'>
-            <h1>Hacker Application Form</h1>
+            <h1>Hacker Registration Form</h1>
             <p>Fill out this form to register for the event as a hacker. <a className='p-0' onClick={() => navigate('/dashboard/register')}>Go back to the dashboard.</a> <br/><br/>View our <a href='https://www.rythmhacks.ca/documents/privacy.pdf'>privacy policy.</a></p>
         </div>
         <div className='container mt-4'>
@@ -189,9 +189,9 @@ const HackerApplication = () => {
             <label htmlFor="gender">Gender (optional)</label>
             <select
                 id="gender"
-                value={["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender || '') ? applicationData.gender : ''}
+                value={["Prefer not to say", "Male", "Female", "Non-binary"].includes(registrationData.gender || '') ? registrationData.gender : ''}
                 onChange={e => {
-                updateApplicationData('gender', e.target.value)
+                updateRegistrationData('gender', e.target.value)
                 }}
                 >
                 <option>Prefer not to say</option>
@@ -200,10 +200,10 @@ const HackerApplication = () => {
                 <option>Non-binary</option>
                 <option value="">Prefer to self-describe</option>
             </select>
-            {!["Prefer not to say", "Male", "Female", "Non-binary"].includes(applicationData.gender || '') && (<>
+            {!["Prefer not to say", "Male", "Female", "Non-binary"].includes(registrationData.gender || '') && (<>
                 <label htmlFor="self-described-gender">Self-described Gender:</label>
-                <input id="self-described-gender" value={applicationData.gender} onChange={e => {
-                updateApplicationData('gender', e.target.value)
+                <input id="self-described-gender" value={registrationData.gender} onChange={e => {
+                updateRegistrationData('gender', e.target.value)
                 }}></input>
             </>)}
             </div>
@@ -217,8 +217,8 @@ const HackerApplication = () => {
                 min={0}
                 max={200}
                 placeholder='Enter age'
-                value={applicationData.age}
-                onChange={e => updateApplicationData('age', e.target.value)}
+                value={registrationData.age}
+                onChange={e => updateRegistrationData('age', e.target.value)}
             />
             </div>
 
@@ -231,8 +231,8 @@ const HackerApplication = () => {
                 min={8}
                 max={12}
                 placeholder='Enter grade'
-                value={applicationData.grade}
-                onChange={e => updateApplicationData('grade', e.target.value)}
+                value={registrationData.grade}
+                onChange={e => updateRegistrationData('grade', e.target.value)}
             >
                 
             </input>
@@ -243,9 +243,9 @@ const HackerApplication = () => {
             <label htmlFor="school">School (don't abbreviate)</label>
             <input 
                 id="school"
-                value={applicationData.school}
+                value={registrationData.school}
                 placeholder='Laurel Heights Secondary School'
-                onChange={e => updateApplicationData('school', e.target.value)}
+                onChange={e => updateRegistrationData('school', e.target.value)}
             />
             </div>
             <p className='!text-[#888] mb-4'>Note: only students that are about to enter or are already in high school during our event are allowed to attend.</p>
@@ -255,9 +255,9 @@ const HackerApplication = () => {
             <input
                 id="phone-number"
                 type="tel"
-                value={applicationData.phone_number}
+                value={registrationData.phone_number}
                 placeholder='Enter phone number'
-                onChange={e => updateApplicationData('phone_number', e.target.value)}
+                onChange={e => updateRegistrationData('phone_number', e.target.value)}
             ></input>
             </div>
 
@@ -265,9 +265,9 @@ const HackerApplication = () => {
             <label htmlFor="country">Country</label>
             <input
                 id="country"
-                value={applicationData.country}
+                value={registrationData.country}
                 placeholder='Enter country'
-                onChange={e => updateApplicationData('country', e.target.value)}
+                onChange={e => updateRegistrationData('country', e.target.value)}
             ></input>
             </div>
 
@@ -276,8 +276,8 @@ const HackerApplication = () => {
             <label htmlFor="t-shirt-size">T-Shirt Size (optional)</label>
             <select 
                 id="t-shirt-size"
-                value={applicationData.t_shirt_size}
-                onChange={e => updateApplicationData('t_shirt_size', e.target.value)}
+                value={registrationData.t_shirt_size}
+                onChange={e => updateRegistrationData('t_shirt_size', e.target.value)}
             >
                 <option>Not Selected</option>
                 <option>XS</option>
@@ -296,8 +296,8 @@ const HackerApplication = () => {
                 <input 
                 type="checkbox"
                 id="dietary-restrictions-vegetarian"
-                checked={applicationData.dietary_restrictions_vegetarian}
-                onChange={e => updateApplicationData('dietary_restrictions_vegetarian', e.target.checked)} />
+                checked={registrationData.dietary_restrictions_vegetarian}
+                onChange={e => updateRegistrationData('dietary_restrictions_vegetarian', e.target.checked)} />
                 <label htmlFor="dietary-restrictions-vegatarian" className="capitalize">Vegetarian</label>
             </div>
 
@@ -305,8 +305,8 @@ const HackerApplication = () => {
                 <input 
                 type="checkbox"
                 id="dietary-restrictions-halal"
-                checked={applicationData.dietary_restrictions_halal}
-                onChange={e => updateApplicationData('dietary_restrictions_halal', e.target.checked)} />
+                checked={registrationData.dietary_restrictions_halal}
+                onChange={e => updateRegistrationData('dietary_restrictions_halal', e.target.checked)} />
                 <label htmlFor="dietary-restrictions-halal" className="capitalize">Halal</label>
             </div>
 
@@ -314,8 +314,8 @@ const HackerApplication = () => {
                 <input 
                 type="checkbox"
                 id="dietary-restrictions-gluten-free"
-                checked={applicationData.dietary_restrictions_gluten_free}
-                onChange={e => updateApplicationData('dietary_restrictions_gluten_free', e.target.checked)} />
+                checked={registrationData.dietary_restrictions_gluten_free}
+                onChange={e => updateRegistrationData('dietary_restrictions_gluten_free', e.target.checked)} />
                 <label htmlFor="dietary-restrictions-gluten-free" className="capitalize">Gluten-Free</label>
             </div>
 
@@ -323,8 +323,8 @@ const HackerApplication = () => {
                 <input 
                 type="checkbox"
                 id="dietary-restrictions-dairy_free"
-                checked={applicationData.dietary_restrictions_dairy_free}
-                onChange={e => updateApplicationData('dietary_restrictions_dairy_free', e.target.checked)} />
+                checked={registrationData.dietary_restrictions_dairy_free}
+                onChange={e => updateRegistrationData('dietary_restrictions_dairy_free', e.target.checked)} />
                 <label htmlFor="dietary-restrictions-dairy-free" className="capitalize">Dairy-Free</label>
             </div>
 
@@ -334,7 +334,7 @@ const HackerApplication = () => {
                 type="checkbox"
                 id="other-dietary-restrictions-checkbox"
                 name="dietary_restrictions"
-                value={applicationData.dietary_restrictions_other}
+                value={registrationData.dietary_restrictions_other}
                 onChange={() => setIsOtherDietaryRestrictionChecked(!isOtherDietaryRestrictionChecked)}
                 ></input>
                 <label htmlFor="other-dietary-restrictions-checkbox">Other restriction(s)</label>
@@ -343,8 +343,8 @@ const HackerApplication = () => {
             
             {isOtherDietaryRestrictionChecked && (<>
                 <label htmlFor="other-dietary-restrictions-input">Restriction(s):</label>
-                <input id="other-dietary-restrictions-input" value={applicationData.dietary_restrictions_other} onChange={e => {
-                    updateApplicationData('dietary_restrictions_other', e.target.value)
+                <input id="other-dietary-restrictions-input" value={registrationData.dietary_restrictions_other} onChange={e => {
+                    updateRegistrationData('dietary_restrictions_other', e.target.value)
                 }}></input>
             </>)}
             </div> */}
@@ -358,8 +358,8 @@ const HackerApplication = () => {
                 type="radio"
                 name="country"
                 id="canada"
-                checked={applicationData.country === 'Canada'}
-                onChange={() => updateApplicationData('country', 'Canada')}
+                checked={registrationData.country === 'Canada'}
+                onChange={() => updateRegistrationData('country', 'Canada')}
             ></input>
             <label htmlFor="canada">Canada</label>
 
@@ -368,8 +368,8 @@ const HackerApplication = () => {
                 type="radio"
                 name="country"
                 id="usa"
-                checked={applicationData.country === 'United States of America'}
-                onChange={() => updateApplicationData('country', 'United States of America')}
+                checked={registrationData.country === 'United States of America'}
+                onChange={() => updateRegistrationData('country', 'United States of America')}
             ></input>
             <label htmlFor="usa">United States</label>
 
@@ -378,14 +378,14 @@ const HackerApplication = () => {
                 type="radio"
                 name="country"
                 id="other-country-checkbox"
-                checked={applicationData.country !== 'Canada' && applicationData.country !== 'United States of America'}
-                onChange={() => updateApplicationData('country', '')}></input>
+                checked={registrationData.country !== 'Canada' && registrationData.country !== 'United States of America'}
+                onChange={() => updateRegistrationData('country', '')}></input>
             <label htmlFor="other-country-checkbox">Other</label>
 
-            {applicationData.country !== 'Canada' && applicationData.country !== 'United States of America' && (<>
+            {registrationData.country !== 'Canada' && registrationData.country !== 'United States of America' && (<>
                 <label htmlFor="other-country-input">Country (No abbrevations):</label>
-                <input id="other-country-input" value={applicationData.country} onChange={e => {
-                    updateApplicationData('country', e.target.value)
+                <input id="other-country-input" value={registrationData.country} onChange={e => {
+                    updateRegistrationData('country', e.target.value)
                 }}></input>
             </>)}
             </div>
@@ -396,8 +396,8 @@ const HackerApplication = () => {
             <input 
                 id="province"
                 placeholder="Ontario"
-                value={applicationData.province}
-                onChange={e => updateApplicationData('province', e.target.value)}
+                value={registrationData.province}
+                onChange={e => updateRegistrationData('province', e.target.value)}
             />
             </div>
 
@@ -407,8 +407,8 @@ const HackerApplication = () => {
             <input
                 id="city"
                 placeholder="Waterloo"
-                value={applicationData.city}
-                onChange={e => updateApplicationData('city', e.target.value)}
+                value={registrationData.city}
+                onChange={e => updateRegistrationData('city', e.target.value)}
             />
             </div>
 
@@ -418,8 +418,8 @@ const HackerApplication = () => {
             <input
                 id="address"
                 placeholder="10 Main Street"
-                value={applicationData.address}
-                onChange={e => updateApplicationData('address', e.target.value)}
+                value={registrationData.address}
+                onChange={e => updateRegistrationData('address', e.target.value)}
             />
             </div>
 
@@ -428,8 +428,8 @@ const HackerApplication = () => {
             <input
                 id="apartment_suite"
                 placeholder="Unit 4"
-                value={applicationData.apartment_suite}
-                onChange={e => updateApplicationData('apartment_suite', e.target.value)}
+                value={registrationData.apartment_suite}
+                onChange={e => updateRegistrationData('apartment_suite', e.target.value)}
             />
             </div>
 
@@ -439,29 +439,29 @@ const HackerApplication = () => {
             <input
                 id="postal-code"
                 placeholder="N2V 3Q8"
-                value={applicationData.postal_code}
-                onChange={e => updateApplicationData('postal_code', e.target.value)}
+                value={registrationData.postal_code}
+                onChange={e => updateRegistrationData('postal_code', e.target.value)}
             />
             </div> */}
 
-            <h3 className='mt-12'>Application Questions</h3>
+            <h3 className='mt-12'>Registration Questions</h3>
 
             <h4>If you had the ability to create any app/website that would solve any problem in the world, what would it be? What technologies would you use? What features would it have? (800c)</h4>
             <Editor 
-                initialValue={applicationData.question_1 || ''}
-                onEditorChange={html => updateApplicationData("question_1", html)}
+                initialValue={registrationData.question_1 || ''}
+                onEditorChange={html => updateRegistrationData("question_1", html)}
             />
 
             <h4 className="mt-8">What's something that you've always wanted to do, but you've never done? What roadblocks have you faced that have prevented you from pursuing that idea? It could be a new skill you want to learn, a project you want to build, a business you want to start, anything you can think of! (1000c)</h4>
             <Editor
-                initialValue={applicationData.question_2 || ''}
-                onEditorChange={html => updateApplicationData("question_2", html)}
+                initialValue={registrationData.question_2 || ''}
+                onEditorChange={html => updateRegistrationData("question_2", html)}
             />
 
             <div className='flex gap-2 mt-8'>
             <button className='contrast' onClick={() => navigate('/dashboard/register')}>Save and return</button>
-            {applicationData.status !== 'Submitted' && <span id="rewardId" style={{width: 2, height: 2, background: "red"}} />}
-            {applicationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
+            {registrationData.status !== 'Submitted' && <span id="rewardId" style={{width: 2, height: 2, background: "red"}} />}
+            {registrationData.status !== 'Submitted' && <button type="submit" style={{backgroundColor: (submitted) ? "#64B786" : "#558CA9"}}>{(!submitted) ? "Submit (you can edit it later)" : "Submitted!"}</button>}
             </div>
             {validationMessages && (<div className="mt-4 flex-col text-left !items-start text-dark3" style={{display: (showValidationMessages ? "flex" : "none")}}>
                 <div className='bg-red-200 p-2 rounded-md !flex-row flex items-center'><AiOutlineWarning size={'24px'}/> <p>Uh oh! Your form has some errors that need to be fixed before submitting.</p></div>
@@ -476,4 +476,4 @@ const HackerApplication = () => {
     </div>)
 }
 
-export default HackerApplication;
+export default HackerRegistration;

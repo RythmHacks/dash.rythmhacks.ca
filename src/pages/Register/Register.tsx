@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../contexts/Auth"
 import { useReward } from 'react-rewards';
 
-const Apply = () => {
+const Register = () => {
   const { supabase, user, signOut } = useAuth()
 
   const [status, setStatus] = useState<string>('Loading...')
@@ -28,7 +28,7 @@ const Apply = () => {
   }
 
   useEffect(() => {
-    supabase.from('hacker_applications').select('*').eq('id', user?.id)
+    supabase.from('hacker_registrations').select('*').eq('id', user?.id)
       .then(({ data, error }: { data: any, error: any }) => {
         const fetchedStatus = data?.[0]?.status
         if (error || !fetchedStatus) {
@@ -71,17 +71,17 @@ const Apply = () => {
           <p>
             Congratulations! We'd like to extend an offer for you to attend this year's event.<br/><br/>
             Welcome to RythmHacks 2023! We are excited to offer you the opportunity to hack with us.<br/><br/>
-            Thanks for confirming your attendance. If can no longer join us in person, please click the button below.
+            To continue, confirm your attendance by pressing the button below.
           </p>
 
-          <button className='mt-4'>I cannot come to RythmHacks</button>
+          <button className='mt-4' onClick={() => {navigate('/dashboard/register/rsvp')}}>RSVP to RythmHacks</button>
         </div>}
         {status === 'Rejected' && <div className="container w-full"></div>}
         {status === 'Waitlisted' && <div className="container w-full"></div>}
-        <div className="container w-full">
+        <div className="container w-full mt-4">
           <h2>Registration Closed</h2>
-          <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/>
-          <p>Your registration status: <span className='font-bold'>{(status === 'Submitted' ? status : "Expired")}</span></p>
+          <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/> 
+          <p>Your registration status: <span className='font-bold'>{((status === 'Submitted' || status === 'Accepted' || status === 'Waitlisted') ? status : "Expired")}</span></p>
         </div>
         {/* <div className="container w-full">
           <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
@@ -95,7 +95,7 @@ const Apply = () => {
           <p className='mt-4'>{msg}</p>
           <button onClick={() => {
             if (status === 'Not Started') {
-              supabase.from('hacker_applications').update({
+              supabase.from('hacker_registrations').update({
                 status: 'In Progress'
               }).eq('id', user?.id)
               .then(({ data, error }: { data: any, error: any}) => {
@@ -106,7 +106,7 @@ const Apply = () => {
           }} className='mt-8'>{buttonMsg}</button>
         </div> */}
           {/* <div className='container w-1/2'>
-            <h2>Apply to be a Mentor/Judge</h2>
+            <h2>Register to be a Mentor/Judge</h2>
             <p className='mt-4'>Want to attend the event as a mentor/judge? You'll be on-site helping participants with their projects, giving technical advice and assistance when necessary. <br/><br/>Additionally, you'll be judging the projects at the end of the competition. You can also choose to run a self-hosted workshop on a topic of your choice.</p>
             <button className='mt-4' disabled>Stay tuned for more info!</button>
           </div> */}
@@ -130,4 +130,4 @@ const Apply = () => {
   )
 }
 
-export default Apply
+export default Register

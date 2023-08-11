@@ -23,7 +23,7 @@ export interface Database {
           timesAsked?: number | null
         }
       }
-      hacker_applications: {
+      hacker_registrations: {
         Row: {
           address: string
           age: string

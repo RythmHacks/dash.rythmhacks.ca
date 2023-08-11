@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
+const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
 
 const App = () => {
   const { user } = useAuth()
@@ -43,6 +44,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="register" element={<Outlet/>} >
               <Route index element={<Register />} />
+              <Route path='rsvp' element={<HackerRSVP />} />
               {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             </Route>
             <Route path="settings" element={<Settings />} />
