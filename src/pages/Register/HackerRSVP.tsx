@@ -108,7 +108,7 @@ const HackerRSVP = () => {
                 );
             if (error) {
                 alert(
-                    "asdfSomething went wrong with submitting your RSVP! Please try again or contact rythmhacks@gmail.com if this error persists."
+                    "Something went wrong with submitting your RSVP! Please try again or contact rythmhacks@gmail.com if this error persists."
                 );
                 throw error;
             }
@@ -139,11 +139,6 @@ const HackerRSVP = () => {
                 <p className="mb-4">
                     Confirm your attendance and RSVP for the event here!
                 </p>
-                <strong>
-                    Note: all participants will have to have a parent/guardian
-                    sign the waiver attached in your acceptance email. Reply to
-                    the email with the signed waiver.
-                </strong>
             </div>
             <div className="container mt-4">
                 <h2>RSVP Questions</h2>
