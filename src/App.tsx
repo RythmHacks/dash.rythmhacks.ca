@@ -11,6 +11,7 @@ const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
 const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
+const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
 const Discord = lazy(() => import('./pages/Discord/Discord'))
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="discord" element={<Discord />} />
             <Route path="register" element={<Outlet/>} >
               <Route index element={<Register />} />
+              <Route path='rsvp' element={<HackerRSVP />} />
               {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             </Route>
             <Route path="settings" element={<Settings />} />
