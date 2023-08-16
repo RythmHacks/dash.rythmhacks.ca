@@ -137,7 +137,7 @@ const HackerRSVP = () => {
             <div className="container">
                 <h2>Hacker RSVP</h2>
                 <p className="mb-4">
-                    Confirm your attendance and RSVP for the event here!
+                  Confirm your attendance and RSVP for the event here! <strong>The RSVP deadline is Monday, August 21st, at 11:59 PM.</strong> Be sure to submit the form before then!
                 </p>
             </div>
             <div className="container mt-4">
