@@ -68,6 +68,7 @@ const HackerRSVP = () => {
                     "Are you sure you aren't attending RythmHacks? Your acceptance will be forfeited and given to someone else. This action cannot be reverted."
                 )
             ) {
+                setSubmitText('Submit RSVP')
                 return;
             }
         }
@@ -113,6 +114,7 @@ const HackerRSVP = () => {
                 throw error;
             }
         }
+
 
         alert(
             "RSVP submitted successfully! You will now be directed back to the home page."
@@ -250,7 +252,7 @@ const HackerRSVP = () => {
                                         }}
                                         type="checkbox"
                                         checked={mlh1}
-                                        required
+                                        required={attending}
                                     />
                                     <label
                                         onClick={() => setMlh1(!mlh1)}
@@ -272,7 +274,7 @@ const HackerRSVP = () => {
                                         }}
                                         type="checkbox"
                                         checked={mlh2}
-                                        required
+                                        required={attending}
                                     />
                                     <label
                                         onClick={() => setMlh2(!mlh2)}
@@ -343,7 +345,7 @@ const HackerRSVP = () => {
                                     }
                                 }}
                                 className="w-full my-2"
-                                required
+                                required={attending}
                             />
                         </div>
                         <button type="submit" className="mt-10 mr-2">
