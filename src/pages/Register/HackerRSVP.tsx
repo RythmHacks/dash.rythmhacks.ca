@@ -73,14 +73,22 @@ const HackerRSVP = () => {
             }
         }
 
-        setDRestrictions((dRestrictions: any) => [...dRestrictions, other]);
+        let finalDRestrictions = dRestrictions;
+
+        if (finalDRestrictions.length === 0) {
+            finalDRestrictions = [other]
+        } else {
+            finalDRestrictions.push(other)
+        }
+
+        console.log(finalDRestrictions, other)
 
         let { data, error } = await supabase
             .from("hacker_registrations")
             .update({
                 status: attending ? "Confirmed" : "Not Attending",
                 overnight: overnight,
-                dietary_restrictions: dRestrictions,
+                dietary_restrictions: finalDRestrictions,
                 mlh_1: mlh1,
                 mlh_2: mlh2,
                 mlh_3: mlh3,
