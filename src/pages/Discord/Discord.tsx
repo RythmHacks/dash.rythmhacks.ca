@@ -9,32 +9,56 @@ const Discord = () => {
     const searchParams = new URLSearchParams(window.location.search)
     const code = searchParams.get('code')
 
-    const [isLoading, setLoading] = useState(false)
-    const [result, setResult] = useState<string>()
+    const [loadingState, setLoadingState] = useState<"loading" | "success" | "error">("loading")
+    const [result, setResult] = useState<object>()
+    const [error, setError] = useState<Error>()
 
-    useEffect(() => {
-        
-    })
+
+    if (user?.user_metadata.joined_discord) {
+        return (
+            <div className="page">
+                Success, you've been added
+            </div>
+        )
+    }
 
     if (code) {
         useEffect(() => {
-            setLoading(true)
             fetch(import.meta.env.VITE_BACKEND_URL + '/join-discord', {
                 method: 'POST',
-                body: JSON.stringify({ code }),
+                body: JSON.stringify({ 
+                    code
+                }),
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                mode: 'cors'
             })
-                .then(data => data.json())
-                .then((json: string) => {
-                    setLoading(false)
+                .then(res => {
+                    if (!res.ok) throw res
+                    return res.json()
+                })
+                .then((json: object) => {
+                    setLoadingState("success")
                     setResult(json)
                 })
-                .catch(console.error)
+                .catch((errorResponse: any) => {
+                    const newError = new Error(`${errorResponse.status} ${errorResponse.statusText}`)
+                    setLoadingState("error")
+                    setError(newError)
+                    console.error(errorResponse)
+                })
         }, [])
 
-        if (isLoading) return <div className="lazy-preloader"></div>
+        if (loadingState === 'loading') return <div className="lazy-preloader"></div>
+        else if (loadingState === 'error') return (
+            <div className="page">
+                <h1>An error occured and you could not have been added to the server!</h1>
+                <p>Message: {error!.message}</p>
+
+                <p>Contact the RythmHacks devs to fix the issue.</p>
+            </div>
+        )
         return (
             <div className="page">
                 Success, you've been added
@@ -47,7 +71,8 @@ const Discord = () => {
             'https://discord.com/api/oauth2/authorize?'
             + `client_id=${import.meta.env.VITE_DISCORD_CLIENT_ID}`
             + `&redirect_uri=${window.location.href}`
-            + '&response_type=code&scope=identify guilds.join'
+            + '&response_type=code'
+            + '&scope=identify guilds.join'
         )
 
         return (<div className="page">
