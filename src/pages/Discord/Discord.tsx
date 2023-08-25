@@ -34,16 +34,18 @@ const Discord = () => {
                 },
                 mode: 'cors'
             })
-                .then(res => {
-                    if (!res.ok) throw res
-                    return res.json()
+                .then(async res => {
+                    console.log(res)
+                    const json = await res.json()
+                    if (!res.ok) throw json
+                    return json
                 })
                 .then((json: object) => {
                     setLoadingState("success")
                     setResult(json)
                 })
                 .catch((errorResponse: any) => {
-                    const newError = new Error(`${errorResponse.status} ${errorResponse.statusText}`)
+                    const newError = new Error(`${errorResponse.status} ${errorResponse.message}`)
                     setLoadingState("error")
                     setError(newError)
                     console.error(errorResponse)
