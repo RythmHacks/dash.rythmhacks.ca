@@ -66,7 +66,7 @@ const Register = () => {
           <h1>Registration Dashboard</h1>
           <p>This is the hub for your RythmHacks registration. Fill out your registration, get a response from us, then RSVP for the event.</p>
         </div>
-        {status === 'Accepted' && <div className="container w-full">
+        {/* {status === 'Accepted' && <div className="container w-full">
           <h2>You're invited!</h2>  
           <p>
             Congratulations! We'd like to extend an offer for you to attend this year's event.<br/><br/>
@@ -75,13 +75,13 @@ const Register = () => {
           </p>
 
           <button className='mt-4' onClick={() => {navigate('/dashboard/register/rsvp')}}>RSVP to RythmHacks</button>
-        </div>}
-        {status === 'Rejected' && <div className="container w-full"></div>}
-        {status === 'Waitlisted' && <div className="container w-full"></div>}
+        </div>} */}
+        {/* {status === 'Rejected' && <div className="container w-full"></div>}
+        {status === 'Waitlisted' && <div className="container w-full"></div>} */}
         <div className="container w-full mt-4">
           <h2>Registration Closed</h2>
           <p>The registration deadline for this year's event has now passed. Thank you for your enthusiasm, and we hope to see you at our event!</p><br/> 
-          <p>Your registration status: <span className='font-bold'>{((status === 'Submitted' || status === 'Accepted' || status === 'Waitlisted' || status === 'Confirmed' || status === 'Not Attending') ? status : "Expired")}</span></p>
+          <p>Your registration status: <span className='font-bold'>{((status === 'Submitted' || status === 'Waitlisted' || status === 'Confirmed' || status === 'Not Attending') ? status : "Expired")}</span></p>
         </div>
         {/* <div className="container w-full">
           <h2 className='flex md:items-center flex-col md:flex-row justify-between gap-2'>
