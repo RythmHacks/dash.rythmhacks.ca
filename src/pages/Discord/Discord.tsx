@@ -13,7 +13,6 @@ const Discord = () => {
     const [result, setResult] = useState<object>()
     const [error, setError] = useState<Error>()
 
-
     if (user?.user_metadata.joined_discord) {
         return (
             <div className="page">
