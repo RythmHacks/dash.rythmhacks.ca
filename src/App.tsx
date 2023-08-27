@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
+const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
 // const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
 // const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
 const Discord = lazy(() => import('./pages/Discord/Discord'))
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
+            <Route path='schedule' element={<Schedule />} />
             <Route path="discord" element={<Discord />} />
             {/* <Route path="register" element={<Outlet/>} >
               <Route index element={<Register />} />

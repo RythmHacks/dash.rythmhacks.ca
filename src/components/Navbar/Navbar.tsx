@@ -3,7 +3,7 @@ import './Navbar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
-import { BsClipboard2Check, BsFillGearFill, BsDiscord } from 'react-icons/bs'
+import { BsClipboard2Check, BsFillGearFill, BsCalendar2Check, BsDiscord } from 'react-icons/bs'
 import { AiOutlineLink } from 'react-icons/ai'
 import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
 import { GoKebabVertical } from 'react-icons/go'
@@ -66,6 +66,7 @@ const Navbar = () => {
                 </div>
                 <div className='links mt-[4rem]'>
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
+                    <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
                     <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
                     {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
                     <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
