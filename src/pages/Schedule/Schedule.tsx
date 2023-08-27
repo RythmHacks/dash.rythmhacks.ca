@@ -10,12 +10,12 @@ const Schedule = () => {
 
   return (
     <div className="page w-full h-screen md:overflow-hidden">
-      <div className='flex flex-col md:flex-row gap-2'>
-        <div className="container md:w-1/3">
+      <div className='flex flex-col lg:flex-row gap-2'>
+        <div className="container lg:w-1/3">
           <h1>Schedule</h1>
           <p>This is the full schedule for the event!</p>
         </div>
-        <div className="container md:w-2/3">
+        <div className="container lg:w-2/3">
           <h1>Legend</h1>
           <div className='legend'>
             {eventTypes.map((type) => {
