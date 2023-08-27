@@ -28,6 +28,9 @@ const Schedule = () => {
             if (currentDay === 0 && index <= 14) {
               return null
             }
+            if (currentDay === 2 && index <= 6) {
+              return null 
+            }
             return (
               <p className='pb-36 h-4 leading-4'>{time}</p>
             )

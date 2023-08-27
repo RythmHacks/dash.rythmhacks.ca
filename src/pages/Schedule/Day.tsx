@@ -24,7 +24,7 @@ const Day = (props:any) => {
               <p>{row[0].description}</p>
               <p>{row[0].startTime} {row[0].endTime && <span>- {row[0].endTime}</span>} {row[0].location && <span>@</span>} {row[0].location}</p>
             </div>
-            <div className={`event w-1/2 ${row[1].type}`} style={{minHeight: `${(row[1].height * 144) + ((row[1].height - 1) * 16)}px`, marginTop: `${(row[0].heightOffset * 144) + ((row[0].heightOffset) * 16)}px`}}>
+            <div className={`event w-1/2 ${row[1].type}`} style={{minHeight: `${(row[1].height * 144) + ((row[1].height - 1) * 16)}px`, marginTop: `${(row[1].heightOffset * 144) + ((row[1].heightOffset) * 16)}px`}}>
               <p className='font-bold text-xl'>{row[1].title}</p>
               <p>{row[1].description}</p>
               <p>{row[1].startTime} {row[1].endTime && <span>- {row[1].endTime}</span>} {row[1].location && <span>@</span>} {row[1].location}</p>
