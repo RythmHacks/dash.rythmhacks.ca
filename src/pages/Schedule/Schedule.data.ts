@@ -159,7 +159,16 @@ export const Saturday = [
       type: "workshop",
     },
   ],
-  [],
+  [
+    {
+      title: "MLH Capture the Flag",
+      startTime: "11:00 AM",
+      endTime: "12:00 PM",
+      height: 1,
+      heightOffset: 0,
+      type: "activity",
+    },
+  ],
   [
     {
       title: "Lunch",
@@ -208,6 +217,31 @@ export const Saturday = [
       type: "meal",
     },
   ],
+  [
+    {
+      title: "MLH !Light",
+      description: "Join us for this fun minigame of creating a website without seeing it first!",
+      location: "Online",
+      startTime: "7:00 PM",
+      endTime: "8:00 PM",
+      height: 1,
+      heightOffset: 0,
+      type: "activity",
+    },
+  ],
+  [],
+  [
+    {
+      title: "Jeopardy",
+      description: "Test your knowledge with this fun game of Jeopardy!",
+      location: "Meeting Room 1",
+      startTime: "9:00 PM",
+      endTime: "10:00 PM",
+      height: 1,
+      heightOffset: 0,
+      type: "activity",
+    }
+  ]
 ] as ScheduleData[][];
 
 export const Sunday = [
