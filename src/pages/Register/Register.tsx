@@ -66,7 +66,6 @@ const Register = () => {
           <h1>Registration Dashboard</h1>
           <p>This is the hub for your RythmHacks registration. Fill out your registration, get a response from us, then RSVP for the event.</p>
         </div>
-        {/* {status === 'Accepted' && <div className="container w-full">
           <h2>You're invited!</h2>  
           <p>
             Congratulations! We'd like to extend an offer for you to attend this year's event.<br/><br/>
@@ -75,7 +74,6 @@ const Register = () => {
           </p>
 
           <button className='mt-4' onClick={() => {navigate('/dashboard/register/rsvp')}}>RSVP to RythmHacks</button>
-        </div>} */}
         {/* {status === 'Rejected' && <div className="container w-full"></div>}
         {status === 'Waitlisted' && <div className="container w-full"></div>} */}
         <div className="container w-full mt-4">

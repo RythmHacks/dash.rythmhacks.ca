@@ -122,8 +122,6 @@ const HackerRSVP = () => {
                 throw error;
             }
         }
-
-
         alert(
             "RSVP submitted successfully! You will now be directed back to the home page."
         );
