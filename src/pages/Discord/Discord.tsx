@@ -4,32 +4,23 @@ import { Link } from 'react-router-dom'
 import { BsDiscord } from "react-icons/bs";
 
 const Discord = () => {
-    const { supabase, user, updateUser } = useAuth()
+    const { user } = useAuth()
 
     const searchParams = new URLSearchParams(window.location.search)
     const code = searchParams.get('code')
 
-    const [loadingState, setLoadingState] = useState<"loading" | "success" | "error">("loading")
-    const [result, setResult] = useState<object>()
+    const [loadingState, setLoadingState] = useState<"loading" | "success" | "error">("success")
+    const [result, setResult] = useState<any>()
     const [error, setError] = useState<Error>()
 
-    // if (user?.user_metadata.joined_discord) {
-    //     return (
-    //         <div className="page">
-    //             <div className='container'>
-    //                 <h1>Success!</h1>
-    //                 <p>Success! You've been added to the Discord server. Now, head over to the Discord website or app and begin chatting!</p>
-    //             </div>
-    //         </div>
-    //     )
-    // }
-
-    if (code) {
+    if (!user?.user_metadata.joined_discord && code) {
         useEffect(() => {
+            setLoadingState("loading")
             fetch(import.meta.env.VITE_BACKEND_URL + '/join-discord', {
                 method: 'POST',
-                body: JSON.stringify({ 
-                    code
+                body: JSON.stringify({
+                    code,
+                    supabase_user_id: user?.id
                 }),
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,7 +28,6 @@ const Discord = () => {
                 mode: 'cors'
             })
                 .then(async res => {
-                    console.log(res)
                     const json = await res.json()
                     if (!res.ok) throw json
                     return json
@@ -53,29 +43,40 @@ const Discord = () => {
                     console.error(errorResponse)
                 })
         }, [])
+    }
 
-        if (loadingState === 'loading') return <div className="lazy-preloader"></div>
-        else if (loadingState === 'error') return (
-            <div className="page">
-                <div className='container'>
-                    <h1>An error occured and you were not added to the server!</h1>
-                    <p>Message: {error!.message}</p>
-                    <p>You may already be in the server.</p>
-                    <p>Contact us at <a href='mailto:rythmhacks@gmail.com'>rythmhacks@gmail.com</a> for more assistance.</p>
-                </div>
 
-            </div>
-        )
+    if (loadingState === 'loading') return <div className="lazy-preloader"></div>
+    else if (loadingState === 'error') {
+        let message = ""
+        console.log(error)
+        if (error && error.message === "400 Invalid code.") {
+            message = `Your Discord authorization code is invalid. This is usually due to one of two reasons: the code expired, or you've joined the server and the code has been used already. Click the Discord tab in the sidebar and you should be good! If not, contact the RythmHacks devs.`
+        }
         return (
             <div className="page">
+                <h1>An error occured and you could not have been added to the server!</h1>
+                <p>{message || `Message: ${error?.message}`}</p>
+
+                <p>Feel free to contact us at <a href='mailto:rythmhacks@gmail.com'>rythmhacks@gmail.com</a> for more assistance.</p>
+            </div>
+        )
+    }
+    else if (user?.user_metadata.joined_discord || result) {
+        if (result && result.message === 'User successfully added to Discord server.') {
+            return (
                 <div className='container'>
                     <h1>Success!</h1>
                     <p>Success! You've been added to the Discord server. Now, head over to the Discord website or app and begin chatting!</p>
                 </div>
+            )
+        }
+        return (
+            <div className="page">
+                You've already joined the Discord.
             </div>
         )
     }
-
     else {
         const discordOAuth2Link = encodeURI(
             'https://discord.com/api/oauth2/authorize?'
@@ -85,7 +86,7 @@ const Discord = () => {
             + '&scope=identify guilds.join'
         )
 
-        return (<div className="page w-full">
+        return (<div className="page">
             <div className='container'>
                 <h1>Join the Discord</h1>
                 <p>Join the RythmHacks Discord server and start talking to your fellow hackers! If you've already joined the Discord, you don't need to do anything.</p>
