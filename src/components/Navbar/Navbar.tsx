@@ -3,7 +3,7 @@ import './Navbar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
-import { BsClipboard2Check, BsFillGearFill, BsCalendar2Check } from 'react-icons/bs'
+import { BsClipboard2Check, BsFillGearFill, BsCalendar2Check, BsDiscord } from 'react-icons/bs'
 import { AiOutlineLink } from 'react-icons/ai'
 import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
 import { GoKebabVertical } from 'react-icons/go'
@@ -66,8 +66,9 @@ const Navbar = () => {
                 </div>
                 <div className='links mt-[4rem]'>
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
-                    <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink> 
                     <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
+                    <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
+                    {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
                     <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
                 </div>
             </div>
@@ -103,7 +104,8 @@ const Navbar = () => {
             </div>
             <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu popup`}>
                 <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
-                <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink> 
+                {/* <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink>  */}
+                <NavLink to='/dashboard/discord' className='link' end><BsDiscord/>Discord</NavLink>
                 <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer' className='link'><AiOutlineLink/>Important Links</a>
                 <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
                 <div className="link" onClick={() => logout()}>

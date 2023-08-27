@@ -5,13 +5,15 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from './contexts/Auth'
 
 const Login = lazy(() => import('./pages/Login/Login'))
-const Apply = lazy(() => import('./pages/Apply/Apply'))
+// const Register = lazy(() => import('./pages/Register/Register'))
 const Home = lazy(() => import('./pages/Home/Home'))
 const Settings = lazy(() => import('./pages/Settings/Settings'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
 const Notfound = lazy(() => import('./pages/Notfound/Notfound'))
-const HackerApplication = lazy(() => import('./pages/Apply/HackerApplication'))
 const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
+// const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
+// const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
+const Discord = lazy(() => import('./pages/Discord/Discord'))
 
 const App = () => {
   const { user } = useAuth()
@@ -42,15 +44,17 @@ const App = () => {
           <Route path="login" element={(user === null) ? <Login /> : <Navigate to='/dashboard' />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Home />} />
-            <Route path="register" element={<Outlet/>} >
-              <Route index element={<Apply />} />
-              <Route path="hacker" element={<HackerApplication/>} />
-            </Route>
             <Route path='schedule' element={<Schedule />} />
+            <Route path="discord" element={<Discord />} />
+            {/* <Route path="register" element={<Outlet/>} >
+              <Route index element={<Register />} />
+              <Route path='rsvp' element={<HackerRSVP />} /> */}
+              {/* <Route path="hacker" element={<HackerRegistration />} /> */}
+            {/* </Route> */}
             <Route path="settings" element={<Settings />} />
           </Route>
-          <Route path="dashboard/*" element={<Notfound/>} />
-          <Route path="*" element={<Notfound/>} />
+          <Route path="dashboard/*" element={<Notfound />} />
+          <Route path="*" element={<Notfound />} />
       </Routes>
     </Suspense>
   )
