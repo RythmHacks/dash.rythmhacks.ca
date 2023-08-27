@@ -1,0 +1,39 @@
+.event {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  
+  &.mainEvent {
+    background-color: #bfdbfe;
+  }
+  &.meal {
+    background-color: #fbcaca;
+  }
+  &.workshop {
+    background-color: #bbf7cf;
+  }
+  &.sponsor {
+    background-color: #e9d5ff;
+  }
+  &.activity {
+    background-color: #fef9c3;
+  }
+}
+
+.toggle {
+  button {
+    width: 33.33333%;
+    text-align: center;
+    background-color: theme('colors.accent');
+    color: theme('colors.white');
+    cursor: pointer;
+    padding: 1rem;
+
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
