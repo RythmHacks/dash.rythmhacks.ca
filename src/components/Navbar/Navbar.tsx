@@ -3,7 +3,7 @@ import './Navbar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
-import { BsClipboard2Check, BsFillGearFill, BsDiscord } from 'react-icons/bs'
+import { BsFillGearFill, BsDiscord, BsBook } from 'react-icons/bs'
 import { AiOutlineLink } from 'react-icons/ai'
 import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
 import { GoKebabVertical } from 'react-icons/go'
@@ -68,6 +68,7 @@ const Navbar = () => {
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
                     <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
                     {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
+                    <a href='https://rythmhacks.notion.site/rythmhacks/Hacker-Guide-2023-81f51ef2250741d89dd91b2ca1650749' target='_blank' rel='noreferrer'><BsBook />Hacker Guide</a>
                     <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
                 </div>
             </div>
