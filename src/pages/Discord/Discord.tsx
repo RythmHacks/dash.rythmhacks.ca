@@ -93,7 +93,7 @@ const Discord = () => {
             <div className='container mt-4'>
                 <p>Press this button to authorize your Discord account and join the server. </p>
                 <a 
-                    className="style-none text-white bg-[#5865F2] px-4 py-2 rounded-md no-underline flex items-center gap-2 w-48 hover:bg-[#4f5bda] mt-4"
+                    className="style-none text-white bg-[#5865F2] transition-colors px-4 py-2 rounded-md no-underline flex items-center gap-2 w-48 hover:bg-[#4f5bda] mt-4"
                     href={discordOAuth2Link}
                 ><BsDiscord size="24" />Join the Discord</a>
             </div>
