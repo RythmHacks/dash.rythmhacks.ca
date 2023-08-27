@@ -68,7 +68,7 @@ const Navbar = () => {
                 <div className='links mt-[4rem]'>
                     <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
                     <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
-                    {/* <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink> */}
+                    <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
                     {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
                     <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'><SiDevpost />Devpost</a>
                     <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
