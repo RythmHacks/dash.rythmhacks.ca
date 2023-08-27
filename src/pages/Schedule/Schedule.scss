@@ -45,3 +45,23 @@
     }
   }
 }
+/* width */
+html.dark .scheduleContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+html.dark .scheduleContainer::-webkit-scrollbar-track {
+  background: #232730;
+}
+
+/* Handle */
+html.dark .scheduleContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+html.dark .scheduleContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

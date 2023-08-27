@@ -46,7 +46,7 @@ const Schedule = () => {
           Sunday
         </button>
       </div>
-      <div className="container flex w-full md:h-full md:overflow-y-scroll !rounded-t-none">
+      <div className="container scheduleContainer flex w-full md:h-full md:overflow-y-scroll !rounded-t-none">
         <div className="flex-col w-1/6 gap-4 flex">
           {times.map((time, index) => {
             if (currentDay === 0 && index <= 14) {
