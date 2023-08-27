@@ -6,6 +6,11 @@ import Day from "./Day";
 const Schedule = () => {
   const [currentDay, setCurrentDay] = useState<number>(0);
 
+  const today = new Date();
+  if (today.getDate() >= 1 && today.getDate() <= 3 && today.getMonth() === 9 && today.getFullYear() === 2023) {
+    setCurrentDay(today.getDate());
+  }
+
   const days: Array<object> = [Friday, Saturday, Sunday];
 
   return (
