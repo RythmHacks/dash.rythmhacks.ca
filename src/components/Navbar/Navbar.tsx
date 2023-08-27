@@ -12,9 +12,11 @@ import { FiMenu } from 'react-icons/fi'
 import { useAuth } from '../../contexts/Auth'
 
 const Navbar = () => {
-    const { user, signOut } = useAuth();
+    const { supabase, user, signOut } = useAuth();
 
     const navigate = useNavigate()
+
+    const [status, setStatus] = useState<string>('')
 
     let name;
 
@@ -27,6 +29,22 @@ const Navbar = () => {
     const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false)
     const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false)
 
+    useEffect(() => {
+        supabase.from('hacker_registrations').select('*').eq('id', user?.id)
+          .then(({ data, error }: { data: any, error: any }) => {
+            const fetchedStatus = data?.[0]?.status
+            if (error || !fetchedStatus) {
+                alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
+                logout()
+                if (error) throw error;
+                else throw TypeError('no hacker registration matching the id was found')
+            }
+            else {
+                setStatus(fetchedStatus)
+            }
+          })
+      }, [supabase, user?.id])
+    
     const logout = async () => {
         const { error } = await signOut()
         if (error) throw error;
@@ -66,12 +84,21 @@ const Navbar = () => {
                     <h3 onClick={() => navigate('/dashboard')}>Hacker<br/>Dashboard</h3>
                 </div>
                 <div className='links mt-[4rem]'>
-                    <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
-                    <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
-                    <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
-                    {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
-                    <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'><SiDevpost />Devpost</a>
-                    <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
+                    {(status === 'Confirmed') ?
+                    <>
+                        <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
+                        <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
+                        <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
+                        {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
+                        <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'><SiDevpost />Devpost</a>
+                        <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
+                    </> :
+                    <>
+                        <NavLink to='/dashboard' end><BiHome/>Home</NavLink>
+                        <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'><SiDevpost />Devpost</a>
+                        <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
+                    </>
+                    }
                 </div>
             </div>
 
@@ -105,17 +132,23 @@ const Navbar = () => {
                 </div>
             </div>
             <div className={`${isHamMenuOpened ? "open" : "close"} ham-menu popup`}>
-                <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
-                {/* <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink>  */}
-                <NavLink className='link' to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
-                {/* <NavLink to='/dashboard/discord' className='link' end><BsDiscord/>Discord</NavLink> */}
-                <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer' className='link'><SiDevpost />Devpost</a>
-                <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer' className='link'><AiOutlineLink/>Important Links</a>
-                <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
-                <div className="link" onClick={() => logout()}>
-                    <IoMdLogOut/>
-                    Logout
-                </div>
+                {(status === 'Confirmed') ?
+                <>
+                    <NavLink to='/dashboard' className='link' end><BiHome/>Home</NavLink>
+                    {/* <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink>  */}
+                    <NavLink className='link' to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
+                    <NavLink to='/dashboard/discord' className='link' end><BsDiscord/>Discord</NavLink>
+                    <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer' className='link'><SiDevpost />Devpost</a>
+                    <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer' className='link'><AiOutlineLink/>Important Links</a>
+                </> :
+                <>
+                    <NavLink to='/dashboard/settings' className='link' end><BsFillGearFill/>Settings</NavLink> 
+                    <div className="link" onClick={() => logout()}>
+                        <IoMdLogOut/>
+                        Logout
+                    </div>
+                </>
+                }
             </div>
         </nav>
         </>

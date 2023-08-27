@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/Auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsDiscord } from "react-icons/bs";
 
 const Discord = () => {
-  const { user } = useAuth();
+  const { supabase, user } = useAuth();
+
+  const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(window.location.search);
   const code = searchParams.get("code");
@@ -14,6 +16,16 @@ const Discord = () => {
   >("success");
   const [result, setResult] = useState<any>();
   const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+    supabase.from('hacker_registrations').select('*').eq('id', user?.id)
+      .then(({ data, error }: { data: any, error: any }) => {
+        const fetchedStatus = data?.[0]?.status
+        if (error || !fetchedStatus || fetchedStatus !== 'Confirmed') {
+          navigate('/dashboard')
+        }
+      })
+  }, [supabase, user?.id])
 
   if (code) {
     useEffect(() => {

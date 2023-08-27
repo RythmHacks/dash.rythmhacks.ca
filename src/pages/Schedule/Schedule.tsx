@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Schedule.scss";
 import { times, eventTypes, Friday, Saturday, Sunday } from "./Schedule.data";
 import Day from "./Day";
+import { useAuth } from "../../contexts/Auth";
+import { useNavigate } from "react-router-dom";
 
 const Schedule = () => {
   const [currentDay, setCurrentDay] = useState<number>(0);
+  const { supabase, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.from('hacker_registrations').select('*').eq('id', user?.id)
+      .then(({ data, error }: { data: any, error: any }) => {
+        const fetchedStatus = data?.[0]?.status
+        if (error || !fetchedStatus || fetchedStatus !== 'Confirmed') {
+          navigate('/dashboard')
+        }
+      })
+  }, [supabase, user?.id])
 
   const today = new Date();
   if (today.getDate() >= 1 && today.getDate() <= 3 && today.getMonth() === 9 && today.getFullYear() === 2023) {

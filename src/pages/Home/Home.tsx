@@ -38,10 +38,20 @@ const Home = () => {
                 <p>Hey {(firstName === '' || !firstName) ? "there" : firstName}! Welcome to your hacker dashboard, where you'll find important info to help you make the most out of RythmHacks. Check out some links below to get started!</p>
             </div>
             <div className='mt-4'>
-                {/* <div className='container w-1/2'>
+                <div className='container w-full'>
                     <h2><Link to='/dashboard/register'>Registration Closed</Link></h2>
-                    <p>Registration for RythmHacks 2023 is now closed. Keep an eye on your inbox in the coming days for your invitation!</p>
-                </div> */}
+                    <p>Registration for RythmHacks 2023 is now closed. Thank you to everybody who applied!</p>
+                </div>
+                <div className='flex gap-4 mt-4'>
+                    <div className='container w-1/2'>
+                        <h2><Link to='/dashboard/schedule'>Schedule</Link></h2>
+                        <p>Click <Link to='/dashboard/schedule'>here</Link> to check out the full event schedule for RythmHacks 2023! We've got over 15 events including workshops, activities, networking sessions, panels, and more planned for this year's event. Don't miss out!</p>
+                    </div>
+                    <div className='container w-1/2'>
+                        <h2>Venue and Travel Information</h2>
+                        <p>This year, RythmHacks will be taking place at the <a href='https://www.acceleratorcentre.com' target='_blank' rel='noreferrer'>Accelerator Centre</a> (295 Hagey Blvd, Waterloo, ON N2L 6R5) from September 1-3, 2023. Unfortunately, we're unable to reimburse travel this year, but there is plenty of parking and bike rack space to park your vehicle at the Accelerator Centre.</p>
+                    </div>
+                </div>
                 <div className='container w-full'>
                     <h2>Venue and Travel Information</h2>
                     <p>This year, RythmHacks will be taking place at the <a href='https://www.acceleratorcentre.com' target='_blank' rel='noreferrer'>Accelerator Centre</a> (295 Hagey Blvd, Waterloo, ON N2L 6R5) from September 1-3, 2023. Unfortunately, we're unable to reimburse travel this year, but there is plenty of parking and bike rack space to park your vehicle at the Accelerator Centre.</p>
