@@ -36,6 +36,7 @@ export const Friday = [
       startTime: '3:00 PM',
       endTime: '6:00 PM',
       height: 3,
+      heightOffset: 0,
       type: 'mainEvent'
     }
   ],
@@ -59,18 +60,28 @@ export const Friday = [
       endTime: '8:30 PM',
       height: 1.5,
       type: 'meal'
-    }  
+    },
+    {
+      title: "Sponsor Networking",
+      description: "Come meet our sponsors and learn about their companies!",
+      location: 'Event Space',
+      startTime: '7:00 PM',
+      endTime: '10:00 PM',
+      height: 3,
+      type: 'sponsor'
+    },
   ],
   [],
   [
     {
       title: 'Hacking Starts!',
       description: 'The allocated hacking time starts now!',
-      startTime: '3:00 PM',
+      startTime: '10:00 PM',
       height: 1,
-      heightOffset: 0.5,
-      type: 'mainEvent'
-    }  
+      heightOffset: 1,
+      type: 'mainEvent',
+      width: 0.5
+    }
   ]
 ] as ScheduleData[][]
 

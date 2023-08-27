@@ -6,6 +6,7 @@ export interface ScheduleData {
   location: string,
   type: 'mainEvent' | 'meal' | 'workshop' | 'sponsor' | 'activity',
   height: number,
+  width: number,
   heightOffset: number
 }
 
