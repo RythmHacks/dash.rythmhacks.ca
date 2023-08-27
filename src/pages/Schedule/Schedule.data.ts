@@ -1,4 +1,4 @@
-import { ScheduleData } from '../../types/schedule'
+import { ScheduleData, EventTypes } from '../../types/schedule'
 
 export const times:Array<string> = [
   '12:00 AM',
@@ -26,6 +26,34 @@ export const times:Array<string> = [
   '10:00 PM',
   '11:00 PM'
 ]
+
+export const eventTypes = [
+  {
+    name: 'Main Event',
+    color: '#bfdbfe',
+    id: 'mainEvent'
+  },
+  {
+    name: 'Meal',
+    color: '#fbcaca',
+    id: 'meal'
+  },
+  {
+    name: 'Workshop',
+    color: '#bbf7cf',
+    id: 'workshop'
+  },
+  {
+    name: 'Sponsor',
+    color: '#e9d5ff',
+    id: 'sponsor'
+  },
+  {
+    name: 'Activity',
+    color: '#fef9c3',
+    id: 'activity'
+  }
+] as EventTypes[]
 
 export const Friday = [
   [
@@ -80,7 +108,6 @@ export const Friday = [
       height: 1,
       heightOffset: 1,
       type: 'mainEvent',
-      width: 0.5
     }
   ]
 ] as ScheduleData[][]

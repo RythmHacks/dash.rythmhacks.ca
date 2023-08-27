@@ -10,3 +10,8 @@ export interface ScheduleData {
   heightOffset: number
 }
 
+export interface EventTypes {
+  name: string,
+  color: string,
+  id: 'mainEvent' | 'meal' | 'workshop' | 'sponsor' | 'activity'
+}
