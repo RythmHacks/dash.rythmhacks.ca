@@ -14,7 +14,7 @@ const Schedule = () => {
   const days: Array<object> = [Friday, Saturday, Sunday];
 
   return (
-    <div className="page w-full h-screen md:overflow-hidden">
+    <div className="page w-full h-auto md:h-screen md:overflow-hidden pb-8">
       <div className='flex flex-col lg:flex-row gap-4'>
         <div className="container lg:w-1/3 !p-6">
           <h1 className='!mb-0'>Schedule</h1>
@@ -64,7 +64,7 @@ const Schedule = () => {
               }
               return <p className="pb-36 h-4 leading-4">{time}</p>;
             })}
-            <div className="hidden md:block h-36"></div>
+            {/* <div className="hidden md:block h-36"></div> */}
           </div>
           <Day scheduleData={days[currentDay]}></Day>
         </div>
