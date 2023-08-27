@@ -3,7 +3,7 @@ import './Navbar.scss'
 import logo from '../../assets/rythmhacks-circle.png'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { BiHome } from 'react-icons/bi'
-import { BsFillGearFill, BsCalendar2Check, BsDiscord } from 'react-icons/bs'
+import { BsFillGearFill, BsCalendar2Check, BsDiscord, BsBook } from 'react-icons/bs'
 import { SiDevpost } from 'react-icons/si'
 import { AiOutlineLink } from 'react-icons/ai'
 import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
@@ -90,6 +90,7 @@ const Navbar = () => {
                         <NavLink to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
                         <NavLink to='/dashboard/discord' end><BsDiscord/>Discord</NavLink>
                         {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
+                        <a href='https://rythmhacks.notion.site/RythmHacks-2023-Hacker-Guide-81f51ef2250741d89dd91b2ca1650749?pvs=4' target='_blank' rel='noreferrer'><BsBook/>Hacker Guide</a>
                         <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'><SiDevpost />Devpost</a>
                         <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer'><AiOutlineLink/>Important Links</a>
                     </> :
@@ -138,6 +139,7 @@ const Navbar = () => {
                     {/* <NavLink to='/dashboard/register' className='link' end><BsClipboard2Check/>Register</NavLink>  */}
                     <NavLink className='link' to='/dashboard/schedule' end><BsCalendar2Check/>Schedule</NavLink> 
                     <NavLink to='/dashboard/discord' className='link' end><BsDiscord/>Discord</NavLink>
+                    <a href='https://rythmhacks.notion.site/RythmHacks-2023-Hacker-Guide-81f51ef2250741d89dd91b2ca1650749?pvs=4' target='_blank' rel='noreferrer' className='link'><BsBook/>Hacker Guide</a>
                     <a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer' className='link'><SiDevpost />Devpost</a>
                     <a href='https://links.rythmhacks.ca/' target='_blank' rel='noreferrer' className='link'><AiOutlineLink/>Important Links</a>
                 </> :

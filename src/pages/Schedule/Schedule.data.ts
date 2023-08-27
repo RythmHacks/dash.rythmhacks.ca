@@ -192,7 +192,18 @@ export const Saturday = [
       type: "workshop",
     },
   ],
-  [],
+  [
+    {
+      title: "Soccer",
+      description: "Kick a ball around for an hour",
+      startTime: "3:00 PM",
+      endTime: "4:00 PM",
+      height: 1,
+      heightOffset: 0,
+      location: "Outside",
+      type: "activity",
+    }
+  ],
   [
     {
       title: "Typing contest, sponsored by MonkeyType",
