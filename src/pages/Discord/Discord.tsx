@@ -15,7 +15,7 @@ const Discord = () => {
   const [result, setResult] = useState<any>();
   const [error, setError] = useState<Error>();
 
-  if (!user?.user_metadata.joined_discord && code) {
+  if (code) {
     useEffect(() => {
       setLoadingState("loading");
       fetch(import.meta.env.VITE_BACKEND_URL + "/join-discord", {
