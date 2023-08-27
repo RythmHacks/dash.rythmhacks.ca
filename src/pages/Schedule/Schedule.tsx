@@ -10,7 +10,7 @@ const Schedule = () => {
 
   return (
     <div className="page w-full h-screen md:overflow-hidden">
-      <div className='flex flex-col lg:flex-row gap-2'>
+      <div className='flex flex-col lg:flex-row gap-4'>
         <div className="container lg:w-1/3 !p-6">
           <h1 className='!mb-0'>Schedule</h1>
           <p>This is the full schedule for the event!</p>
@@ -31,35 +31,38 @@ const Schedule = () => {
       </div>
       <div className="mt-4 w-full toggle">
         <button
-          className="style-none rounded-tl-[5px]"
-          onClick={() => setCurrentDay(0)}
+          className={`style-none rounded-tl-[5px] ${(currentDay === 0) ? "dateActive" : ""}`}
+          onClick={() => {setCurrentDay(0); document.getElementById('breyers')?.scrollIntoView();}}
         >
           Friday
         </button>
-        <button className="style-none" onClick={() => setCurrentDay(1)}>
+        <button className={`style-none ${(currentDay === 1) ? "dateActive" : ""}`} onClick={() => {setCurrentDay(1); document.getElementById('breyers')?.scrollIntoView();}}>
           Saturday
         </button>
         <button
-          className="style-none rounded-tr-[5px]"
-          onClick={() => setCurrentDay(2)}
+          className={`style-none rounded-tr-[5px] ${(currentDay === 2) ? "dateActive" : ""}`}
+          onClick={() => {setCurrentDay(2); document.getElementById('breyers')?.scrollIntoView();}}
         >
           Sunday
         </button>
       </div>
-      <div className="container scheduleContainer flex w-full md:h-full md:overflow-y-scroll !rounded-t-none">
-        <div className="flex-col w-1/6 gap-4 flex">
-          {times.map((time, index) => {
-            if (currentDay === 0 && index <= 14) {
-              return null;
-            }
-            if (currentDay === 2 && index <= 6) {
-              return null;
-            }
-            return <p className="pb-36 h-4 leading-4">{time}</p>;
-          })}
-          <div className="hidden md:block h-36"></div>
+      <div className="container scheduleContainer !pt-0 w-full md:h-full md:overflow-y-scroll !rounded-t-none">
+        <div id='breyers' className='h-4'></div>
+        <div className='flex mt-4'>
+          <div className="flex-col w-1/6 gap-4 flex">
+            {times.map((time, index) => {
+              if (currentDay === 0 && index <= 14) {
+                return null;
+              }
+              if (currentDay === 2 && index <= 6) {
+                return null;
+              }
+              return <p className="pb-36 h-4 leading-4">{time}</p>;
+            })}
+            <div className="hidden md:block h-36"></div>
+          </div>
+          <Day scheduleData={days[currentDay]}></Day>
         </div>
-        <Day scheduleData={days[currentDay]}></Day>
       </div>
     </div>
   );

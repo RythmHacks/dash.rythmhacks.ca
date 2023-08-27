@@ -38,30 +38,32 @@
     cursor: pointer;
     padding: 1rem;
 
-    transition: opacity 0.3s ease;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      opacity: 0.8;
+      background-color: lighten(#558ca9, 10%);
+    }
+
+    &.dateActive {
+      background-color: lighten(#558ca9, 10%);
     }
   }
+
 }
-/* width */
+
 html.dark .scheduleContainer::-webkit-scrollbar {
   width: 12px;
 }
 
-/* Track */
 html.dark .scheduleContainer::-webkit-scrollbar-track {
   background: #232730;
 }
 
-/* Handle */
 html.dark .scheduleContainer::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 6px;
-}
 
-/* Handle on hover */
-html.dark .scheduleContainer::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  &:hover {
+    background: #555;
+  }  
 }
