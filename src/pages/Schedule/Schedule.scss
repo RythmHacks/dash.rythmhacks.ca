@@ -31,10 +31,7 @@
 
 .toggle {
   button {
-    width: 33.33333%;
     text-align: center;
-    background-color: theme("colors.accent");
-    color: theme("colors.white");
     cursor: pointer;
     padding: 1rem;
 
@@ -43,12 +40,40 @@
     &:hover {
       background-color: lighten(#558ca9, 10%);
     }
+  }
+}
 
+.fullScreen {
+  position: absolute;
+  z-index: 25;
+
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  overflow-y: scroll;
+}
+
+html.light .toggle {
+  border: 2px solid theme('colors.light2');
+
+  button {
     &.dateActive {
-      background-color: lighten(#558ca9, 10%);
+      background-color: #E4E7EB;
     }
   }
+}
 
+html.dark .toggle {
+  border: 2px solid theme('colors.dark1');
+
+  button {
+    border-right: 2px solid theme('colors.dark1');
+    &.dateActive {
+      background-color: theme('colors.dark3');
+    }
+  }
 }
 
 html.dark .scheduleContainer::-webkit-scrollbar {

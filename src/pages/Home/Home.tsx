@@ -39,7 +39,7 @@ const Home = () => {
             </div>
             <div className='mt-4'>
                 <div className='container w-full'>
-                    <h2><Link to='/dashboard/register'>Registration Closed</Link></h2>
+                    <h2>Registration Closed</h2>
                     <p>Registration for RythmHacks 2023 is now closed. Thank you to everybody who applied!</p>
                 </div>
                 <div className='flex gap-4 mt-4'>
