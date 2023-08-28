@@ -10,13 +10,12 @@ import { IoMdSettings, IoMdLogOut } from 'react-icons/io'
 import { GoKebabVertical } from 'react-icons/go'
 import { FiMenu } from 'react-icons/fi'
 import { useAuth } from '../../contexts/Auth'
+import { useStatus } from '../../contexts/UserStatus'
 
 const Navbar = () => {
-    const { supabase, user, signOut } = useAuth();
+    const { user, signOut } = useAuth();
 
     const navigate = useNavigate()
-
-    const [status, setStatus] = useState<string>('')
 
     let name;
 
@@ -29,21 +28,7 @@ const Navbar = () => {
     const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false)
     const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false)
 
-    useEffect(() => {
-        supabase.from('hacker_registrations').select('*').eq('id', user?.id)
-          .then(({ data, error }: { data: any, error: any }) => {
-            const fetchedStatus = data?.[0]?.status
-            if (error || !fetchedStatus) {
-                alert('Oh no! Your data could not be retrieved. If this error persists, contact the RythmHacks team.')
-                logout()
-                if (error) throw error;
-                else throw TypeError('no hacker registration matching the id was found')
-            }
-            else {
-                setStatus(fetchedStatus)
-            }
-          })
-      }, [supabase, user?.id])
+    const status = useStatus()
     
     const logout = async () => {
         const { error } = await signOut()

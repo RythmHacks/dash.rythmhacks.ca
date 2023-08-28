@@ -1,6 +1,5 @@
-import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom'
-import { Navigate, Outlet } from 'react-router-dom'
+import { lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
 
@@ -14,6 +13,7 @@ const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
 // const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
 // const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
 const Discord = lazy(() => import('./pages/Discord/Discord'))
+
 
 const App = () => {
   const { user } = useAuth()
@@ -48,7 +48,7 @@ const App = () => {
             <Route path="discord" element={<Discord />} />
             {/* <Route path="register" element={<Outlet/>} >
               <Route index element={<Register />} />
-              <Route path='rsvp' element={<HackerRSVP />} /> */}
+            <Route path='rsvp' element={<HackerRSVP />} /> */}
               {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             {/* </Route> */}
             <Route path="settings" element={<Settings />} />
