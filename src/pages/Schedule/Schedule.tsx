@@ -11,7 +11,6 @@ import { useStatus } from "../../contexts/UserStatus";
 const Schedule = () => {
   const [currentDay, setCurrentDay] = useState<number>(0);
   const [fullScreen, setFullScreen] = useState<boolean>(false);
-  const { supabase, user } = useAuth();
   const navigate = useNavigate();
 
   const status = useStatus();

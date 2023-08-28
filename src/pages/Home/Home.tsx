@@ -3,9 +3,12 @@ import { useAuth } from "../../contexts/Auth";
 import Modal from '../../components/Modal/Modal'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
+import { useStatus } from "../../contexts/UserStatus";
 
 const Home = () => {
     const { user, updateUser, signOut } = useAuth()
+
+    const status = useStatus()
 
     const [modalIsOpened, setModalIsOpened] = useState(user?.user_metadata.first_name === undefined && user?.user_metadata.last_name === undefined)
 
@@ -42,6 +45,8 @@ const Home = () => {
                     <h2>Registration Closed</h2>
                     <p>Registration for RythmHacks 2023 is now closed. Thank you to everybody who applied!</p>
                 </div>
+                { status === 'Confirmed' &&
+                <>
                 <div className='flex gap-4 mt-4'>
                     <div className='container w-1/2'>
                         <h2><Link to='/dashboard/schedule'>Schedule</Link></h2>
@@ -62,6 +67,8 @@ const Home = () => {
                         <p>Devpost is where you'll be submitting your projects after you're done with them for the weekend, and also where you can get information on submissions, prizes, criteria, and more! Be sure to register yourself and your team on our Devpost site.</p>
                     </div>
                 </div>
+                </>
+                }
             </div>
         </div>
         <Modal 
