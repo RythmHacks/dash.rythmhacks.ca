@@ -104,11 +104,24 @@ export const Friday = [
   [],
   [
     {
+      title: "Intro to React",
+      description: "An introduction to becoming yet another full-stack React developer.",
+      startTime: "9:00 PM",
+      endTime: "10:00 PM",
+      height: 1,
+      heightOffset: 0,
+      width: 0.5,
+      location: "Meeting Room 1",
+      type: "workshop",
+    }
+  ],
+  [
+    {
       title: "Hacking Starts!",
       description: "The allocated hacking time starts now!",
       startTime: "10:00 PM",
       height: 1,
-      heightOffset: 1,
+      heightOffset: 0,
       type: "mainEvent",
     },
   ],
@@ -185,6 +198,7 @@ export const Saturday = [
     {
       title:
         "Copilot Time! Let's build a PlugIn for ChatGPT, BingChat and other Copilots",
+      description: "In this workshop, we will create a plugin for ChatGPT from scratch.",
       startTime: "2:00 PM",
       endTime: "3:00 PM",
       height: 1,
@@ -192,18 +206,7 @@ export const Saturday = [
       type: "workshop",
     },
   ],
-  [
-    {
-      title: "Soccer",
-      description: "Kick a ball around for an hour",
-      startTime: "3:00 PM",
-      endTime: "4:00 PM",
-      height: 1,
-      heightOffset: 0,
-      location: "Outside",
-      type: "activity",
-    }
-  ],
+  [],
   [
     {
       title: "Typing contest, sponsored by MonkeyType",
@@ -302,7 +305,18 @@ export const Sunday = [
     },
   ],
   [],
-  [],
+  [
+    {
+      title: "Soccer",
+      description: "Kick a ball around for an hour",
+      startTime: "1:45 PM",
+      endTime: "2:45 PM",
+      height: 1,
+      heightOffset: 0.75,
+      location: "Outside",
+      type: "activity",
+    }
+  ],
   [],
   [
     {
