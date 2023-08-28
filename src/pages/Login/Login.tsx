@@ -93,7 +93,7 @@ const Login = () => {
               required
             />
             <button 
-              className='submit-button w-full text-white' 
+              className='submit-button w-full text-white mb-2' 
               style={{backgroundColor: colours[loading]}}
               disabled={loading === 1}
               type="submit"
@@ -101,7 +101,7 @@ const Login = () => {
               {dialogs[loading]}{loading === 1 && loadingDots}
             </button>
             <button 
-              className="style-link p-0 mt-2"
+              className="style-link p-0"
               type="button"
               onClick={() => setHelpModalOpened(true)}
             >
