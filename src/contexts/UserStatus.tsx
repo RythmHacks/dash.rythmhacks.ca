@@ -7,7 +7,7 @@ export const StatusProvider = ({ children }: PropsWithChildren<{}>) => {
 
   const { supabase, user } = useAuth()
 
-  const [status, setStatus] = useState<string>('')
+  const [status, setStatus] = useState<string>('Not Started')
 
   useEffect(() => {
     console.log('used effect')
