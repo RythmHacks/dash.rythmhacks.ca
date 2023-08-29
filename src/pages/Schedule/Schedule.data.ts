@@ -244,13 +244,14 @@ export const Saturday = [
     },
   ],
   [],
+  [],
   [
     {
       title: "Jeopardy",
       description: "Test your knowledge with this fun game of Jeopardy!",
       location: "Meeting Room 1",
-      startTime: "9:00 PM",
-      endTime: "10:00 PM",
+      startTime: "10:00 PM",
+      endTime: "11:00 PM",
       height: 1,
       heightOffset: 0,
       type: "activity",
