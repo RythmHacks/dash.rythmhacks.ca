@@ -125,6 +125,18 @@ export const Friday = [
       type: "mainEvent",
     },
   ],
+  [
+    {
+      title: "How to win a hackathon without bribing the organizers",
+      description: "Learn some tips and tricks for winning a hackathon!",
+      startTime: "11:00 PM",
+      endTime: "12:00 AM",
+      height: 1,
+      heightOffset: 0,
+      location: "Meeting Room 1",
+      type: "workshop",
+    }
+  ]
 ] as ScheduleData[][];
 
 export const Saturday = [
@@ -289,8 +301,8 @@ export const Sunday = [
       title: "Judging",
       description: "Ready to present your projects to the judges?",
       startTime: "11:00 AM",
-      endTime: "1:30 PM",
-      height: 2.5,
+      endTime: "12:30 PM",
+      height: 1.5,
       heightOffset: 0,
       type: "mainEvent",
     },
