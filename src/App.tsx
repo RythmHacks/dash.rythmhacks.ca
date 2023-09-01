@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { useAuth } from './contexts/Auth'
+import Devpost from './pages/Devpost/Devpost';
 
 const Login = lazy(() => import('./pages/Login/Login'))
 // const Register = lazy(() => import('./pages/Register/Register'))
@@ -52,6 +53,7 @@ const App = () => {
               {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             {/* </Route> */}
             <Route path="guide" element={<Guide />} />
+            <Route path="devpost" element={<Devpost />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="dashboard/*" element={<Notfound />} />
