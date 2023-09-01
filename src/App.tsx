@@ -13,7 +13,7 @@ const Schedule = lazy(() => import('./pages/Schedule/Schedule'))
 // const HackerRegistration = lazy(() => import('./pages/Register/HackerRegistration'))
 // const HackerRSVP = lazy(() => import('./pages/Register/HackerRSVP'))
 const Discord = lazy(() => import('./pages/Discord/Discord'))
-
+const Guide = lazy(() => import('./pages/Guide/Guide'))
 
 const App = () => {
   const { user } = useAuth()
@@ -51,6 +51,7 @@ const App = () => {
             <Route path='rsvp' element={<HackerRSVP />} /> */}
               {/* <Route path="hacker" element={<HackerRegistration />} /> */}
             {/* </Route> */}
+            <Route path="guide" element={<Guide />} />
             <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="dashboard/*" element={<Notfound />} />
