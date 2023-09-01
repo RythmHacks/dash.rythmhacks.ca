@@ -186,7 +186,7 @@ export const Saturday = [
   ],
   [
     {
-      title: "MLH Capture the Flag",
+      title: "Snyk Cybersecurity Challenge: Capture the flag",
       startTime: "11:00 AM",
       endTime: "12:00 PM",
       height: 1,
