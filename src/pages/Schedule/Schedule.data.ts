@@ -322,7 +322,6 @@ export const Sunday = [
       type: "activity",
     }
   ],
-  [],
   [
     {
       title: "Closing Ceremony",
@@ -332,7 +331,7 @@ export const Sunday = [
       startTime: "3:00 PM",
       endTime: "4:00 PM",
       height: 1,
-      heightOffset: 0,
+      heightOffset: 0.25,
       type: "mainEvent",
     },
   ],
