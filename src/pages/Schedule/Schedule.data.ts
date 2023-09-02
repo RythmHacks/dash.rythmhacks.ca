@@ -208,9 +208,18 @@ export const Saturday = [
       height: 1,
       heightOffset: 0.5,
       type: "workshop",
-    },
+    }
   ],
-  [],
+  [{
+    title:
+      "Freezies",
+    description: "Cool off with some delicious water-based frozen confections.",
+    startTime: "3:00 PM",
+    endTime: "4:00 PM",
+    height: 1,
+    heightOffset: 0,
+    type: "meal",
+  }],
   [
     {
       title: "Typing contest, sponsored by MonkeyType",
