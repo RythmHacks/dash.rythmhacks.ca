@@ -185,14 +185,6 @@ export const Saturday = [
     },
   ],
   [
-    {
-      title: "Snyk Cybersecurity Challenge: Capture the flag",
-      startTime: "11:00 AM",
-      endTime: "12:00 PM",
-      height: 1,
-      heightOffset: 0,
-      type: "activity",
-    },
   ],
   [
     {
