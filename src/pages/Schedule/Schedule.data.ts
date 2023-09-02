@@ -248,7 +248,7 @@ export const Saturday = [
     {
       title: "Skribbl.io",
       description: "Draw, guess, and have a blast!",
-      location: "Online",
+      location: "Meeting Room 1",
       startTime: "6:15 PM",
       endTime: "7:00 PM",
       height: 0.75,
@@ -260,7 +260,7 @@ export const Saturday = [
     {
       title: "MLH !Light",
       description: "Join us for this fun minigame of creating a website without seeing it first!",
-      location: "Online",
+      location: "Meeting Room 1",
       startTime: "7:00 PM",
       endTime: "8:00 PM",
       height: 1,
