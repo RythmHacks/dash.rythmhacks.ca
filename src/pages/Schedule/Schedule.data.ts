@@ -214,6 +214,7 @@ export const Saturday = [
     title:
       "Freezies",
     description: "Cool off with some delicious water-based frozen confections.",
+    location: 'Food Pickup Area',
     startTime: "3:00 PM",
     endTime: "4:00 PM",
     height: 1,
@@ -243,6 +244,16 @@ export const Saturday = [
       heightOffset: 0.5,
       type: "meal",
     },
+    {
+      title: "Skribbl.io",
+      description: "Draw, guess, and have a blast!",
+      location: "Online",
+      startTime: "6:15 PM",
+      endTime: "7:00 PM",
+      height: 0.75,
+      heightOffset: 1.25,
+      type: "activity",
+    },
   ],
   [
     {
@@ -252,7 +263,7 @@ export const Saturday = [
       startTime: "7:00 PM",
       endTime: "8:00 PM",
       height: 1,
-      heightOffset: 0,
+      heightOffset: 1,
       type: "activity",
     },
   ],
