@@ -203,6 +203,7 @@ export const Saturday = [
       title:
         "Copilot Time! Let's build a PlugIn for ChatGPT, BingChat and other Copilots",
       description: "In this workshop, we will create a plugin for ChatGPT from scratch.",
+      location: 'Meeting Room 1',
       startTime: "2:00 PM",
       endTime: "3:00 PM",
       height: 1,
