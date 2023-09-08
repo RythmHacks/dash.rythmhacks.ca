@@ -47,22 +47,22 @@ const Home = () => {
                 </div>
                 { status === 'Confirmed' &&
                 <>
-                <div className='flex gap-4 mt-4'>
-                    <div className='container w-1/2'>
+                <div className='flex gap-4 mt-4 flex-col lg:flex-row'>
+                    <div className='container w-full lg:w-1/2'>
                         <h2><Link to='/dashboard/schedule'>Schedule</Link></h2>
                         <p>Click <Link to='/dashboard/schedule'>here</Link> to check out the full event schedule for RythmHacks 2023! We've got over 15 events including workshops, activities, networking sessions, panels, and more planned for this year's event. Don't miss out!</p>
                     </div>
-                    <div className='container w-1/2'>
+                    <div className='container w-full lg:w-1/2'>
                         <h2>Venue and Travel Information</h2>
                         <p>This year, RythmHacks will be taking place at the <a href='https://www.acceleratorcentre.com' target='_blank' rel='noreferrer'>Accelerator Centre</a> (295 Hagey Blvd, Waterloo, ON N2L 6R5) from September 1-3, 2023. Unfortunately, we're unable to reimburse travel this year, but there is plenty of parking and bike rack space to park your vehicle at the Accelerator Centre.</p>
                     </div>
                 </div>
-                <div className='flex gap-4 mt-4'>
-                    <div className='container w-1/2'>
+                <div className='flex gap-4 mt-4 flex-col lg:flex-row'>
+                    <div className='container w-full lg:w-1/2'>
                         <h2><Link to='/dashboard/discord'>Discord</Link></h2>
                         <p>Use our Discord integration to join the official RythmHacks Discord server! It's where we'll be making announcements and updates throughout the weekend. It's also a great place to ask questions, talk to other hackers, and get help on your hack!</p>
                     </div>
-                    <div className='container w-1/2'>
+                    <div className='container w-full lg:w-1/2'>
                         <h2><a href='https://rythmhacks2023.devpost.com' target='_blank' rel='noreferrer'>Devpost</a></h2>
                         <p>Devpost is where you'll be submitting your projects after you're done with them for the weekend, and also where you can get information on submissions, prizes, criteria, and more! Be sure to register yourself and your team on our Devpost site.</p>
                     </div>
