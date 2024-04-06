@@ -1,9 +1,9 @@
 import { useState, FormEvent } from "react";
 import { useAuth } from "../contexts/Auth";
 import Modal from "../components/Modal/Modal";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useStatus } from "../contexts/UserStatus";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
     const { user, updateUser, signOut } = useAuth();
@@ -22,7 +22,7 @@ const Home = () => {
         user?.user_metadata.last_name || ""
     );
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleNameChange = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,7 +38,7 @@ const Home = () => {
     const logout = async () => {
         const { error } = await signOut();
         if (error) throw error;
-        navigate("/");
+        router.push("/");
     };
 
     return (
@@ -67,13 +67,13 @@ const Home = () => {
                             <div className="flex gap-4 mt-4 flex-col lg:flex-row">
                                 <div className="container w-full lg:w-1/2">
                                     <h2>
-                                        <Link to="/dashboard/schedule">
+                                        <Link href="/dashboard/schedule">
                                             Schedule
                                         </Link>
                                     </h2>
                                     <p>
                                         Click{" "}
-                                        <Link to="/dashboard/schedule">
+                                        <Link href="/dashboard/schedule">
                                             here
                                         </Link>{" "}
                                         to check out the full event schedule for
@@ -108,7 +108,7 @@ const Home = () => {
                             <div className="flex gap-4 mt-4 flex-col lg:flex-row">
                                 <div className="container w-full lg:w-1/2">
                                     <h2>
-                                        <Link to="/dashboard/discord">
+                                        <Link href="/dashboard/discord">
                                             Discord
                                         </Link>
                                     </h2>

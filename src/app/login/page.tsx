@@ -29,6 +29,7 @@ const helpModalFAQ = [
 
 const Login = () => {
   // TODO: redirect when already signed in
+  // Actually, this will probably be all redone
   const { signInWithOtp } = useAuth()
 
   const [loading, setLoading] = useState(0)

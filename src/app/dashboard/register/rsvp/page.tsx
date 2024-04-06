@@ -1,11 +1,11 @@
+import { useRouter } from "next/router";
 import { useAuth } from "../../../contexts/Auth";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const HackerRSVP = () => {
     const { supabase, user, signOut } = useAuth();
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [submitText, setSubmitText] = useState<string>("Submit RSVP");
 
@@ -31,7 +31,7 @@ const HackerRSVP = () => {
     const logout = async () => {
         const { error } = await signOut();
         if (error) throw error;
-        navigate("/");
+        router.push("/");
     };
 
     supabase
@@ -52,7 +52,7 @@ const HackerRSVP = () => {
                     );
             } else {
                 if (fetchedStatus !== "Accepted") {
-                    navigate("/dashboard");
+                    router.push("/dashboard");
                 }
             }
         });
@@ -125,7 +125,7 @@ const HackerRSVP = () => {
         alert(
             "RSVP submitted successfully! You will now be directed back to the home page."
         );
-        navigate("/dashboard");
+        router.push("/dashboard");
     };
 
     function toggle(array: Array<string>, value: string) {

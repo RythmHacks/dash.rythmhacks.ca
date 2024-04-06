@@ -1,17 +1,17 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 
 import Navbar from "../components/Navbar/Navbar";
+import Link from "next/link";
 
-const Dashboard = () => {
+const Dashboard = ({ children }: { children: React.ReactNode }) => {
     const { user } = useAuth();
     return (
         <main className="flex">
             {user ? (
                 <>
                     <Navbar />
-                    <Outlet />
+                    {children}
                 </>
             ) : (
                 <>
@@ -19,7 +19,7 @@ const Dashboard = () => {
                     <div className="container h-min m-8">
                         <h1>Well darn</h1>
                         You're not logged in! Click{" "}
-                        <Link to="/login">here</Link> to be redirected to the
+                        <Link href="/login">here</Link> to be redirected to the
                         login page.
                     </div>
                 </>

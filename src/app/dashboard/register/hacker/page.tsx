@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Editor from "../../../components/Editor/Editor";
 import { useAuth } from "../../../contexts/Auth";
-import { Link } from "react-router-dom";
 import { Database } from "../../../../types/supabase";
 import "./Register.scss";
 import { BsCloudCheck, BsCloudArrowUp } from "react-icons/bs";
 import { AiOutlineWarning } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 import { useReward } from "react-rewards";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 type updateHackerRegistrationTableType =
     Database["public"]["Tables"]["hacker_registrations"]["Update"];
@@ -16,8 +16,7 @@ type autosavingIconType = "Saving..." | "Saved!" | "No changes detected" | "";
 const HackerRegistration = () => {
     const { supabase, user, signOut } = useAuth();
 
-    const [registrationData, setRegistrationData] =
-        useState<updateHackerRegistrationTableType>({});
+    const [registrationData, setRegistrationData] = useState<updateHackerRegistrationTableType>({});
 
     const [modifiedRegistrationData, setModifiedRegistrationData] =
         useState<updateHackerRegistrationTableType>({});
@@ -28,20 +27,19 @@ const HackerRegistration = () => {
     const [loading, setLoading] = useState(0);
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [validationMessages, setValidationMessages] = useState<String[]>();
-    const [showValidationMessages, setShowValidationMessages] =
-        useState<boolean>(false);
+    const [showValidationMessages, setShowValidationMessages] = useState<boolean>(false);
 
     const firstName = `${useAuth().user?.user_metadata.first_name}`;
     const lastName = `${useAuth().user?.user_metadata.last_name}`;
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const { reward } = useReward("rewardId", "confetti");
 
     const logout = async () => {
         const { error } = await signOut();
         if (error) throw error;
-        navigate("/");
+        router.push("/");
     };
 
     const handleSubmit = (event: React.FormEvent) => {
@@ -51,10 +49,7 @@ const HackerRegistration = () => {
         const emptyFields: String[] = [];
 
         Object.entries(registrationData).forEach(([column, value]) => {
-            if (
-                column === "question_1" &&
-                (value === '<p class="mb-1"><br></p>' || value === "")
-            ) {
+            if (column === "question_1" && (value === '<p class="mb-1"><br></p>' || value === "")) {
                 emptyFields.push("Registration Question 1");
             } else if (
                 column === "question_2" &&
@@ -63,8 +58,7 @@ const HackerRegistration = () => {
                 emptyFields.push("Registration Question 2");
             } else if (value === "") {
                 if (column === "phone_number") emptyFields.push("Phone Number");
-                else
-                    emptyFields.push(column[0].toUpperCase() + column.slice(1));
+                else emptyFields.push(column[0].toUpperCase() + column.slice(1));
             }
         });
 
@@ -107,12 +101,10 @@ const HackerRegistration = () => {
             [column]: value,
         }));
 
-        setModifiedRegistrationData(
-            (appData: updateHackerRegistrationTableType) => ({
-                ...appData,
-                [column]: value,
-            })
-        );
+        setModifiedRegistrationData((appData: updateHackerRegistrationTableType) => ({
+            ...appData,
+            [column]: value,
+        }));
     };
 
     useEffect(() => {
@@ -129,8 +121,7 @@ const HackerRegistration = () => {
                 .eq("id", user?.id)
                 .then(({ data, error }: { data: any; error: any }) => {
                     if (error) throw error;
-                    if (basicInfoAutosavingMessage)
-                        setBasicInfoAutosavingMessage("Saved!");
+                    if (basicInfoAutosavingMessage) setBasicInfoAutosavingMessage("Saved!");
                     setSaving(false);
                 });
             setModifiedRegistrationData({});
@@ -156,10 +147,7 @@ const HackerRegistration = () => {
                     );
                     logout();
                     if (error) throw error;
-                    else
-                        throw TypeError(
-                            "no hacker registration matching the id was found"
-                        );
+                    else throw TypeError("no hacker registration matching the id was found");
                 } else {
                     setRegistrationData(data[0]);
                     setLoading(2);
@@ -174,9 +162,8 @@ const HackerRegistration = () => {
             <div className="container">
                 <h1>Oh no!</h1>
                 <p>
-                    Your data could not be retrieved. Try checking your internet
-                    connection. If this error persists, contact the RythmHacks
-                    team.
+                    Your data could not be retrieved. Try checking your internet connection. If this
+                    error persists, contact the RythmHacks team.
                 </p>
             </div>
         );
@@ -186,12 +173,8 @@ const HackerRegistration = () => {
                 <div className="container text-left justify-start">
                     <h1>Hacker Registration Form</h1>
                     <p>
-                        Fill out this form to register for the event as a
-                        hacker.{" "}
-                        <a
-                            className="p-0"
-                            onClick={() => navigate("/dashboard/register")}
-                        >
+                        Fill out this form to register for the event as a hacker.{" "}
+                        <a className="p-0" onClick={() => router.push("/dashboard/register")}>
                             Go back to the dashboard.
                         </a>{" "}
                         <br />
@@ -229,11 +212,7 @@ const HackerRegistration = () => {
                         </div>
                         <div>
                             <label>Last Name</label>
-                            <input
-                                value={lastName}
-                                disabled
-                                className="cursor-not-allowed"
-                            ></input>
+                            <input value={lastName} disabled className="cursor-not-allowed"></input>
                         </div>
                         <div>
                             <label>Email</label>
@@ -245,43 +224,32 @@ const HackerRegistration = () => {
                         </div>
                         <p className="!text-[#888] mb-4">
                             Want to change these values? Do so in the{" "}
-                            <Link to="/dashboard/settings">settings</Link>
+                            <Link href="/dashboard/settings">settings</Link>
                         </p>
                         <div>
                             <label htmlFor="gender">Gender (optional)</label>
                             <select
                                 id="gender"
                                 value={
-                                    [
-                                        "Prefer not to say",
-                                        "Male",
-                                        "Female",
-                                        "Non-binary",
-                                    ].includes(registrationData.gender || "")
+                                    ["Prefer not to say", "Male", "Female", "Non-binary"].includes(
+                                        registrationData.gender || ""
+                                    )
                                         ? registrationData.gender
                                         : ""
                                 }
                                 onChange={(e) => {
-                                    updateRegistrationData(
-                                        "gender",
-                                        e.target.value
-                                    );
+                                    updateRegistrationData("gender", e.target.value);
                                 }}
                             >
                                 <option>Prefer not to say</option>
                                 <option>Male</option>
                                 <option>Female</option>
                                 <option>Non-binary</option>
-                                <option value="">
-                                    Prefer to self-describe
-                                </option>
+                                <option value="">Prefer to self-describe</option>
                             </select>
-                            {![
-                                "Prefer not to say",
-                                "Male",
-                                "Female",
-                                "Non-binary",
-                            ].includes(registrationData.gender || "") && (
+                            {!["Prefer not to say", "Male", "Female", "Non-binary"].includes(
+                                registrationData.gender || ""
+                            ) && (
                                 <>
                                     <label htmlFor="self-described-gender">
                                         Self-described Gender:
@@ -290,10 +258,7 @@ const HackerRegistration = () => {
                                         id="self-described-gender"
                                         value={registrationData.gender}
                                         onChange={(e) => {
-                                            updateRegistrationData(
-                                                "gender",
-                                                e.target.value
-                                            );
+                                            updateRegistrationData("gender", e.target.value);
                                         }}
                                     ></input>
                                 </>
@@ -301,9 +266,7 @@ const HackerRegistration = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="age">
-                                Age (as of September 1, 2023)
-                            </label>
+                            <label htmlFor="age">Age (as of September 1, 2023)</label>
                             <input
                                 id="age"
                                 type="number"
@@ -311,19 +274,12 @@ const HackerRegistration = () => {
                                 max={200}
                                 placeholder="Enter age"
                                 value={registrationData.age}
-                                onChange={(e) =>
-                                    updateRegistrationData(
-                                        "age",
-                                        e.target.value
-                                    )
-                                }
+                                onChange={(e) => updateRegistrationData("age", e.target.value)}
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="grade">
-                                Grade (during the 2023-24 school year)
-                            </label>
+                            <label htmlFor="grade">Grade (during the 2023-24 school year)</label>
                             <input
                                 id="grade"
                                 type="number"
@@ -331,35 +287,22 @@ const HackerRegistration = () => {
                                 max={12}
                                 placeholder="Enter grade"
                                 value={registrationData.grade}
-                                onChange={(e) =>
-                                    updateRegistrationData(
-                                        "grade",
-                                        e.target.value
-                                    )
-                                }
+                                onChange={(e) => updateRegistrationData("grade", e.target.value)}
                             ></input>
                         </div>
 
                         <div>
-                            <label htmlFor="school">
-                                School (don't abbreviate)
-                            </label>
+                            <label htmlFor="school">School (don't abbreviate)</label>
                             <input
                                 id="school"
                                 value={registrationData.school}
                                 placeholder="Laurel Heights Secondary School"
-                                onChange={(e) =>
-                                    updateRegistrationData(
-                                        "school",
-                                        e.target.value
-                                    )
-                                }
+                                onChange={(e) => updateRegistrationData("school", e.target.value)}
                             />
                         </div>
                         <p className="!text-[#888] mb-4">
-                            Note: only students that are about to enter or are
-                            already in high school during our event are allowed
-                            to attend.
+                            Note: only students that are about to enter or are already in high
+                            school during our event are allowed to attend.
                         </p>
 
                         <div>
@@ -370,10 +313,7 @@ const HackerRegistration = () => {
                                 value={registrationData.phone_number}
                                 placeholder="Enter phone number"
                                 onChange={(e) =>
-                                    updateRegistrationData(
-                                        "phone_number",
-                                        e.target.value
-                                    )
+                                    updateRegistrationData("phone_number", e.target.value)
                                 }
                             ></input>
                         </div>
@@ -384,12 +324,7 @@ const HackerRegistration = () => {
                                 id="country"
                                 value={registrationData.country}
                                 placeholder="Enter country"
-                                onChange={(e) =>
-                                    updateRegistrationData(
-                                        "country",
-                                        e.target.value
-                                    )
-                                }
+                                onChange={(e) => updateRegistrationData("country", e.target.value)}
                             ></input>
                         </div>
 
@@ -568,31 +503,25 @@ const HackerRegistration = () => {
                         <h3 className="mt-12">Registration Questions</h3>
 
                         <h4>
-                            If you had the ability to create any app/website
-                            that would solve any problem in the world, what
-                            would it be? What technologies would you use? What
-                            features would it have? (800c)
+                            If you had the ability to create any app/website that would solve any
+                            problem in the world, what would it be? What technologies would you use?
+                            What features would it have? (800c)
                         </h4>
                         <Editor
                             initialValue={registrationData.question_1 || ""}
-                            onEditorChange={(html) =>
-                                updateRegistrationData("question_1", html)
-                            }
+                            onEditorChange={(html) => updateRegistrationData("question_1", html)}
                         />
 
                         <h4 className="mt-8">
-                            What's something that you've always wanted to do,
-                            but you've never done? What roadblocks have you
-                            faced that have prevented you from pursuing that
-                            idea? It could be a new skill you want to learn, a
-                            project you want to build, a business you want to
-                            start, anything you can think of! (1000c)
+                            What's something that you've always wanted to do, but you've never done?
+                            What roadblocks have you faced that have prevented you from pursuing
+                            that idea? It could be a new skill you want to learn, a project you want
+                            to build, a business you want to start, anything you can think of!
+                            (1000c)
                         </h4>
                         <Editor
                             initialValue={registrationData.question_2 || ""}
-                            onEditorChange={(html) =>
-                                updateRegistrationData("question_2", html)
-                            }
+                            onEditorChange={(html) => updateRegistrationData("question_2", html)}
                         />
 
                         <div className="flex gap-2 mt-8">
@@ -616,14 +545,10 @@ const HackerRegistration = () => {
                                 <button
                                     type="submit"
                                     style={{
-                                        backgroundColor: submitted
-                                            ? "#64B786"
-                                            : "#558CA9",
+                                        backgroundColor: submitted ? "#64B786" : "#558CA9",
                                     }}
                                 >
-                                    {!submitted
-                                        ? "Submit (you can edit it later)"
-                                        : "Submitted!"}
+                                    {!submitted ? "Submit (you can edit it later)" : "Submitted!"}
                                 </button>
                             )}
                         </div>
@@ -631,24 +556,20 @@ const HackerRegistration = () => {
                             <div
                                 className="mt-4 flex-col text-left !items-start text-dark3"
                                 style={{
-                                    display: showValidationMessages
-                                        ? "flex"
-                                        : "none",
+                                    display: showValidationMessages ? "flex" : "none",
                                 }}
                             >
                                 <div className="bg-red-200 p-2 rounded-md !flex-row flex items-center">
                                     <AiOutlineWarning size={"24px"} />{" "}
                                     <p>
-                                        Uh oh! Your form has some errors that
-                                        need to be fixed before submitting.
+                                        Uh oh! Your form has some errors that need to be fixed
+                                        before submitting.
                                     </p>
                                 </div>
                                 <div className="flex-col !items-start bg-slate-200 p-2 rounded-md w-full">
-                                    {validationMessages.map(
-                                        (message, index) => {
-                                            return <p key={index}>{message}</p>;
-                                        }
-                                    )}
+                                    {validationMessages.map((message, index) => {
+                                        return <p key={index}>{message}</p>;
+                                    })}
                                 </div>
                             </div>
                         )}

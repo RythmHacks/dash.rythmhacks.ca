@@ -1,5 +1,5 @@
+import Link from "next/link";
 import Navbar from "./components/Navbar/Navbar";
-import { Link } from "react-router-dom";
 
 const Notfound = () => {
     return (
@@ -9,7 +9,7 @@ const Notfound = () => {
                 <h1>Well darn again</h1>
                 <p>
                     404: We couldn't find this page.{" "}
-                    <Link to="/login">Go somewhere else.</Link>
+                    <Link href="/login">Go somewhere else.</Link>
                 </p>
             </div>
         </div>

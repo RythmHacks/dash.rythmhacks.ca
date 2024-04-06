@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "./contexts/Auth";
+import { StatusProvider } from "./contexts/UserStatus";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +16,6 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const user = true; // placeholder
-
     if (!localStorage.theme) {
         if (
             window.matchMedia &&
@@ -49,13 +49,11 @@ export default function RootLayout({
 
     return (
         <html lang="en">
-            <BrowserRouter>
-                <AuthProvider>
-                    <StatusProvider>
-                        <body className={inter.className}>{children}</body>
-                    </StatusProvider>
-                </AuthProvider>
-            </BrowserRouter>
+            <AuthProvider>
+                <StatusProvider>
+                    <body className={inter.className}>{children}</body>
+                </StatusProvider>
+            </AuthProvider>
         </html>
     );
 }
