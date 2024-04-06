@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useAuth } from '../../contexts/Auth'
+import { useAuth } from '../contexts/Auth'
 import logo from '../../assets/rythmhacks-circle.png'
 import { BsCheckCircle } from 'react-icons/bs'
-import Modal from '../../components/Modal/Modal'
+import Modal from '../components/Modal/Modal'
 
 const helpModalFAQ = [
   { 
@@ -28,6 +28,7 @@ const helpModalFAQ = [
 ]
 
 const Login = () => {
+  // TODO: redirect when already signed in
   const { signInWithOtp } = useAuth()
 
   const [loading, setLoading] = useState(0)

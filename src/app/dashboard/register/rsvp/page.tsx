@@ -1,4 +1,4 @@
-import { useAuth } from "../../contexts/Auth";
+import { useAuth } from "../../../contexts/Auth";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -68,7 +68,7 @@ const HackerRSVP = () => {
                     "Are you sure you aren't attending RythmHacks? Your acceptance will be forfeited and given to someone else. This action cannot be reverted."
                 )
             ) {
-                setSubmitText('Submit RSVP')
+                setSubmitText("Submit RSVP");
                 return;
             }
         }
@@ -76,12 +76,12 @@ const HackerRSVP = () => {
         let finalDRestrictions = dRestrictions;
 
         if (finalDRestrictions.length === 0) {
-            finalDRestrictions = [other]
+            finalDRestrictions = [other];
         } else {
-            finalDRestrictions.push(other)
+            finalDRestrictions.push(other);
         }
 
-        console.log(finalDRestrictions, other)
+        console.log(finalDRestrictions, other);
 
         let { data, error } = await supabase
             .from("hacker_registrations")
@@ -145,7 +145,11 @@ const HackerRSVP = () => {
             <div className="container">
                 <h2>Hacker RSVP</h2>
                 <p className="mb-4">
-                  Confirm your attendance and RSVP for the event here! <strong>The RSVP deadline is Monday, August 21st, at 11:59 PM.</strong> Be sure to submit the form before then!
+                    Confirm your attendance and RSVP for the event here!{" "}
+                    <strong>
+                        The RSVP deadline is Monday, August 21st, at 11:59 PM.
+                    </strong>{" "}
+                    Be sure to submit the form before then!
                 </p>
             </div>
             <div className="container mt-4">
