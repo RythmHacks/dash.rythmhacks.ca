@@ -1,9 +1,10 @@
+import { auth } from "@/server/auth";
 import { redirect } from "next/navigation";
 
-const Home = () => {
-    const user = true; // placeholder
+const Home = async () => {
+    const session = await auth(); // placeholder
 
-    redirect(user ? "/dashboard" : "/login")
+    redirect(session?.user ? "/dashboard" : "/login");
 };
 
 export default Home;

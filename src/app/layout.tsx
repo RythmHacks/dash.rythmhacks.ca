@@ -17,10 +17,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     if (!localStorage.theme) {
-        if (
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-        ) {
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
             localStorage.theme = "dark";
         } else if (
             window.matchMedia &&
@@ -32,28 +29,22 @@ export default function RootLayout({
         }
     }
 
-    if (
-        localStorage.theme === "dark" &&
-        !document.documentElement.classList.contains("dark")
-    ) {
+    if (localStorage.theme === "dark" && !document.documentElement.classList.contains("dark")) {
         document.documentElement.classList.add("dark");
         document.documentElement.classList.remove("light");
     }
-    if (
-        localStorage.theme === "light" &&
-        !document.documentElement.classList.contains("light")
-    ) {
+    if (localStorage.theme === "light" && !document.documentElement.classList.contains("light")) {
         document.documentElement.classList.add("light");
         document.documentElement.classList.remove("dark");
     }
 
     return (
         <html lang="en">
-            <AuthProvider>
-                <StatusProvider>
-                    <body className={inter.className}>{children}</body>
-                </StatusProvider>
-            </AuthProvider>
+            <body className={inter.className}>
+                <AuthProvider>
+                    <StatusProvider>{children}</StatusProvider>
+                </AuthProvider>
+            </body>
         </html>
     );
 }
