@@ -4,10 +4,12 @@ RythmHacks hacker dashboard and application portal
 
 ## How to contribute
 
-1. Clone the repository<br/>
-```
-git clone https://github.com/RythmHacks/dash.rythmhacks.ca.git
-```
+1. Clone the repository
+
+    ```bash
+    git clone https://github.com/RythmHacks/dash.rythmhacks.ca.git
+    ```
+
 2. Install PostgreSQL (guide [here](https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database))
 3. Run `psql postgres` then `CREATE DATABASE rythmhacksdash`
 4. Create a file in the project root directory called `.env.local`
