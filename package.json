@@ -4,7 +4,6 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@auth/core": "^0.28.2",
         "@auth/prisma-adapter": "^1.5.2",
         "@lexical/react": "^0.9.1",
         "@prisma/client": "^5.12.1",

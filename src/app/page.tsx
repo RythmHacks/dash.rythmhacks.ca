@@ -1,4 +1,4 @@
-import { auth } from "@/server/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 const Home = async () => {

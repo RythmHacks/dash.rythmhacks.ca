@@ -6,12 +6,7 @@ import { Adapter } from "next-auth/adapters";
 
 export const config = {
     adapter: PrismaAdapter(prisma) as Adapter,
-    providers: [
-        Google({
-            clientId: process.env.AUTH_GOOGLE_ID,
-            clientSecret: process.env.AUTH_GOOGLE_SECRET,
-        }),
-    ],
+    providers: [Google],
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
