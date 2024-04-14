@@ -2,12 +2,11 @@ import { FormEvent, useState } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-import { auth } from "@/auth";
-import { prisma } from "@/prisma";
+import { useSession } from "next-auth/react";
 
 const Settings = async () => {
     // const { user, updateUser } = useAuth()
-    const session = await auth();
+    const { data: session, update } = useSession();
     const user = session!.user;
 
     const [firstName, setFirstName] = useState<string>(user?.name || "Unnamed");
@@ -23,9 +22,10 @@ const Settings = async () => {
             const nameHasChanged = firstName.trim() !== user?.name || lastName !== user?.lastName;
             const emailHasChanged = email.trim() !== user?.email;
 
-            await prisma.user.update({
-                where: { id: user?.id },
-                data: {
+            await update({
+                ...session,
+                user: {
+                    ...user,
                     name: firstName.trim(),
                     lastName: lastName.trim(),
                     email: email.trim(),

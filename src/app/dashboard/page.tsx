@@ -2,13 +2,12 @@ import { useState, FormEvent } from "react";
 import Modal from "../components/Modal/Modal";
 import { useStatus } from "../contexts/UserStatus";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { auth, signOut } from "@/auth";
-import { prisma } from "@/prisma";
+import { signOut } from "@/auth";
+import { useSession } from "next-auth/react";
 
 const Home = async () => {
-    const session = await auth();
-    const user = session!.user;
+    const { data: session, update } = useSession();
+    const user = session?.user;
 
     const status = useStatus();
 
@@ -19,8 +18,6 @@ const Home = async () => {
     const [firstName, setFirstName] = useState<string>(user?.name || "");
     const [lastName, setLastName] = useState<string>(user?.lastName || "");
 
-    const router = useRouter();
-
     const handleNameChange = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // await updateUser({
@@ -29,9 +26,10 @@ const Home = async () => {
         //         last_name: lastName,
         //     },
         // });
-        await prisma.user.update({
-            where: { id: user?.id },
-            data: {
+        await update({
+            ...session,
+            user: {
+                ...user,
                 name: firstName,
                 lastName,
             },

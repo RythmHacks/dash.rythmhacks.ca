@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/Auth";
 import { BsDiscord } from "react-icons/bs";
 import { useStatus } from "../../contexts/UserStatus";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const Discord = () => {
-    const { user } = useAuth();
+    const { data: session } = useSession();
+    const user = session?.user;
 
     const status = useStatus();
 
@@ -75,7 +76,7 @@ const Discord = () => {
                 </div>
             </div>
         );
-    } else if (user?.user_metadata.joined_discord || result) {
+    } else if (user?.joinedDiscord || result) {
         if (result && result.message === "User successfully added to Discord server.") {
             return (
                 <div className="page">
