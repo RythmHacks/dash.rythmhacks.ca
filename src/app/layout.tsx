@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { AuthProvider } from "./contexts/Auth";
+import "./styles.scss";
 import { StatusProvider } from "./contexts/UserStatus";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import Theme from "./components/Theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +23,7 @@ export default async function RootLayout({
     if (session?.user) {
         // don't allow sensitive data to make it to the client
         session.user = {
+            id: session.user.id,
             name: session.user.name,
             lastName: session.user.lastName,
             joinedDiscord: session.user.joinedDiscord,
@@ -31,34 +32,13 @@ export default async function RootLayout({
         };
     }
 
-    if (!localStorage.theme) {
-        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            localStorage.theme = "dark";
-        } else if (
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: light)").matches
-        ) {
-            localStorage.theme = "light";
-        } else {
-            localStorage.theme = "dark";
-        }
-    }
-
-    if (localStorage.theme === "dark" && !document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.add("dark");
-        document.documentElement.classList.remove("light");
-    }
-    if (localStorage.theme === "light" && !document.documentElement.classList.contains("light")) {
-        document.documentElement.classList.add("light");
-        document.documentElement.classList.remove("dark");
-    }
-
     return (
         <html lang="en">
             <body className={inter.className}>
                 {/* <AuthProvider>
                     <StatusProvider>{children}</StatusProvider>
                 </AuthProvider> */}
+                <Theme />
                 <SessionProvider session={session}>{children}</SessionProvider>
             </body>
         </html>

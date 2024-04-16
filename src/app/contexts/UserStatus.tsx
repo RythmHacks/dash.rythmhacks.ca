@@ -1,5 +1,4 @@
 "use client";
-import { auth } from "@/auth";
 import prisma from "@/prisma";
 import { useSession } from "next-auth/react";
 import { createContext, PropsWithChildren, useEffect, useState, useContext } from "react";
@@ -8,13 +7,11 @@ const StatusContext = createContext<string>("");
 
 export const StatusProvider = ({ children }: PropsWithChildren<{}>) => {
     const [status, setStatus] = useState<string>("Not Started");
+    const { data: session } = useSession();
+    const user = session?.user;
 
     useEffect(() => {
         (async () => {
-            "use server";
-            const session = await auth();
-            const user = session?.user;
-
             console.log("used effect");
             setStatus(
                 (

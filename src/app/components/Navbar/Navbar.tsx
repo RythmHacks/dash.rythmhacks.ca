@@ -10,26 +10,23 @@ import { AiOutlineLink } from "react-icons/ai";
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
 import { GoKebabHorizontal } from "react-icons/go";
 import { FiMenu } from "react-icons/fi";
-import { useAuth } from "../../contexts/Auth";
 import { useStatus } from "../../contexts/UserStatus";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
-    const { user, signOut } = useAuth();
+    // const { user, signOut } = useAuth();
+    const { data: session } = useSession();
+    const user = session?.user;
 
     const router = useRouter();
 
     let name;
 
-    if (
-        user?.user_metadata.first_name &&
-        user?.user_metadata.last_name &&
-        user?.user_metadata.first_name !== "" &&
-        user?.user_metadata.last_name !== ""
-    ) {
-        name = `${user?.user_metadata.first_name} ${user?.user_metadata.last_name}`;
+    if (user?.name && user?.lastName && user?.name !== "" && user?.lastName !== "") {
+        name = `${user?.name} ${user?.lastName}`;
     } else {
         name = "Unnamed Hacker";
     }
@@ -40,9 +37,7 @@ const Navbar = () => {
     const status = useStatus();
 
     const logout = async () => {
-        const { error } = await signOut();
-        if (error) throw error;
-        router.push("/");
+        await signOut({ callbackUrl: "/" });
     };
 
     const handlePopupClick = (event: React.MouseEvent) => {

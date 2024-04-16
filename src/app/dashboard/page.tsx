@@ -2,8 +2,7 @@ import { useState, FormEvent } from "react";
 import Modal from "../components/Modal/Modal";
 import { useStatus } from "../contexts/UserStatus";
 import Link from "next/link";
-import { signOut } from "@/auth";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 const Home = async () => {
     const { data: session, update } = useSession();
@@ -39,8 +38,7 @@ const Home = async () => {
     };
 
     const logout = async () => {
-        "use server";
-        await signOut({ redirectTo: "/" });
+        await signOut({ callbackUrl: "/" });
     };
 
     return (
