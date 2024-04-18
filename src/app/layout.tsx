@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles.scss";
 import { AppContextProvider } from "./contexts/AppContext";
-import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import Theme from "./components/Theme";
 import prisma from "@/prisma";

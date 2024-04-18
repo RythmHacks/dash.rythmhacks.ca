@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import logo from "../assets/rythmhacks-circle.png";
+import logo from "../../../public/rythmhacks-circle.png";
 import { BsCheckCircle } from "react-icons/bs";
 import Modal from "../components/Modal/Modal";
 import Image from "next/image";

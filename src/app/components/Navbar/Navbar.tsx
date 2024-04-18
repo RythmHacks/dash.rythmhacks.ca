@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import logo from "../../assets/rythmhacks-circle.png";
+import logo from "../../../../public/rythmhacks-circle.png";
 import { BiHome } from "react-icons/bi";
 import { BsFillGearFill, BsCalendar2Check, BsDiscord, BsBook } from "react-icons/bs";
 import { SiDevpost } from "react-icons/si";
