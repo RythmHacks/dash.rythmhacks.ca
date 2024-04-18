@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/rythmhacks-circle.png";
 import { BsCheckCircle } from "react-icons/bs";
 import Modal from "../components/Modal/Modal";
 import Image from "next/image";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const helpModalFAQ = [
     {
@@ -35,10 +37,7 @@ const helpModalFAQ = [
 ];
 
 const Login = () => {
-    // TODO: redirect when already signed in
-    // Actually, this will probably be all redone
-    // const { signInWithOtp } = useAuth()
-
+    const { data: session } = useSession();
     const [loading, setLoading] = useState(0);
     const [email, setEmail] = useState("");
 
@@ -72,7 +71,16 @@ const Login = () => {
         // } finally {
         //   clearInterval(loadingDotsInterval)
         // }
+        await signIn("google");
     };
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (session?.user) {
+            router.push("/dashboard");
+        }
+    });
 
     const dialogs = [
         "Send magic link",
@@ -97,13 +105,13 @@ const Login = () => {
                     <Image
                         src={logo}
                         alt="loginlogo"
-                        className="block md:hidden rounded-md h-[4rem]"
+                        className="block md:hidden rounded-md size-[4rem]"
                     ></Image>
                     <h1 className="mt-4 text-center md:text-left">Log In to RythmHacks</h1>
                     <Image
                         src={logo}
                         alt="loginlogo"
-                        className="hidden md:block rounded-md h-[4rem]"
+                        className="hidden md:block rounded-md size-[4rem]"
                     ></Image>
                 </div>
 
@@ -120,7 +128,7 @@ const Login = () => {
                                 placeholder="email@example.com"
                                 value={email}
                                 onChange={(e: any) => setEmail(e.target.value)}
-                                required
+                                // required
                             />
                             <button
                                 className="submit-button w-full text-white mb-2"
@@ -137,6 +145,9 @@ const Login = () => {
                                 onClick={() => setHelpModalOpened(true)}
                             >
                                 Need help?
+                            </button>
+                            <button className="submit-button w-full text-white mb-2" type="submit">
+                                Sign in with Google
                             </button>
                         </form>
                     </div>

@@ -10,8 +10,8 @@ import { AiOutlineLink } from "react-icons/ai";
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
 import { GoKebabHorizontal } from "react-icons/go";
 import { FiMenu } from "react-icons/fi";
-import { useStatus } from "../../contexts/UserStatus";
-import { useRouter } from "next/router";
+import { useStatus } from "../../contexts/AppContext";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
@@ -20,14 +20,13 @@ const Navbar = () => {
     // const { user, signOut } = useAuth();
     const { data: session } = useSession();
     const user = session?.user;
+    console.log(user);
 
     const router = useRouter();
 
-    let name;
+    let name = `${user?.name ?? ""} ${user?.lastName ?? ""}`;
 
-    if (user?.name && user?.lastName && user?.name !== "" && user?.lastName !== "") {
-        name = `${user?.name} ${user?.lastName}`;
-    } else {
+    if (name == " ") {
         name = "Unnamed Hacker";
     }
 
@@ -37,7 +36,7 @@ const Navbar = () => {
     const status = useStatus();
 
     const logout = async () => {
-        await signOut({ callbackUrl: "/" });
+        await signOut({ callbackUrl: "/login" });
     };
 
     const handlePopupClick = (event: React.MouseEvent) => {
@@ -72,7 +71,11 @@ const Navbar = () => {
                         className="flex gap-4 items-center p-8 pb-0 cursor-pointer"
                         onClick={() => router.push("/dashboard")}
                     >
-                        <Image src={logo} alt="sidebarlogo" className="rounded-md h-[3rem]"></Image>
+                        <Image
+                            src={logo}
+                            alt="sidebarlogo"
+                            className="rounded-md size-[3rem]"
+                        ></Image>
                         <h3 onClick={() => router.push("/dashboard")}>
                             Hacker
                             <br />
@@ -179,7 +182,7 @@ const Navbar = () => {
                         <Image
                             src={logo}
                             alt="sidebarlogo"
-                            className="rounded-md h-[2.5rem]"
+                            className="rounded-md size-[2.5rem]"
                         ></Image>
                         <h3
                             onClick={() => router.push("/dashboard")}

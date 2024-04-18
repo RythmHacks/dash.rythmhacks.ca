@@ -2,10 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import "./Schedule.scss";
 import { times, eventTypes, Friday, Saturday, Sunday } from "./Schedule.data";
 import Day from "./Day";
-import { useAuth } from "../../contexts/Auth";
 import { BsFullscreen } from "react-icons/bs";
 import Modal from "../../components/Modal/Modal";
-import { useStatus } from "../../contexts/UserStatus";
+import { useStatus } from "../../contexts/AppContext";
 import { useRouter } from "next/router";
 
 const Schedule = () => {
@@ -66,9 +65,7 @@ const Schedule = () => {
                         }`}
                         onClick={() => {
                             setCurrentDay(0);
-                            document
-                                .getElementById("breyers")
-                                ?.scrollIntoView();
+                            document.getElementById("breyers")?.scrollIntoView();
                         }}
                     >
                         Friday
@@ -79,9 +76,7 @@ const Schedule = () => {
                         }`}
                         onClick={() => {
                             setCurrentDay(1);
-                            document
-                                .getElementById("breyers")
-                                ?.scrollIntoView();
+                            document.getElementById("breyers")?.scrollIntoView();
                         }}
                     >
                         Saturday
@@ -92,9 +87,7 @@ const Schedule = () => {
                         }`}
                         onClick={() => {
                             setCurrentDay(2);
-                            document
-                                .getElementById("breyers")
-                                ?.scrollIntoView();
+                            document.getElementById("breyers")?.scrollIntoView();
                         }}
                     >
                         Sunday
@@ -120,11 +113,7 @@ const Schedule = () => {
                                 if (currentDay === 2 && index <= 6) {
                                     return null;
                                 }
-                                return (
-                                    <p className="pb-36 h-4 leading-4">
-                                        {time}
-                                    </p>
-                                );
+                                return <p className="pb-36 h-4 leading-4">{time}</p>;
                             })}
                             {/* <div className="hidden md:block h-36"></div> */}
                         </div>
@@ -132,11 +121,7 @@ const Schedule = () => {
                     </div>
                 </div>
             </div>
-            <Modal
-                isOpened={fullScreen}
-                setIsOpened={setFullScreen}
-                closable={true}
-            >
+            <Modal isOpened={fullScreen} setIsOpened={setFullScreen} closable={true}>
                 <div id="breyers" className="h-4"></div>
                 <div className="flex mt-4">
                     <div className="flex-col w-1/6 gap-4 flex">
@@ -147,9 +132,7 @@ const Schedule = () => {
                             if (currentDay === 2 && index <= 6) {
                                 return null;
                             }
-                            return (
-                                <p className="pb-36 h-4 leading-4">{time}</p>
-                            );
+                            return <p className="pb-36 h-4 leading-4">{time}</p>;
                         })}
                         {/* <div className="hidden md:block h-36"></div> */}
                     </div>

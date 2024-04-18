@@ -1,17 +1,23 @@
-import { FormEvent, useState } from "react";
+"use client";
+import { FormEvent, useEffect, useState } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 import { useSession } from "next-auth/react";
 
-const Settings = async () => {
+const Settings = () => {
     // const { user, updateUser } = useAuth()
     const { data: session, update } = useSession();
-    const user = session!.user;
+    const user = session?.user;
 
     const [firstName, setFirstName] = useState<string>(user?.name || "Unnamed");
     const [lastName, setLastName] = useState<string>(user?.lastName || "Hacker");
     const [email, setEmail] = useState<string>(user?.email!);
+    const [theme, setTheme] = useState<string>("loading");
+
+    useEffect(() => {
+        setTheme(localStorage.theme);
+    });
 
     const [nameUpdated, setNameUpdated] = useState(false);
     const [emailUpdated, setEmailUpdated] = useState(false);
@@ -142,7 +148,7 @@ const Settings = async () => {
             <div className="container mt-4">
                 <h1>Theme</h1>
                 <p>
-                    Current theme: <span className="font-bold">{localStorage.theme}</span>
+                    Current theme: <span className="font-bold">{theme}</span>
                 </p>
                 <div className="flex gap-2 flex-col lg:flex-row mt-4">
                     <button

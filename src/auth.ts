@@ -24,6 +24,9 @@ export const config = {
             }),
         }),
     ],
+    session: {
+        strategy: "jwt",
+    },
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);

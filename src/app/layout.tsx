@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./styles.scss";
-import { StatusProvider } from "./contexts/UserStatus";
+import { AppContextProvider } from "./contexts/AppContext";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import Theme from "./components/Theme";
+import prisma from "@/prisma";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
     const session = await auth();
+    console.log(session?.user);
     if (session?.user) {
         // don't allow sensitive data to make it to the client
         session.user = {
@@ -32,6 +34,12 @@ export default async function RootLayout({
         };
     }
 
+    const registration = session?.user?.id
+        ? await prisma.registration.findUnique({
+              where: { id: session.user.id },
+          })
+        : null;
+
     return (
         <html lang="en">
             <body className={inter.className}>
@@ -39,7 +47,9 @@ export default async function RootLayout({
                     <StatusProvider>{children}</StatusProvider>
                 </AuthProvider> */}
                 <Theme />
-                <SessionProvider session={session}>{children}</SessionProvider>
+                <AppContextProvider session={session} registration={registration}>
+                    {children}
+                </AppContextProvider>
             </body>
         </html>
     );

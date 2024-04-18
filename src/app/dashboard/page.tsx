@@ -1,14 +1,15 @@
+"use client";
 import { useState, FormEvent } from "react";
 import Modal from "../components/Modal/Modal";
-import { useStatus } from "../contexts/UserStatus";
+import { useStatus } from "../contexts/AppContext";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 
-const Home = async () => {
+const Home = () => {
     const { data: session, update } = useSession();
     const user = session?.user;
 
-    const status = useStatus();
+    const status: string = useStatus();
 
     const [modalIsOpened, setModalIsOpened] = useState(
         user?.name === undefined && user?.lastName === undefined
@@ -38,7 +39,7 @@ const Home = async () => {
     };
 
     const logout = async () => {
-        await signOut({ callbackUrl: "/" });
+        await signOut({ callbackUrl: "/login" });
     };
 
     return (

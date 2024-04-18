@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsDiscord } from "react-icons/bs";
-import { useStatus } from "../../contexts/UserStatus";
+import { useStatus } from "../../contexts/AppContext";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
