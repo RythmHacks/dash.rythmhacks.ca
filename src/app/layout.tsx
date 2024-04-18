@@ -22,17 +22,6 @@ export default async function RootLayout({
 }>) {
     const session = await auth();
     console.log(session?.user);
-    if (session?.user) {
-        // don't allow sensitive data to make it to the client
-        session.user = {
-            id: session.user.id,
-            name: session.user.name,
-            lastName: session.user.lastName,
-            joinedDiscord: session.user.joinedDiscord,
-            email: session.user.email,
-            image: session.user.image,
-        };
-    }
 
     const registration = session?.user?.id
         ? await prisma.registration.findUnique({

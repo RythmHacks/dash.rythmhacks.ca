@@ -71,7 +71,7 @@ const Login = () => {
         // } finally {
         //   clearInterval(loadingDotsInterval)
         // }
-        await signIn("google");
+        await signIn("google", { callbackUrl: "/dashboard" });
     };
 
     const router = useRouter();
