@@ -15,7 +15,8 @@ RythmHacks hacker dashboard and application portal
 4. Create a file in the project root directory called `.env.local`
 5. Copy everything in `.env.template` and put it in `.env.local`, filling in the missing values
 6. Type `npm i` to install dependencies
-7. Write some code and run `npm start` to start the web app
+7. Type `npm run migrate` to sync prisma with your database
+8. Write some code and run `npm start` to start the web app
 
 ## Git naming conventions
 
