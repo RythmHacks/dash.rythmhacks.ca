@@ -11,7 +11,7 @@ RythmHacks hacker dashboard and application portal
     ```
 
 2. Install PostgreSQL (guide [here](https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database))
-3. Run `psql postgres` then `CREATE DATABASE rythmhacksdash`
+3. Run `psql postgres` then `CREATE DATABASE rythmhacksdash;`
 4. Create a file in the project root directory called `.env.local`
 5. Copy everything in `.env.template` and put it in `.env.local`, filling in the missing values
 6. Type `npm i` to install dependencies
