@@ -4,48 +4,141 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 import { useSession } from "next-auth/react";
+import { getUser, updateUser } from "@/app/api/auth/userModel";
+
 
 const Settings = () => {
     // const { user, updateUser } = useAuth()
     const { data: session, update } = useSession();
+
+    // get user email
+    // call api with user email
+    // api returns "first name, last name, github, linkedin, discord, instagam"
     const user = session?.user;
+    if (!user) {
+        //TODO: redirect
+        return
+    }
+
+
 
     const [firstName, setFirstName] = useState<string>(user?.name || "Unnamed");
     const [lastName, setLastName] = useState<string>(user?.lastName || "Hacker");
-    const [email, setEmail] = useState<string>(user?.email!);
+    const [email, setEmail] = useState<string>(user?.email! || "test@gmail.com");
+    const [github, setGithub] = useState(user?.github || "github.com/username");
+    const [linkedin, setLinkedin] = useState(user?.linkedin || "linkedin.com/in/username");
+    const [discord, setDiscord] = useState(user?.discord || "Discord");
+    const [instagram, setInstagram] = useState(user?.instagram || "Instagram");
     const [theme, setTheme] = useState<string>("loading");
 
     useEffect(() => {
         setTheme(localStorage.theme);
     });
 
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //         try {
+    //             const response = await fetch(`/api/user?email=${encodeURIComponent(email)}`);
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch user data');
+    //             }
+    //             const userData = await response.json();
+    //             setFirstName(userData.name);
+    //             setLastName(userData.lastName);
+    //             setEmail(userData.email);
+    //             setGithub(userData.github);
+    //             setLinkedin(userData.linkedin);
+    //             setDiscord(userData.discord);
+    //             setInstagram(userData.instagram);
+    //         } catch (error: any) {
+    //             console.error('Failed to load user data:', error);
+    //         }
+    //     };
+    
+    //     fetchUserData();
+    // }, [email]);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const userEmail = localStorage.getItem('userEmail');
+            try {
+                // const response = await fetch(`/api/user?email=${encodeURIComponent("enkai.liu.1@gmail.com")}`);
+                // if (!response.ok) {
+                //     throw new Error('Failed to fetch user data');
+                // }
+                // const userData = await response.json();
+                const userData = await getUser(user.id!);
+                if (userData) {
+                    setFirstName(userData.name ?? "");
+                    setLastName(userData.lastName ?? "");
+                    setEmail(userData.email ?? "");
+                    setGithub(userData.github ?? "");
+                    setLinkedin(userData.linkedin ?? "");
+                    setDiscord(userData.discord ?? "");
+                    setInstagram(userData.instagram ?? "");
+                }
+            } catch (error) {
+                console.error('Failed to load user data:', error);
+            }
+        }
+        fetchUserData();
+    }, []); 
+    
+    
+
     const [nameUpdated, setNameUpdated] = useState(false);
     const [emailUpdated, setEmailUpdated] = useState(false);
 
     const handleUserInfoSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const userData = {
+            name: firstName.trim(),
+            lastName: lastName.trim(),
+            email: email.trim(),
+            github: github.trim(),
+            linkedin: linkedin.trim(),
+            discord: discord.trim(),
+            instagram: instagram.trim(),
+        };
+    
+        // try {
+        //     const response = await fetch(`/api/user?email=${encodeURIComponent(email)}`, {
+        //         method: 'PUT',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(userData)
+        //     });
+        //     if (!response.ok) {
+        //         throw new Error('Failed to update user information');
+        //     }
+        //     const updatedUser = await response.json();
+        //     update({ ...session, user: updatedUser });
+        //     setNameUpdated(true);
+        // } catch (error: any) {
+        //     alert(error.message);
+        //     console.error(error);
+        // }
         try {
-            const nameHasChanged = firstName.trim() !== user?.name || lastName !== user?.lastName;
-            const emailHasChanged = email.trim() !== user?.email;
-
-            await update({
-                ...session,
-                user: {
-                    ...user,
-                    name: firstName.trim(),
-                    lastName: lastName.trim(),
-                    email: email.trim(),
-                },
-            });
-
-            if (nameHasChanged) setNameUpdated(true);
-            if (emailHasChanged) setEmailUpdated(true);
+            // const response = await fetch(`/api/user?email=${encodeURIComponent(email)}`, {
+            //     method: 'PUT',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(userData)
+            // });
+            // if (!response.ok) {
+            //     throw new Error('Failed to update user information');
+            // }
+            // const updatedUser = await response.json();
+            await updateUser({where: {id: user?.id}, data: userData});
+            setNameUpdated(true); 
         } catch (error: any) {
-            alert(error.error_description || error.message);
+            alert(error.message);
             console.error(error);
         }
+    
     };
-
+    
     return (
         <div className="page" id="settings">
             <div className="flexwrap">
@@ -100,6 +193,66 @@ const Settings = () => {
                                 }}
                             />
                         </div>
+                        <div className="mb-4">
+                            <label className="block mb-2" htmlFor="Github">
+                                Github
+                            </label>
+                            <input
+                                    className="p-2 text-md w-full"
+                                    id="Github"
+                                    type="text"
+                                    required
+                                    value={github}
+                                    onChange={(e) => {
+                                        setGithub(e.target.value)
+                                    }}
+                                />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2" htmlFor="LinkedIn">
+                                LinkedIn
+                            </label>
+                            <input
+                                    className="p-2 text-md w-full"
+                                    id="LinkedIn"
+                                    type="text"
+                                    required
+                                    value={linkedin}
+                                    onChange={(e) => {
+                                        setLinkedin(e.target.value)
+                                    }}
+                                />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2" htmlFor="Discord">
+                                Discord
+                            </label>
+                            <input
+                                    className="p-2 text-md w-full"
+                                    id="Discord"
+                                    type="text"
+                                    required
+                                    value={discord}
+                                    onChange={(e) => {
+                                        setDiscord(e.target.value);
+                                    }}
+                                />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block mb-2" htmlFor="Instagram">
+                                Instagram
+                            </label>
+                            <input
+                                    className="p-2 text-md w-full"
+                                    id="Instagram"
+                                    type="text"
+                                    required
+                                    value={instagram}
+                                    onChange={(e) => {
+                                        setInstagram(e.target.value);
+                                    }}
+                                />
+                        </div>
 
                         <p className="mt-4 mb-4">
                             Want to change your email? Contact the organizers at{" "}
@@ -108,11 +261,11 @@ const Settings = () => {
 
                         <button
                             type="submit"
-                            disabled={
-                                email.trim() === user?.email &&
-                                firstName.trim() === (user?.name || "Unnamed") &&
-                                lastName.trim() === (user?.lastName || "Hacker")
-                            }
+                            // disabled={
+                            //     email.trim() === user?.email &&
+                            //     firstName.trim() === (user?.name || "Unnamed") &&
+                            //     lastName.trim() === (user?.lastName || "Hacker")
+                            // }
                         >
                             Save
                         </button>
@@ -123,7 +276,7 @@ const Settings = () => {
                         >
                             <BsFillCheckCircleFill size={24} fill="#33FF44" className="mr-4" />
                             <p>
-                                <strong>Success!</strong> Your name has been updated.
+                                <strong>Success!</strong>
                             </p>
                         </div>
 

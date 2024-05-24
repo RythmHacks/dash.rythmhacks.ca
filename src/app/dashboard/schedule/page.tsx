@@ -1,3 +1,5 @@
+"use client"; 
+
 import { useState, useEffect, useContext } from "react";
 import "./Schedule.scss";
 import { times, eventTypes, Friday, Saturday, Sunday } from "./Schedule.data";
@@ -5,7 +7,8 @@ import Day from "./Day";
 import { BsFullscreen } from "react-icons/bs";
 import Modal from "../../components/Modal/Modal";
 import { useStatus } from "../../contexts/AppContext";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+
 
 const Schedule = () => {
     const [currentDay, setCurrentDay] = useState<number>(0);

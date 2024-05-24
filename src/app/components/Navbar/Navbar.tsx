@@ -19,12 +19,15 @@ import { signOut, useSession } from "next-auth/react";
 const Navbar = () => {
     // const { user, signOut } = useAuth();
     const { data: session } = useSession();
-    const user = session?.user;
-    console.log(user);
+    // const user = session?.user;
+    // console.log(user);
+    const user = { name: "Test", lastName: "User", email: "test@example.com" };
+    let name = `${user.name} ${user.lastName}`;
+
 
     const router = useRouter();
 
-    let name = `${user?.name ?? ""} ${user?.lastName ?? ""}`;
+    // let name = `${user?.name ?? ""} ${user?.lastName ?? ""}`;
 
     if (name == " ") {
         name = "Unnamed Hacker";
@@ -33,7 +36,8 @@ const Navbar = () => {
     const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false);
     const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false);
 
-    const status = useStatus();
+    // const status = useStatus();
+    const status = "Confirmed";
 
     const logout = async () => {
         await signOut({ callbackUrl: "/login" });
