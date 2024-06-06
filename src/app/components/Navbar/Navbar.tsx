@@ -5,6 +5,7 @@ import "./Navbar.scss";
 import logo from "../../../../public/rythmhacks-circle.png";
 import { BiHome } from "react-icons/bi";
 import { BsFillGearFill, BsCalendar2Check, BsDiscord, BsBook } from "react-icons/bs";
+import { IoQrCode } from "react-icons/io5";
 import { SiDevpost } from "react-icons/si";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
@@ -100,6 +101,10 @@ const Navbar = () => {
                                 <Link href="/dashboard/discord">
                                     <BsDiscord />
                                     Discord
+                                </Link>
+                                <Link href="/dashboard/qrcode">
+                                    <IoQrCode />
+                                    QR Code
                                 </Link>
                                 {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
                                 <a
