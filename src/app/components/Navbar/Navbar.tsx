@@ -5,6 +5,7 @@ import "./Navbar.scss";
 import logo from "../../../../public/rythmhacks-circle.png";
 import { BiHome } from "react-icons/bi";
 import { BsFillGearFill, BsCalendar2Check, BsDiscord, BsBook } from "react-icons/bs";
+import { IoQrCode } from "react-icons/io5";
 import { SiDevpost } from "react-icons/si";
 import { AiOutlineLink } from "react-icons/ai";
 import { IoMdSettings, IoMdLogOut } from "react-icons/io";
@@ -19,12 +20,15 @@ import { signOut, useSession } from "next-auth/react";
 const Navbar = () => {
     // const { user, signOut } = useAuth();
     const { data: session } = useSession();
-    const user = session?.user;
-    console.log(user);
+    // const user = session?.user;
+    // console.log(user);
+    const user = { name: "Test", lastName: "User", email: "test@example.com" };
+    let name = `${user.name} ${user.lastName}`;
+
 
     const router = useRouter();
 
-    let name = `${user?.name ?? ""} ${user?.lastName ?? ""}`;
+    // let name = `${user?.name ?? ""} ${user?.lastName ?? ""}`;
 
     if (name == " ") {
         name = "Unnamed Hacker";
@@ -33,7 +37,8 @@ const Navbar = () => {
     const [isAccountPopupOpened, setIsAccountPopupOpened] = useState<boolean>(false);
     const [isHamMenuOpened, setIsHamMenuOpened] = useState<boolean>(false);
 
-    const status = useStatus();
+    // const status = useStatus();
+    const status = "Confirmed";
 
     const logout = async () => {
         await signOut({ callbackUrl: "/login" });
@@ -96,6 +101,10 @@ const Navbar = () => {
                                 <Link href="/dashboard/discord">
                                     <BsDiscord />
                                     Discord
+                                </Link>
+                                <Link href="/dashboard/qrcode">
+                                    <IoQrCode />
+                                    QR Code
                                 </Link>
                                 {/* <NavLink to='/dashboard/register' end><BsClipboard2Check/>Register</NavLink>  */}
                                 <a

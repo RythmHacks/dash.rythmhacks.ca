@@ -9,7 +9,8 @@ const Home = () => {
     const { data: session, update } = useSession();
     const user = session?.user;
 
-    const status: string = useStatus();
+    // const status: string = useStatus();
+    const status = "Confirmed";
 
     const [modalIsOpened, setModalIsOpened] = useState(
         user?.name === undefined && user?.lastName === undefined
