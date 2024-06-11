@@ -117,11 +117,11 @@ const Login = () => {
 
                 <div className="row flex w-full mt-4 md:mt-12">
                     <div className="col-6 form-widget w-full" aria-live="polite">
-                        <p className="dark:text-[#888] light:text-[#334155]">
+                        {/* <p className="dark:text-[#888] light:text-[#334155]">
                             Enter your email to get a magic link
-                        </p>
+                        </p> */}
                         <form onSubmit={handleLogin}>
-                            <input
+                            {/* <input
                                 id="email"
                                 className="mb-4 px-4 py-2 w-full mt-4"
                                 type="email"
@@ -145,7 +145,7 @@ const Login = () => {
                                 onClick={() => setHelpModalOpened(true)}
                             >
                                 Need help?
-                            </button>
+                            </button> */}
                             <button className="submit-button w-full text-white mb-2" type="submit">
                                 Sign in with Google
                             </button>
