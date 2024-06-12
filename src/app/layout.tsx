@@ -36,7 +36,7 @@ export default async function RootLayout({
                 </AuthProvider> */}
                 <Theme />
                 <AppContextProvider session={session} registration={registration}>
-                    {process.env.NODE_ENV === "production" ? (
+                    {process.env.NODE_ENV !== "production" ? (
                         children
                     ) : (
                         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
