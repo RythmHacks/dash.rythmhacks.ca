@@ -20,7 +20,7 @@ export default async function RootLayout({
     children: React.ReactNode;
 }>) {
     const session = await auth();
-    console.log(session?.user);
+    // console.log(session?.user);
 
     const registration = session?.user?.id
         ? await prisma.registration.findUnique({
@@ -36,7 +36,13 @@ export default async function RootLayout({
                 </AuthProvider> */}
                 <Theme />
                 <AppContextProvider session={session} registration={registration}>
-                    {children}
+                    {process.env.NODE_ENV !== "production" ? (
+                        children
+                    ) : (
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                            Under construction... 🚧
+                        </div>
+                    )}
                 </AppContextProvider>
             </body>
         </html>

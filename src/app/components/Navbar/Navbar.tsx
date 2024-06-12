@@ -20,7 +20,7 @@ const Navbar = () => {
     // const { user, signOut } = useAuth();
     const { data: session } = useSession();
     const user = session?.user;
-    console.log(user);
+    // console.log(user);
 
     const router = useRouter();
 
