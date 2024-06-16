@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { BsDiscord } from "react-icons/bs";
 import { useStatus } from "../../contexts/AppContext";
@@ -26,32 +28,33 @@ const Discord = () => {
     if (code) {
         useEffect(() => {
             setLoadingState("loading");
-            fetch(import.meta.env.VITE_BACKEND_URL + "/join-discord", {
-                method: "POST",
-                body: JSON.stringify({
-                    code,
-                    supabase_user_id: user?.id,
-                }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                mode: "cors",
-            })
-                .then(async (res) => {
-                    const json = await res.json();
-                    if (!res.ok) throw json;
-                    return json;
-                })
-                .then((json: object) => {
-                    setLoadingState("success");
-                    setResult(json);
-                })
-                .catch((errorResponse: any) => {
-                    const newError = new Error(`${errorResponse.status} ${errorResponse.message}`);
-                    setLoadingState("error");
-                    setError(newError);
-                    console.error(errorResponse);
-                });
+            // TODO
+            // fetch(import.meta.env.VITE_BACKEND_URL + "/join-discord", {
+            //     method: "POST",
+            //     body: JSON.stringify({
+            //         code,
+            //         supabase_user_id: user?.id,
+            //     }),
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     mode: "cors",
+            // })
+            //     .then(async (res) => {
+            //         const json = await res.json();
+            //         if (!res.ok) throw json;
+            //         return json;
+            //     })
+            //     .then((json: object) => {
+            //         setLoadingState("success");
+            //         setResult(json);
+            //     })
+            //     .catch((errorResponse: any) => {
+            //         const newError = new Error(`${errorResponse.status} ${errorResponse.message}`);
+            //         setLoadingState("error");
+            //         setError(newError);
+            //         console.error(errorResponse);
+            //     });
         }, []);
     }
 
