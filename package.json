@@ -41,7 +41,7 @@
         "typescript": "^5.4.4"
     },
     "scripts": {
-        "dev": "dotenv -e .env.local -v DATABASE_URL=prisma://localhost:4000/?api_key=A -- bash -c 'prisma-accelerate-local $LOCAL_DATABASE_URL & next dev'",
+        "dev": "dotenv -e .env.local -- bash -c 'prisma-accelerate-local $LOCAL_DATABASE_URL' & next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
