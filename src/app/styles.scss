@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@tailwind utilities;
+@tailwind base;
+
+$accent: #558CA9;
+$dark1: #121313;
+$dark2: #1B1F2A;
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;  
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-image: radial-gradient(#777 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px ;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+html.light {
+  body {
+    background-color: #ffffff;
+  }  
+  p {
+    color: #334155;
+  }
+  h1, h2, h3, h4 {
+    color: #111;
+  }
+  .container {
+    background-color: darken(#fff, 1%);
+    border: 1px solid rgb(209, 213, 219);
+  }
+  input {
+    background-color: #fcfcfc;
+    color: #111;
+    border-color: rgb(209, 213, 219);
+
+    &:focus {
+      border-color: $accent;
+    }
+    &::placeholder {
+      color: #aaa;
+    }
+    &:disabled {
+      color: #999;
+    }
+  }
+  button.contrast {
+    background-color: theme('colors.light2');
+    color: theme('colors.textlight');
+
+    &:hover {
+      background-color: #E4E7EB;
+    }
+  }
+}
+
+html.dark {
+  body {
+    background-color: $dark2;
+    color: #eee;  
+  }
+  .container {
+    background-color: rgba(48, 50, 57, 0.4);
+    border: 2px solid $dark1;
+  }
+  input {
+    background-color: $dark2;
+    color: #eee;
+
+    &:disabled {
+      color: #aaa;
+      user-select: none;
+
+      &:hover {
+        border-color: #555;
+      }
+    }
+  }
+  button {
+    &.contrast {
+      background-color: $dark2;
+      color: $accent;
+  
+      &:hover {
+        background-color: theme('colors.dark3');
+      }
+    }  
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Satoshi', sans-serif;
+  margin: 0;
+}
+h2 {
+  font-size: 1.75rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+p, button, input {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+}
+p {
+  line-height: 1.5rem;
+}
+
+button:not(.style-link):not(.style-none) {
+  background-color: $accent;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+  max-width: none;
+  color: #eee;
+  text-align: center;
+
+  &:hover {
+    background-color: darken($accent, 10%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: transparentize(#eee, 0.5);
+    background-color: transparentize($accent, 0.5);
+  }
+}
+
+button.style-link, button.style-none {
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  padding: 0; 
+  margin: 0;
+}
+
+a:not(.style-none), button.style-link {
+  transition: all 0.3s;
+  color: $accent;
+  cursor: pointer;
+  background-image: linear-gradient(90deg, rgba(84,140,168,1) 0%, rgba(84,140,168,1) 100%);;
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  text-decoration: none;
+
+  &:hover {
+    background-size: 100% 2px;
+  }
+}
+
+input {
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 0.5rem;
+  outline: none;
+  transition: border-color .3s ease;
+
+  &:focus, &:hover {
+    border-color: $accent;
+  }
+  &::placeholder {
+    color: #555;
+  }
+}
+
+.container {
+  padding: 2.5rem;
+  border-radius: 5px;
+  backdrop-filter: blur(2px);
+
+  h1, h2, h3, h4 {
+    margin-bottom: 1rem;
+  }
+}
+
+.flexwrap {
+  display: flex;
+  gap: 1rem;
+
+  .container {
+    width: 50%;
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .flexwrap {
+    flex-direction: column;
+
+    .container {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  .page {
+    padding: 2rem;
+  }
+  .container {
+    padding: 2rem;
+  }
+}
+@media (max-width: 320px) {
+  .page {
+    padding: 1rem;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+
+.lazy-preloader {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -21px;
+  margin-top: -21px;
+  z-index: 10;
+  transform-origin: 50%;
+  box-sizing: border-box;
+  border: 4px solid $accent;
+  border-radius: 50%;
+  border-top-color: transparent;
+  background: none;
+  animation: preloader-spin 1s infinite linear;
+}
+
+
+@keyframes preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
