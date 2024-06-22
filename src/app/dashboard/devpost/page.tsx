@@ -1,12 +1,7 @@
+import { redirect } from "next/navigation";
+
 const Devpost = () => {
+    redirect("https://rythmhacks2023.devpost.com");
+};
 
-  window.location.href = 'https://rythmhacks2023.devpost.com'
-
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default Devpost
+export default Devpost;

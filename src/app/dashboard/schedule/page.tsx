@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect, useContext } from "react";
 import "./Schedule.scss";
 import { times, eventTypes, Friday, Saturday, Sunday } from "./Schedule.data";

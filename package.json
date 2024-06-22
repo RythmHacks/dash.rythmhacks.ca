@@ -21,6 +21,7 @@
         "react-icons": "^4.8.0",
         "react-rewards": "^2.0.4",
         "sass": "^1.58.0",
+        "sharp": "^0.33.4",
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
@@ -39,7 +40,7 @@
     },
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "npx prisma migrate deploy && next build",
         "start": "next start",
         "lint": "next lint",
         "migrate": "dotenv -e .env.local -- npx prisma migrate dev",

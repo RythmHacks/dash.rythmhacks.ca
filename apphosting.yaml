@@ -1,0 +1,11 @@
+env:
+  - variable: DATABASE_URL
+    secret: DATABASE_URL
+  - variable: AUTH_SECRET
+    secret: AUTH_SECRET
+  - variable: AUTH_GOOGLE_ID
+    secret: AUTH_GOOGLE_ID
+  - variable: AUTH_GOOGLE_SECRET
+    secret: AUTH_GOOGLE_SECRET
+  - variable: AUTH_TRUST_HOST
+    secret: AUTH_TRUST_HOST
